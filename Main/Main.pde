@@ -1,8 +1,11 @@
 ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+Plant[][] PlantGrid;
 
 void setup(){
   size(1100,600);
-  Plant[][] PlantGrid = new  Plant[5][9];
+  Plant[][] PlantGrid = new Plant[5][9];
+  //PLANT TESTING
+  PlantGrid[2][2] = new PeaShooter(300, 300);
 }
 
 void mouseClicked(){
@@ -15,4 +18,12 @@ void draw(){
     projectile.move();
     projectile.display();
   }
+  /*
+  for(Plant[] row : PlantGrid){
+    for(Plant plant : row){
+      //Make this only happen once
+      plant.display();
+    }
+  }*/
+  PlantGrid[2][2].display();
 }

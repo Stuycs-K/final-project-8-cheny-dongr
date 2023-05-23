@@ -3,5 +3,6 @@ abstract class Plant{
   private int attackDamage;
   
   public abstract void takeDamage(int damage);
-  public abstract void attack();
+  public abstract Projectile attack();
+  public abstract void display();
 }
