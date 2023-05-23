@@ -1,21 +1,19 @@
 # Work Log
 
-## GROUP MEMBER 1
-
-### date x
-
-info
+## Yao 
+### May22
+Made the classes, got most of the basic zombie methods done
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## Rui Dong
 
-### date x
+### May22
 
-info
+Created basic projectile class, starting implementing Plant class.
 
 ### date y
 
