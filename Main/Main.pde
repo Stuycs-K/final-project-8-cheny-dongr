@@ -15,4 +15,3 @@ void draw(){
     projectile.move();
     projectile.display();
   }
-}

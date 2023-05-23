@@ -7,5 +7,3 @@ public abstract class Plant{
   }
   public void attack(){
   }
-  
-}
