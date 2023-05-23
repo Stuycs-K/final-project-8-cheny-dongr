@@ -3,6 +3,7 @@ public class Zombie{
   private int x,y;
   private int speed;
   private int damage;
+  PImage zombie; 
   
   
   public Zombie(){
@@ -11,6 +12,7 @@ public class Zombie{
     this.speed = 10;
     this.hp = 100;
     this.damage = 10;   
+
   }
   
   public int getXPosition(){
@@ -32,6 +34,7 @@ public class Zombie{
   public void zombieMove(){
     this.setPosition(this.x-speed);
     //change image to show zombie moving
+    //use millis() to get the interval
   }
   
   public void doDamage(Plant a){
