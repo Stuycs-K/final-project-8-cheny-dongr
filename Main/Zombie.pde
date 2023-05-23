@@ -35,7 +35,7 @@ public class Zombie{
   }
   
   public void doDamage(Plant a){
-    a.setHP(a.getHP()-this.damage);
+    //a.setHP(a.getHP()-this.damage);
     //need same method for plants
     //change image to show zombie eating
   }
