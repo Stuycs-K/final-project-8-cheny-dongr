@@ -1,9 +1,9 @@
-ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 Plant[][] PlantGrid;
 
 void setup(){
   size(1100,600);
-  Plant[][] PlantGrid = new Plant[5][9];
+  PlantGrid = new Plant[5][9];
   //PLANT TESTING
   PlantGrid[2][2] = new PeaShooter(300, 300);
 }
@@ -18,12 +18,22 @@ void draw(){
     projectile.move();
     projectile.display();
   }
-  /*
-  for(Plant[] row : PlantGrid){
-    for(Plant plant : row){
+  
+  for(int row = 0; row < PlantGrid.length; row++){
+    for(int i = 0; i < PlantGrid[row].length; i++){
+      if(PlantGrid[row][i] != null){
+      //Plant plant = PlantGrid[row][i];
       //Make this only happen once
-      plant.display();
+        PlantGrid[row][i].display();
+        PlantGrid[row][i].attack();
+      }
     }
-  }*/
-  PlantGrid[2][2].display();
+  }
 }
+  /*
+  PlantGrid[2][2].display();
+  Projectiles.add(PlantGrid[2][2].attack());*/
+  
+  public static void addProjectile(Projectile projectile){
+    Projectiles.add(projectile);
+  }
