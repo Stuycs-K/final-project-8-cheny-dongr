@@ -29,14 +29,14 @@ public class PeaShooter extends Plant{
     String s = currentRelativePath.toAbsolutePath().toString();
     System.out.println("Current absolute path is: " + s);*/
     
-    File current = new File(sketchPath());
+    File current = new File(sketchPath() + File.separator + "PlantFrames" + File.separator + "PeaShooter");
     println(current.exists());
     File[] files = current.listFiles();
     for(File file : files){
-      println();
+      println(file.getAbsolutePath());
     }
     
-    File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Peashooter"));
+    File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
     File[] images = framesFolder.listFiles();
     println(framesFolder.exists());
     for(int i = 1; i <= 24; i++){
@@ -59,7 +59,6 @@ public class PeaShooter extends Plant{
   
   public void display(){
     if(frameCount % FRAMERATE == 0){
-      println(currentFrame);
       currentFrame++;
       if(currentFrame >= frames.size()){
         currentFrame = 0;
