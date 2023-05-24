@@ -9,7 +9,7 @@ public class PeaShooter extends Plant{
   private int attackCounter = 0;
   private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 5;
+  private final int FRAMERATE = 3;
   
   public PeaShooter(int x, int y){
     this.x = x;

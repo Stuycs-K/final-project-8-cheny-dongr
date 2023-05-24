@@ -1,7 +1,9 @@
 static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
+ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 Plant[][] PlantGrid;
 
+PImage background; 
 void setup(){
   size(1100,600);
   PlantGrid = new Plant[5][9];
@@ -17,15 +19,20 @@ void setup(){
   PlantGrid[2][1] = new PeaShooter(0, 300);
   PlantGrid[3][1] = new PeaShooter(0, 400);
   PlantGrid[4][1] = new PeaShooter(0, 500);
+  background = loadImage("garden.png");
 }
 
 void mouseClicked(){
   Projectiles.add(new Projectile(-1, 10, mouseX, mouseY));
+  //sun test
   spawnSun(new Sun(500, 400));
+  
+  Zombies.add(new Zombie());
 }
 
 void draw(){
   background(255);
+  image(background, 0, 100,1100,500);
   for(Projectile projectile : Projectiles){
     projectile.move();
     projectile.display();
@@ -47,6 +54,17 @@ void draw(){
         PlantGrid[row][i].display();
         PlantGrid[row][i].attack();
       }
+    }
+  }
+  
+  for(int zomb = 0; zomb < Zombies.size(); zomb++){
+    Zombies.get(zomb).zombieMove();
+    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP()-10);
+    //if (Zombies.get(zomb).getHP() <= 0){
+      //testing out zombie dying
+      if (Zombies.get(zomb).getX() <= 250){
+      
+      Zombies.remove(zomb);
     }
   }
 }
