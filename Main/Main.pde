@@ -10,6 +10,8 @@ void setup(){
 
 void mouseClicked(){
   Projectiles.add(new Projectile(-1, 10, mouseX, mouseY));
+  
+  Zombies.add(new Zombie());
 }
 
 void draw(){
@@ -19,4 +21,16 @@ void draw(){
     projectile.move();
     projectile.display();
   }
+  
+  for(int zomb = 0; zomb < Zombies.size(); zomb++){
+    Zombies.get(zomb).zombieMove();
+    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP()-10);
+    //if (Zombies.get(zomb).getHP() <= 0){
+      //testing out zombie dying
+      if (Zombies.get(zomb).getX() <= 250){
+      
+      Zombies.remove(zomb);
+    }
+  }
+  
 }

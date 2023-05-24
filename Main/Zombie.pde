@@ -7,18 +7,20 @@ public class Zombie{
   
   
   public Zombie(){
-    this.x = width-200;
-    this.y = (int)(random(5)); //add constant once figured out positions
-    this.speed = 10;
+    this.x = width-100;
+    this.y = (int)(random(5))*80 + 200; //add constant once figured out positions
+    this.speed = 1;
     this.hp = 100;
-    this.damage = 10;   
-
+    this.damage = 10; 
+    //will change to zombie image when found
+    fill(0);
+    circle(x,y,80);
   }
   
-  public int getXPosition(){
+  public int getX(){
     return x;
   }
-  public int getYPosition(){
+  public int getY(){
     return y;
   }
   public void setPosition(int newposition){
@@ -33,7 +35,8 @@ public class Zombie{
   
   public void zombieMove(){
     this.setPosition(this.x-speed);
-    //change image to show zombie moving
+    circle(x,y,80);
+    //change to image to show zombie moving
     //use millis() to get the interval
   }
   
