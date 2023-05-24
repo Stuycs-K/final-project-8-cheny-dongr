@@ -16,6 +16,8 @@ info
 
 Created basic projectile class, starting implementing Plant class.
 
-### date y
+### date 23
 
-info
+-Created Peashooter Class
+-peashooters now shoots projectiles every some time interval.
+-added animation frames for peashooter, loops through each frame. Peashooters look animated.
