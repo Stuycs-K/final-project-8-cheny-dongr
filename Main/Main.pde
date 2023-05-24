@@ -59,10 +59,11 @@ void draw(){
   
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
-    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP()-1);
+    //testing out zombie dying
+    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
-      if (Zombies.get(zomb).getX() <= 250 || !(Zombies.get(zomb).alive())){
+      if (Zombies.get(zomb).getX() <= 200 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
     }

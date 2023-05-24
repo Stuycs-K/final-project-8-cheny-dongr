@@ -1,3 +1,5 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
 public class Zombie{
   private int hp;
   private int x,y;
@@ -9,7 +11,7 @@ public class Zombie{
   private int currentFrame = 0;
   private final int FRAMERATE = 4;
   private int change;
-  private int slow = 0;
+
   boolean alive = true;
   
   public Zombie(){
@@ -43,7 +45,9 @@ public class Zombie{
   public int getX(){
     return x;
   }
-
+  public int getY(){
+    return y;
+  }
   public void setX(int newposition){
     x = newposition;
   }
