@@ -36,12 +36,12 @@ public class PeaShooter extends Plant{
       println();
     }
     
-    File framesFolder = new File(sketchPath() + "/PlantFrames/Peashooter");
+    File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Peashooter"));
     File[] images = framesFolder.listFiles();
     println(framesFolder.exists());
     for(int i = 1; i <= 24; i++){
       println(framesFolder.getAbsolutePath());
-      frames.add(loadImage(framesFolder.getAbsolutePath() + "/peashooter" + i + ".png"));
+      frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png"));
     }
   }
   
