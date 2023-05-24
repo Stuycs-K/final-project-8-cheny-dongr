@@ -15,6 +15,6 @@ public class Projectile{
   }
   public void display(){
     fill(0);
-    circle(x,y,10);
+    circle(x,y,20);
   }
 }
