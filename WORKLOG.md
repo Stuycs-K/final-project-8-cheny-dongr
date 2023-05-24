@@ -4,7 +4,8 @@
 ### May22
 Made the classes, got most of the basic zombie methods done
 
-### date y
+### May23
+continue with zombie class, added temporary garden background and tempory zombie movement code
 
 info
 
