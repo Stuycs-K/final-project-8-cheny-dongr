@@ -1,22 +1,23 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Yao 
+### May22
+Made the classes, got most of the basic zombie methods done
 
-### date x
-
-info
-
-### date y
-
-info
-
-
-## GROUP MEMBER 2
-
-### date x
+### May23
+continue with zombie class, added temporary garden background and tempory zombie movement code
 
 info
 
-### date y
 
-info
+## Rui Dong
+
+### May22
+
+Created basic projectile class, starting implementing Plant class.
+
+### date 23
+
+-Created Peashooter Class
+-peashooters now shoots projectiles every some time interval.
+-added animation frames for peashooter, loops through each frame. Peashooters look animated.
