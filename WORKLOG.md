@@ -3,11 +3,10 @@
 ## Yao 
 ### May22
 Made the classes, got most of the basic zombie methods done
-
 ### May23
 continue with zombie class, added temporary garden background and tempory zombie movement code
-
-info
+### May24
+added the animation for zombie walking and dying
 
 
 ## Rui Dong
