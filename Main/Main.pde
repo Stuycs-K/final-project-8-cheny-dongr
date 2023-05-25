@@ -3,6 +3,7 @@ static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 ArrayList<Plant> SeedPackets = new ArrayList<Plant>();
+ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 Plant[][] PlantGrid;
 
 PImage background; 
@@ -87,4 +88,8 @@ void draw(){
   }
   public static void spawnSun(Sun sun){
     Suns.add(sun);
+  }
+  
+  private void selectSeedpacket(){
+    
   }

@@ -11,6 +11,10 @@ public class PeaShooter extends Plant{
   private int currentFrame = 0;
   private final int FRAMERATE = 3;
   
+  //for seedpacket use
+  public PeaShooter(){
+  }
+  
   public PeaShooter(int x, int y){
     this.x = x;
     this.y = y;
