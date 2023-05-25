@@ -37,8 +37,10 @@ void draw(){
     projectile.move();
     projectile.display();
     for (Zombie zomb : Zombies){
-      if (zomb.getX() - projectile.getX() < 30){
+      //check the y value of the zombie so it doesnt die immediately
+      if (zomb.getX() - projectile.getX() < 30 && zomb.getY() - projectile.getY() < 30){
         projectile.doDamage(zomb);
+        //Projectiles.remove(projectile);
       }
       
     }

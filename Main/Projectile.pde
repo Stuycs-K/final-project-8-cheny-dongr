@@ -20,6 +20,10 @@ public class Projectile{
   public int getX(){
     return x;
   }
+  public int getY(){
+    return y;
+  }
+  
   public void doDamage(Zombie a){
     a.setHP(a.getHP()-damage);
   }
