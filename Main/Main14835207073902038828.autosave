@@ -1,6 +1,6 @@
 static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
-int sunCounter = 0;
+int SunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 Plant[][] PlantGrid;
 
@@ -15,11 +15,11 @@ void setup(){
   PlantGrid[3][1] = new PeaShooter(100, 300);
   PlantGrid[4][1] = new PeaShooter(100, 400);
   */
-  PlantGrid[0][1] = new PeaShooter(245, 150);
-  PlantGrid[1][1] = new PeaShooter(245, 230);
-  PlantGrid[2][1] = new PeaShooter(245, 310);
-  PlantGrid[3][1] = new PeaShooter(245, 390);
-  PlantGrid[4][1] = new PeaShooter(245, 470);
+  PlantGrid[0][1] = new PeaShooter(0, 100);
+  PlantGrid[1][1] = new PeaShooter(0, 200);
+  PlantGrid[2][1] = new PeaShooter(0, 300);
+  PlantGrid[3][1] = new PeaShooter(0, 400);
+  PlantGrid[4][1] = new PeaShooter(0, 500);
   background = loadImage("garden.png");
 }
 
@@ -34,8 +34,6 @@ void mouseClicked(){
 void draw(){
   background(255);
   image(background, 0, 100,1100,500);
-  textSize(80);
-  text(sunCounter, 100, 100);
   for(Projectile projectile : Projectiles){
     projectile.move();
     projectile.display();
@@ -44,7 +42,7 @@ void draw(){
     Sun sun = Suns.get(i);
     if(sun.isCollected()){
       Suns.remove(i);
-      sunCounter += 25;
+      SunCounter += 25;
       i--;
     } else {
       sun.display();
@@ -64,13 +62,10 @@ void draw(){
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
     //testing out zombie dying
-   
     Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
-    //if (Zombies.get(zomb).getX()-)
-      
-      if (!(Zombies.get(zomb).alive())){
+      if (Zombies.get(zomb).getX() <= 200 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
     }
