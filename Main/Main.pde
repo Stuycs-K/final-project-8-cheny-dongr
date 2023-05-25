@@ -65,8 +65,13 @@ void draw(){
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
     //if (Zombies.get(zomb).getX()-)
+      //when zombie is close to plant
       
-      if (!(Zombies.get(zomb).alive())){
+      //using x until getplant location is done
+      int xplant = 200;
+      int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+      println(gridcol);
+      if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
     }
