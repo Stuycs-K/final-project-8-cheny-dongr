@@ -23,7 +23,7 @@ void setup(){
 }
 
 void mouseClicked(){
-  Projectiles.add(new Projectile(-1, 10, mouseX, mouseY));
+  Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
   
@@ -36,6 +36,12 @@ void draw(){
   for(Projectile projectile : Projectiles){
     projectile.move();
     projectile.display();
+    for (Zombie zomb : Zombies){
+      if (zomb.getX() - projectile.getX() < 30){
+        projectile.doDamage(zomb);
+      }
+      
+    }
   }
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
@@ -68,9 +74,14 @@ void draw(){
       //when zombie is close to plant
       
       //using x until getplant location is done
+      
       int xplant = 200;
       int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+      //making sure zombie is align with grid value
       println(gridcol);
+      if (gridcol < 9){
+       // if (PlantGrid[]
+      }
       if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
