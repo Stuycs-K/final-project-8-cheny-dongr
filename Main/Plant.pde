@@ -4,4 +4,5 @@ abstract class Plant{
   
   public abstract void takeDamage(int damage);
   public abstract void attack();
+  public abstract void display();
 }
