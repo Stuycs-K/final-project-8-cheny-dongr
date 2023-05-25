@@ -9,14 +9,17 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 4;
+  private int FRAMERATE = 4;
   private int change;
-
   boolean alive = true;
   
+  
+  public void setFrame(int a){
+    FRAMERATE = a;
+  }
   public Zombie(){
     this.x = width-100;
-    this.y = (int)(random(5))*80 + 200; //add constant once figured out positions
+    this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 1;
     this.hp = 100;
     this.damage = 10; 
@@ -104,7 +107,7 @@ public class Zombie{
   }
   
   public void doDamage(Plant a){
-    //a.setHP(a.getHP()-this.damage);
+    a.takeDamage(damage);
     //need same method for plants
     //change image to show zombie eating
   }

@@ -63,6 +63,8 @@ void draw(){
     Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
+    //if (Zombies.get(zomb).getX()-)
+    
       if (Zombies.get(zomb).getX() <= 200 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
