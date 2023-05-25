@@ -2,6 +2,7 @@ static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
+ArrayList<Plant> SeedPackets = new ArrayList<Plant>();
 Plant[][] PlantGrid;
 
 PImage background; 
@@ -15,6 +16,7 @@ void setup(){
   PlantGrid[3][1] = new PeaShooter(100, 300);
   PlantGrid[4][1] = new PeaShooter(100, 400);
   */
+  SeedPackets.add(new PeaShooter());
   PlantGrid[0][1] = new PeaShooter(245, 150);
   PlantGrid[1][1] = new PeaShooter(245, 230);
   PlantGrid[2][1] = new PeaShooter(245, 310);

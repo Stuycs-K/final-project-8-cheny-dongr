@@ -64,7 +64,7 @@ public class PeaShooter extends Plant{
         currentFrame = 0;
       }
     }
-    image(frames.get(currentFrame), x, y, 100, 100);
+    image(frames.get(currentFrame), x, y, 80, 80);
   }
   public int getX(){
     return x;
