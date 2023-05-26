@@ -7,7 +7,8 @@ Made the classes, got most of the basic zombie methods done
 continue with zombie class, added temporary garden background and tempory zombie movement code
 ### May24
 added the animation for zombie walking and dying
-
+### May25
+projectile damaging zombie, projectile disappear after use, got conversion of zombie position to plant grid
 
 ## Rui Dong
 
