@@ -39,6 +39,7 @@ void mouseClicked(){
 
 void draw(){
   background(255);
+  fill(0);
   image(background, 0, 100,1100,500);
   textSize(80);
   text(sunCounter, 30, 100);

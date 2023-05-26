@@ -22,9 +22,10 @@ public class SunFlower extends Plant{
   public void takeDamage(int damage){
   }
   
+  //ATTACK FOR SUNFLOWER JUST MEANS IT CREATE SUN
   public void attack(){
     if(attackCounter <= 0){
-      Main.addProjectile(new Projectile(-1, 10, x+20,y+20));
+      Main.spawnSun(new Sun(x+80,y+30));
       attackCounter = attackSpeed;
     } else {
       attackCounter--;
