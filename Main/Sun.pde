@@ -9,6 +9,7 @@ public class Sun{
   }
   
   public void display(){
+    fill(100, 100 ,0);
     circle(x, y, SIZE);
   }
   

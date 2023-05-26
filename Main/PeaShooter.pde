@@ -2,6 +2,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PeaShooter extends Plant{
+  public final static int COST = 100;
   private int Health;
   private int attackDamage;
   private int x,y;
@@ -10,6 +11,10 @@ public class PeaShooter extends Plant{
   private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
   private final int FRAMERATE = 3;
+  
+  //for seedpacket use
+  public PeaShooter(){
+  }
   
   public PeaShooter(int x, int y){
     this.x = x;
@@ -64,7 +69,7 @@ public class PeaShooter extends Plant{
         currentFrame = 0;
       }
     }
-    image(frames.get(currentFrame), x, y, 100, 100);
+    image(frames.get(currentFrame), x, y, 80, 80);
   }
   public int getX(){
     return x;
