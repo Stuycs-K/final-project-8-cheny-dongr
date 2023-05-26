@@ -59,7 +59,9 @@ public class Zombie{
   public void setChange(int newchange){
     change = newchange;
   }
- 
+   public int getChange(){
+     return change;
+   }
   
   public int getHP(){
     return hp;

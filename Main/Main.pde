@@ -93,10 +93,22 @@ void draw(){
       
       int xplant = 200;
       int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+      int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
-      println(gridcol);
-      if (gridcol < 9){
-       // if (PlantGrid[]
+      println("row: " + gridrow + " col: " +gridcol);
+
+      if (gridcol < 9 && Zombies.get(zomb).alive()){
+        if (PlantGrid[gridrow][gridcol] != null){
+          Plant victim = PlantGrid[gridrow][gridcol];
+          if (Zombies.get(zomb).getChange() != 1){
+            Zombies.get(zomb).setChange(1);
+          }
+          Zombies.get(zomb).doDamage(victim);
+        }
+        else if ((Zombies.get(zomb).alive())){
+          Zombies.get(zomb).setChange(0);
+        }
+        
       }
       if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
       
