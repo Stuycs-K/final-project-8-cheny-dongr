@@ -2,8 +2,9 @@ static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
-ArrayList<Plant> SeedPackets = new ArrayList<Plant>();
-ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
+ArrayList<String> SeedPackets = new ArrayList<String>();
+//ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
+int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
 PImage background; 
@@ -17,12 +18,16 @@ void setup(){
   PlantGrid[3][1] = new PeaShooter(100, 300);
   PlantGrid[4][1] = new PeaShooter(100, 400);
   */
-  SeedPackets.add(new PeaShooter());
-  PlantGrid[0][1] = new PeaShooter(245, 150);
-  PlantGrid[1][1] = new PeaShooter(245, 230);
-  PlantGrid[2][1] = new PeaShooter(245, 310);
-  PlantGrid[3][1] = new PeaShooter(245, 390);
-  PlantGrid[4][1] = new PeaShooter(245, 470);
+  SeedPackets.add("PEASHOOTER");
+  plant("PEASHOOTER", 0, 0);
+  plant("PEASHOOTER", 1, 0);
+  plant("PEASHOOTER", 2, 0);
+  plant("PEASHOOTER", 3, 0);
+  plant("PEASHOOTER", 4, 0);
+  
+  plant("PEASHOOTER", 2, 2);
+  plant("PEASHOOTER", 2, 3);
+  plant("PEASHOOTER", 2, 4);
   background = loadImage("garden.png");
 }
 
@@ -32,13 +37,16 @@ void mouseClicked(){
   spawnSun(new Sun(500, 400));
   
   Zombies.add(new Zombie());
+  selectSeedpacket();
 }
 
 void draw(){
   background(255);
   image(background, 0, 100,1100,500);
   textSize(80);
-  text(sunCounter, 100, 100);
+  text(sunCounter, 30, 100);
+  text(SeedPacketSelected, 300, 100);
+  drawSeedpacketBar();
   for(Projectile projectile : Projectiles){
     projectile.move();
     projectile.display();
@@ -89,7 +97,24 @@ void draw(){
   public static void spawnSun(Sun sun){
     Suns.add(sun);
   }
-  
+  private void plant(String plant, int row, int col){
+    //PlantGrid[0][1] = new PeaShooter(245, 150);
+    if(plant.equals("PEASHOOTER"))
+    PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
+
+  }
+  private void drawSeedpacketBar(){
+    for(int i = 0; i < SeedPackets.size(); i++){
+      fill(0);
+      rect(150, 0, 100, 100);
+    }
+  }
   private void selectSeedpacket(){
-    
+    if(mouseX > 150 && mouseY< 100){
+      SeedPacketSelected = (mouseX-150) / 100;
+    } else if (mouseX > 245 && mouseY > 160 && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
+      //plant the selected
+      plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
+      SeedPacketSelected = -1;
+    }
   }

@@ -10,6 +10,10 @@ abstract class Plant{
 }
 
 /*Plant grid location to pixel calculation:
-    x = (column * 100) + 145
-    y = (row * 80) + 150
+    x = (column * 82) + 245
+    y = (row * 80) + 160
+*/
+/*Plant pixel location to grid calculation:
+    col = (x-245) / 82
+    row = (y-160) / 80
 */
