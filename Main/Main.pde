@@ -19,15 +19,12 @@ void setup(){
   PlantGrid[4][1] = new PeaShooter(100, 400);
   */
   SeedPackets.add("PEASHOOTER");
+  SeedPackets.add("SUNFLOWER");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
-  
-  plant("PEASHOOTER", 2, 2);
-  plant("PEASHOOTER", 2, 3);
-  plant("PEASHOOTER", 2, 4);
   background = loadImage("garden.png");
 }
 
@@ -100,7 +97,12 @@ void draw(){
   private void plant(String plant, int row, int col){
     //PlantGrid[0][1] = new PeaShooter(245, 150);
     if(plant.equals("PEASHOOTER"))
-    PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
+    {
+      PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
+    }
+    else if(plant.equals("SUNFLOWER")){
+      PlantGrid[row][col] = new SunFlower((col * 82) + 245, (row * 80) + 160);
+    }
 
   }
   private void drawSeedpacketBar(){
