@@ -9,7 +9,7 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 4;
+  private int FRAMERATE = 1;
   private int change;
   boolean alive = true;
   
@@ -59,6 +59,9 @@ public class Zombie{
   public void setChange(int newchange){
     change = newchange;
   }
+   public int getChange(){
+     return change;
+   }
   
   public int getHP(){
     return hp;
@@ -98,11 +101,16 @@ public class Zombie{
     else{
       if(frameCount % FRAMERATE == 0){
       currentFrame++;
-      if(currentFrame == dframes.size()-1){
+      if(currentFrame >= dframes.size()-1){
         alive = false;
+        //currentFrame = 0;
+        
+      }
+      else{
+      image(dframes.get(currentFrame), x, y, 200, 150);
       }
     }
-    image(dframes.get(currentFrame), x, y, 200, 150);
+    
     }
   }
   
