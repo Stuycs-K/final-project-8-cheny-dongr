@@ -33,17 +33,31 @@ void mouseClicked(){
 void draw(){
   background(255);
   image(background, 0, 100,1100,500);
-  for(Projectile projectile : Projectiles){
-    projectile.move();
-    projectile.display();
+  //for(Projectile projectile : Projectiles){
+   println("proj: " + Projectiles.size());
+   for (int projectile = 0; projectile < Projectiles.size(); projectile++){
+    Projectiles.get(projectile).move();
+    Projectiles.get(projectile).display();
+    //boolean remove = false;
     for (Zombie zomb : Zombies){
       //check the y value of the zombie so it doesnt die immediately
-      if (zomb.getX() - projectile.getX() < 30 && zomb.getY() - projectile.getY() < 30){
-        projectile.doDamage(zomb);
-        //Projectiles.remove(projectile);
+      
+      //need correct projectile and plant location to sync the damage
+      println("proj: " + projectile);
+      println("projs: " + Projectiles.size());
+      println("zomb: " + Zombies.size());
+      if (zomb.getX() - Projectiles.get(projectile).getX() < 10 && abs(zomb.getY() - Projectiles.get(projectile).getY()) < 30){
+        Projectiles.get(projectile).doDamage(zomb);
+        Projectiles.remove(projectile);
+        if (projectile > 0){
+          projectile--;
+        }
       }
       
     }
+    if (Projectiles.get(projectile).getX() >= width-10){
+        Projectiles.remove(projectile);
+      }
   }
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
@@ -68,7 +82,7 @@ void draw(){
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
     //testing out zombie dying
-   
+   println(Zombies.get(zomb).getHP());
     Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
