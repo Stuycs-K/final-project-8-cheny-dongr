@@ -17,4 +17,14 @@ public class Projectile{
     fill(0);
     circle(x,y,20);
   }
+  public int getX(){
+    return x;
+  }
+  public int getY(){
+    return y;
+  }
+  
+  public void doDamage(Zombie a){
+    a.setHP(a.getHP()-damage);
+  }
 }

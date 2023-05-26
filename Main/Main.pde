@@ -29,7 +29,7 @@ void setup(){
 }
 
 void mouseClicked(){
-  Projectiles.add(new Projectile(-1, 10, mouseX, mouseY));
+  Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
   
@@ -42,15 +42,46 @@ void draw(){
   background(255);
   fill(0);
   image(background, 0, 100,1100,500);
+
+  //for(Projectile projectile : Projectiles){
+   println("proj: " + Projectiles.size());
+   for (int projectile = 0; projectile < Projectiles.size(); projectile++){
+    Projectiles.get(projectile).move();
+    Projectiles.get(projectile).display();
+    //boolean remove = false;
+    for (Zombie zomb : Zombies){
+      //check the y value of the zombie so it doesnt die immediately
+      
+      //need correct projectile and plant location to sync the damage
+      println("proj: " + projectile);
+      println("projs: " + Projectiles.size());
+      println("zomb: " + Zombies.size());
+      if (Projectiles.size() > 0 && zomb.getX() - Projectiles.get(projectile).getX() < 10 && abs(zomb.getY() - Projectiles.get(projectile).getY()) < 30){
+        Projectiles.get(projectile).doDamage(zomb);
+        Projectiles.remove(projectile);
+        if (projectile > 0){
+          projectile--;
+        }
+      }
+      
+    }
+    if (Projectiles.size() >0 && Projectiles.get(projectile).getX() >= width-10){
+        Projectiles.remove(projectile);
+      }
+
+  }
   textSize(80);
   text(sunCounter, 30, 100);
   text("Index: " + SeedPacketSelected, 300, 100);
   drawSeedpacketBar();
+<<<<<<< HEAD
   for(Projectile projectile : Projectiles){
     projectile.move();
     projectile.display();
   }
   naturallySpawnSun();
+=======
+>>>>>>> 6c85b811a0c7d82705b471bb01efe6e9835644dd
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
     if(sun.isCollected()){
@@ -75,13 +106,35 @@ void draw(){
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
     //testing out zombie dying
-   
+   println(Zombies.get(zomb).getHP());
     Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
     //if (Zombies.get(zomb).getHP() <= 0){
       //testing out zombie dying
     //if (Zombies.get(zomb).getX()-)
+      //when zombie is close to plant
       
-      if (!(Zombies.get(zomb).alive())){
+      //using x until getplant location is done
+      
+      int xplant = 200;
+      int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+      int gridrow = (Zombies.get(zomb).getY()-100)/80;
+      //making sure zombie is align with grid value
+      println("row: " + gridrow + " col: " +gridcol);
+
+      if (gridcol < 9 && Zombies.get(zomb).alive()){
+        if (PlantGrid[gridrow][gridcol] != null){
+          Plant victim = PlantGrid[gridrow][gridcol];
+          if (Zombies.get(zomb).getChange() != 1){
+            Zombies.get(zomb).setChange(1);
+          }
+          Zombies.get(zomb).doDamage(victim);
+        }
+        else if ((Zombies.get(zomb).alive())){
+          Zombies.get(zomb).setChange(0);
+        }
+        
+      }
+      if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
       
       Zombies.remove(zomb);
     }
