@@ -45,7 +45,7 @@ void draw(){
   image(background, 0, 100,1100,500);
   textSize(80);
   text(sunCounter, 30, 100);
-  text(SeedPacketSelected, 300, 100);
+  text("Index: " + SeedPacketSelected, 300, 100);
   drawSeedpacketBar();
   for(Projectile projectile : Projectiles){
     projectile.move();
