@@ -1,4 +1,5 @@
 public class SunFlower extends Plant{
+  public final static int COST = 50;
   private int Health;
   private int x,y;
   private int attackSpeed = 100;

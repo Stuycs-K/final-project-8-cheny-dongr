@@ -2,6 +2,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PeaShooter extends Plant{
+  public final static int COST = 100;
   private int Health;
   private int attackDamage;
   private int x,y;

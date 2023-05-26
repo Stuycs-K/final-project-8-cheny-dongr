@@ -35,6 +35,7 @@ void mouseClicked(){
   
   Zombies.add(new Zombie());
   selectSeedpacket();
+  clickOnLawn();
 }
 
 void draw(){
@@ -97,12 +98,14 @@ void draw(){
   }
   private void plant(String plant, int row, int col){
     //PlantGrid[0][1] = new PeaShooter(245, 150);
-    if(plant.equals("PEASHOOTER"))
+    if(plant.equals("PEASHOOTER") && sunCounter >= PeaShooter.COST)
     {
       PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= PeaShooter.COST;
     }
-    else if(plant.equals("SUNFLOWER")){
+    else if(plant.equals("SUNFLOWER") && sunCounter >= SunFlower.COST){
       PlantGrid[row][col] = new SunFlower((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= SunFlower.COST;
     }
 
   }
@@ -115,7 +118,10 @@ void draw(){
   private void selectSeedpacket(){
     if(mouseX > 150 && mouseY< 100){
       SeedPacketSelected = (mouseX-150) / 100;
-    } else if (mouseX > 245 && mouseY > 160 && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
+    }
+  }
+  public void clickOnLawn(){
+    if (mouseX > 245 && mouseY > 160 && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
