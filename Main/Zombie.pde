@@ -58,11 +58,8 @@ public class Zombie{
   //when walking, change = 0
   public void setChange(int newchange){
     change = newchange;
-    resetCurrentFrame();
   }
-  public void resetCurrentFrame(){
-    currentFrame = 0;
-  }
+ 
   
   public int getHP(){
     return hp;
@@ -102,13 +99,16 @@ public class Zombie{
     else{
       if(frameCount % FRAMERATE == 0){
       currentFrame++;
-      if(currentFrame == dframes.size()-1){
+      if(currentFrame >= dframes.size()-1){
         alive = false;
-        currentFrame = 0;
+        //currentFrame = 0;
         
       }
+      else{
+      image(dframes.get(currentFrame), x, y, 200, 150);
+      }
     }
-    image(dframes.get(currentFrame), x, y, 200, 150);
+    
     }
   }
   
