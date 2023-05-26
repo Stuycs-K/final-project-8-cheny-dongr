@@ -50,6 +50,7 @@ void draw(){
     projectile.move();
     projectile.display();
   }
+  naturallySpawnSun();
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
     if(sun.isCollected()){
@@ -128,5 +129,11 @@ void draw(){
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
+    }
+  }
+  
+  public void naturallySpawnSun(){
+    if(frameCount % 100 == 0){
+      spawnSun(new Sun(245+ (int)(Math.random()*600),160 + (int)(Math.random()*400)) );
     }
   }
