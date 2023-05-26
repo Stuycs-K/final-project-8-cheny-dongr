@@ -112,7 +112,10 @@ void draw(){
   private void drawSeedpacketBar(){
     for(int i = 0; i < SeedPackets.size(); i++){
       fill(0);
-      rect(150, 0, 100, 100);
+      rect((i*100)+150, 0, 100, 100);
+      textSize(15);
+      fill(255);
+      text(SeedPackets.get(i),i*100+150, 100);
     }
   }
   private void selectSeedpacket(){
