@@ -26,9 +26,17 @@ void setup(){
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
   background = loadImage("garden.png");
+  //for testing
+  /*Plant grid location to pixel calculation:
+    x = (column * 82) + 245
+    y = (row * 80) + 160
+    */
+  PlantGrid[0][1] = new PeaShooter(240,245);
 }
 
+
 void mouseClicked(){
+
   Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
@@ -39,36 +47,45 @@ void mouseClicked(){
 }
 
 void draw(){
+  
   background(255);
   fill(0);
   image(background, 0, 100,1100,500);
 
   //for(Projectile projectile : Projectiles){
-   println("proj: " + Projectiles.size());
+   
    for (int projectile = 0; projectile < Projectiles.size(); projectile++){
+    
+    
     Projectiles.get(projectile).move();
     Projectiles.get(projectile).display();
     //boolean remove = false;
     for (Zombie zomb : Zombies){
       //check the y value of the zombie so it doesnt die immediately
-      
+
       //need correct projectile and plant location to sync the damage
-      println("proj: " + projectile);
-      println("projs: " + Projectiles.size());
-      println("zomb: " + Zombies.size());
-      if (Projectiles.size() > 0 && zomb.getX() - Projectiles.get(projectile).getX() < 10 && abs(zomb.getY() - Projectiles.get(projectile).getY()) < 30){
+      
+      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-85 == 0){
         Projectiles.get(projectile).doDamage(zomb);
+        Projectiles.remove(projectile);
+        
+        if (projectile > 0){
+          projectile--;
+        }
+        
+      }
+      else if (Projectiles.size() >0 && Projectiles.get(projectile).getX() >= width-10){
         Projectiles.remove(projectile);
         if (projectile > 0){
           projectile--;
         }
       }
-      
     }
+    /*
     if (Projectiles.size() >0 && Projectiles.get(projectile).getX() >= width-10){
         Projectiles.remove(projectile);
       }
-
+*/
   }
   textSize(80);
   text(sunCounter, 30, 100);

@@ -20,6 +20,7 @@ public class Zombie{
   public Zombie(){
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
+    y= 180;
     this.speed = 1;
     this.hp = 100;
     this.damage = 10; 
