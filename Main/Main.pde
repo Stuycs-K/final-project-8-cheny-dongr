@@ -31,7 +31,7 @@ void setup(){
     x = (column * 82) + 245
     y = (row * 80) + 160
     */
-  PlantGrid[0][1] = new PeaShooter(327,160);
+  PlantGrid[0][5] = new PeaShooter(655,160);
   PlantGrid[1][0] = new PeaShooter(245,240);
 }
 
@@ -123,7 +123,7 @@ void draw(){
       int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
       println("row: " + gridrow + " col: " +gridcol);
-
+      println(PlantGrid[0][5].getHP());
       if (gridcol < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[gridrow][gridcol] != null){
           Plant victim = PlantGrid[gridrow][gridcol];
