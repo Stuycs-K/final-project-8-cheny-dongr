@@ -31,8 +31,8 @@ void setup(){
     x = (column * 82) + 245
     y = (row * 80) + 160
     */
-  PlantGrid[0][1] = new PeaShooter(245,240);
-  PlantGrid[0][0] = new PeaShooter(245,160);
+  PlantGrid[0][1] = new PeaShooter(327,160);
+  PlantGrid[1][0] = new PeaShooter(245,240);
 }
 
 
@@ -115,16 +115,9 @@ void draw(){
   
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
-    //testing out zombie dying
+
    println(Zombies.get(zomb).getHP());
-    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
-    //if (Zombies.get(zomb).getHP() <= 0){
-      //testing out zombie dying
-    //if (Zombies.get(zomb).getX()-)
-      //when zombie is close to plant
-      
-      //using x until getplant location is done
-      
+        
       int xplant = 200;
       int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
       int gridrow = (Zombies.get(zomb).getY()-100)/80;
@@ -134,7 +127,7 @@ void draw(){
       if (gridcol < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[gridrow][gridcol] != null){
           Plant victim = PlantGrid[gridrow][gridcol];
-          if (Zombies.get(zomb).getChange() != 1){
+          if (Zombies.get(zomb).getChange() == 0){
             Zombies.get(zomb).setChange(1);
           }
           Zombies.get(zomb).doDamage(victim);
