@@ -31,7 +31,8 @@ void setup(){
     x = (column * 82) + 245
     y = (row * 80) + 160
     */
-  PlantGrid[0][1] = new PeaShooter(240,245);
+  PlantGrid[0][1] = new PeaShooter(245,240);
+  PlantGrid[0][0] = new PeaShooter(245,160);
 }
 
 
@@ -65,7 +66,7 @@ void draw(){
 
       //need correct projectile and plant location to sync the damage
       
-      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-85 == 0){
+      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-80 == 0){
         Projectiles.get(projectile).doDamage(zomb);
         Projectiles.remove(projectile);
         
