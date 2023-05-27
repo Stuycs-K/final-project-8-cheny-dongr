@@ -55,7 +55,7 @@ public class PeaShooter extends Plant{
   
   public void attack(){
     if(attackCounter <= 0){
-      Main.addProjectile(new Projectile(10, 10, x+20,y+20));
+      Main.addProjectile(new Projectile(30, 10, x+20,y+20));
       attackCounter = attackSpeed;
     } else {
       attackCounter--;

@@ -76,13 +76,14 @@ public class Zombie{
   }
   public void setHP(int newhp){
     hp = newhp;
-    if (hp <= 0){
-      setChange(2);
-    }
+
   }
   
   
   public void display(){
+        if (hp <= 0){
+      setChange(2);
+    }
     if (change != 2){
     
     if (change == 0){
