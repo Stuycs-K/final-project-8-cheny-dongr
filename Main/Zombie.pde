@@ -12,7 +12,15 @@ public class Zombie{
   private int FRAMERATE = 1;
   private int change;
   boolean alive = true;
-  
+        //int xplant = 200;
+     // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+     // int gridrow = (Zombies.get(zomb).getY()-100)/80;
+  public int gridcol(){
+    return (this.getX()-140)/83;
+  }
+  public int gridrow(){
+    return (this.getY()-100)/80;
+  }
   
   public void setFrame(int a){
     FRAMERATE = a;

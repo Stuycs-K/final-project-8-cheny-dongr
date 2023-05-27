@@ -7,11 +7,6 @@ abstract class Plant{
   public abstract void attack();
   public abstract void display();
   
-  
-  public int getHP(){
-    return Health;
-  }
-  
 }
 
 /*Plant grid location to pixel calculation:
