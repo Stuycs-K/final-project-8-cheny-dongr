@@ -9,9 +9,10 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 1;
+  private int FRAMERATE = 5;
   private int change;
   boolean alive = true;
+  boolean dying = false;
         //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
@@ -28,9 +29,9 @@ public class Zombie{
   public Zombie(){
     this.x = width-100;
     this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
-    this.speed = 1;
+    this.speed = 2;
     this.hp = 100;
-    this.damage = 10; 
+    this.damage = 1; 
     this.change = 0;
 
     //will change to zombie image when found
@@ -82,6 +83,10 @@ public class Zombie{
   
   public void display(){
         if (hp <= 0){
+          if (!(dying)){
+          currentFrame = 0;
+          dying = true;
+          }
       setChange(2);
     }
     if (change != 2){
@@ -100,25 +105,24 @@ public class Zombie{
     else if (change == 1){
       if(frameCount % FRAMERATE == 0){
       currentFrame++;
+      }
       if(currentFrame >= eframes.size()){
         currentFrame = 0;
       }
-    }
+    
     image(eframes.get(currentFrame), x, y, 200, 150);
     }
   }
     else{
-      if(frameCount % FRAMERATE == 0){
       currentFrame++;
       if(currentFrame >= dframes.size()-1){
         alive = false;
         //currentFrame = 0;
         
       }
-      else{
+
       image(dframes.get(currentFrame), x, y, 200, 150);
-      }
-    }
+    
     
     }
   }

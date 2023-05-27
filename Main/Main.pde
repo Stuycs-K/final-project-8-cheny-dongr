@@ -82,10 +82,15 @@ void draw(){
         if (check > 0){
         PlantGrid[row][i].attack();
         }
+        if (PlantGrid[row][i].getHP() <= 0){
+         PlantGrid[row][i] = null;
       }
+      }
+      
+      
     }
   }
-  
+
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
 //testing zombie'sho
@@ -95,14 +100,19 @@ void draw(){
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
       println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-     // println(PlantGrid[0][5].getHP());
+      //println(PlantGrid[0][5].getHP());
+
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
           Plant victim = PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()];
           if (Zombies.get(zomb).getChange() == 0){
             Zombies.get(zomb).setChange(1);
           }
+          
           Zombies.get(zomb).doDamage(victim);
+          
+          
+          
         }
         else if ((Zombies.get(zomb).alive())){
           Zombies.get(zomb).setChange(0);

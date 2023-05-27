@@ -48,4 +48,8 @@ public class SunFlower extends Plant{
   public int getY(){
     return y;
   }
+  
+  public int getHP(){
+    return Health;
+  }
 }

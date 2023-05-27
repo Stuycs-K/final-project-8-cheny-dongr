@@ -19,7 +19,7 @@ public class PeaShooter extends Plant{
   public PeaShooter(int x, int y){
     this.x = x;
     this.y = y;
-    
+    Health = 100;
     //LOADING THE FRAMES
     /*File directory = new File("PlantFrames" + File.separator + "Peashooter");
     File cur = new File(System.getProperty("user.dir"));
@@ -49,13 +49,17 @@ public class PeaShooter extends Plant{
       frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png"));
     }
   }
+  public int getHP(){
+    return Health;
+  }
   
   public void takeDamage(int damage){
+    Health -= damage;
   }
   
   public void attack(){
     if(attackCounter <= 0){
-      Main.addProjectile(new Projectile(30, 10, x+20,y+20));
+      Main.addProjectile(new Projectile(10, 10, x+20,y+20));
       attackCounter = attackSpeed;
     } else {
       attackCounter--;
