@@ -74,14 +74,7 @@ void draw(){
   text(sunCounter, 30, 100);
   text("Index: " + SeedPacketSelected, 300, 100);
   drawSeedpacketBar();
-<<<<<<< HEAD
-  for(Projectile projectile : Projectiles){
-    projectile.move();
-    projectile.display();
-  }
   naturallySpawnSun();
-=======
->>>>>>> 6c85b811a0c7d82705b471bb01efe6e9835644dd
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
     if(sun.isCollected()){
