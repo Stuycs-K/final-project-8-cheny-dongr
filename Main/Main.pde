@@ -38,7 +38,7 @@ void setup(){
 
 void mouseClicked(){
 
-  Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
+  //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
   
@@ -48,7 +48,23 @@ void mouseClicked(){
 }
 
 void draw(){
-  
+  int framer = 5;
+  if (Zombies.size() + Projectiles.size() > 0){
+    framer = 5;
+  }
+  if (Zombies.size() + Projectiles.size() > 15){
+    framer = 4;
+  }
+  if (Zombies.size() + Projectiles.size() > 30){
+    framer = 3;
+  }
+  if (Zombies.size() + Projectiles.size() > 45){
+    framer = 2;
+  }
+  if (Zombies.size() + Projectiles.size() > 75){
+    framer = 1;
+  }
+
   background(255);
   fill(0);
   image(background, 0, 100,1100,500);
@@ -92,15 +108,17 @@ void draw(){
   }
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
+    Zombies.get(zomb).setFrame(framer);
     Zombies.get(zomb).display();
 //testing zombie'sho
    println(Zombies.get(zomb).getHP());    
+   println("" + (Zombies.size() + Projectiles.size()));
       //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
       println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-      //println(PlantGrid[0][5].getHP());
+
 
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){

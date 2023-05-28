@@ -128,7 +128,9 @@ public class Zombie{
   }
   
   public void doDamage(Plant a){
+    if (frameCount % 5 == 0){
     a.takeDamage(damage);
+    }
     //need same method for plants
     //change image to show zombie eating
   }
