@@ -11,7 +11,7 @@ public class SunFlower extends Plant{
   public SunFlower(int x, int y){
     this.x = x;
     this.y = y;
-    
+    Health = 100;
     File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
     File[] images = framesFolder.listFiles();
     //CURRENTLY SKIPS EVERY OTHER FRAME
@@ -21,6 +21,7 @@ public class SunFlower extends Plant{
   }
   
   public void takeDamage(int damage){
+    Health -= damage;
   }
   
   //ATTACK FOR SUNFLOWER JUST MEANS IT CREATE SUN
