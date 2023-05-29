@@ -85,7 +85,7 @@ void draw(){
       sun.display();
     }
   }
-  
+  //change to accomadate sunflower's attack, sunflower would never produce if there is no zombie, i need to fix
   for(int row = 0; row < PlantGrid.length; row++){
     for(int i = 0; i < PlantGrid[row].length; i++){
       if(PlantGrid[row][i] != null){
