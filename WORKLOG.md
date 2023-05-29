@@ -9,6 +9,10 @@ continue with zombie class, added temporary garden background and tempory zombie
 added the animation for zombie walking and dying
 ### May25
 projectile damaging zombie, projectile disappear after use, got conversion of zombie position to plant grid
+### May 26
+projectile aligned with zombie, fixed zombie not dying error, zombie eating animation at the right grid
+### May 27
+small details: plants only shoot when there is zombie, zombie killing plant, a little bit smoother frames when lots of zombie
 
 ## Rui Dong
 
