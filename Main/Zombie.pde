@@ -9,20 +9,29 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 1;
+  private int FRAMERATE = 5;
   private int change;
   boolean alive = true;
-  
+  boolean dying = false;
+        //int xplant = 200;
+     // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+     // int gridrow = (Zombies.get(zomb).getY()-100)/80;
+  public int gridcol(){
+    return (this.getX()-140)/83;
+  }
+  public int gridrow(){
+    return (this.getY()-100)/80;
+  }
   
   public void setFrame(int a){
     FRAMERATE = a;
   }
   public Zombie(){
     this.x = width-100;
-    this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
-    this.speed = 1;
+    this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
+    this.speed = 2;
     this.hp = 100;
-    this.damage = 10; 
+    this.damage = 1; 
     this.change = 0;
 
     //will change to zombie image when found
@@ -68,13 +77,18 @@ public class Zombie{
   }
   public void setHP(int newhp){
     hp = newhp;
-    if (hp <= 0){
-      setChange(2);
-    }
+
   }
   
   
   public void display(){
+        if (hp <= 0){
+          if (!(dying)){
+          currentFrame = 0;
+          dying = true;
+          }
+      setChange(2);
+    }
     if (change != 2){
     
     if (change == 0){
@@ -91,31 +105,32 @@ public class Zombie{
     else if (change == 1){
       if(frameCount % FRAMERATE == 0){
       currentFrame++;
+      }
       if(currentFrame >= eframes.size()){
         currentFrame = 0;
       }
-    }
+    
     image(eframes.get(currentFrame), x, y, 200, 150);
     }
   }
     else{
-      if(frameCount % FRAMERATE == 0){
       currentFrame++;
       if(currentFrame >= dframes.size()-1){
         alive = false;
         //currentFrame = 0;
         
       }
-      else{
+
       image(dframes.get(currentFrame), x, y, 200, 150);
-      }
-    }
+    
     
     }
   }
   
   public void doDamage(Plant a){
+    if (frameCount % 5 == 0){
     a.takeDamage(damage);
+    }
     //need same method for plants
     //change image to show zombie eating
   }

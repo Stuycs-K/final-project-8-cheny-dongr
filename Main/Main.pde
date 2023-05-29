@@ -26,10 +26,19 @@ void setup(){
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
   background = loadImage("garden.png");
+  //for testing
+  /*Plant grid location to pixel calculation:
+    x = (column * 82) + 245
+    y = (row * 80) + 160
+    */
+  PlantGrid[0][5] = new PeaShooter(655,160);
+  PlantGrid[1][0] = new PeaShooter(245,240);
 }
 
+
 void mouseClicked(){
-  Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
+
+  //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
   
@@ -39,37 +48,28 @@ void mouseClicked(){
 }
 
 void draw(){
+  
+  int framer = 5;
+  if (Zombies.size() + Projectiles.size() > 0){
+    framer = 5;
+  }
+  if (Zombies.size() + Projectiles.size() > 15){
+    framer = 4;
+  }
+  if (Zombies.size() + Projectiles.size() > 30){
+    framer = 3;
+  }
+  if (Zombies.size() + Projectiles.size() > 45){
+    framer = 2;
+  }
+  if (Zombies.size() + Projectiles.size() > 75){
+    framer = 1;
+  }
+
   background(255);
   fill(0);
   image(background, 0, 100,1100,500);
 
-  //for(Projectile projectile : Projectiles){
-   println("proj: " + Projectiles.size());
-   for (int projectile = 0; projectile < Projectiles.size(); projectile++){
-    Projectiles.get(projectile).move();
-    Projectiles.get(projectile).display();
-    //boolean remove = false;
-    for (Zombie zomb : Zombies){
-      //check the y value of the zombie so it doesnt die immediately
-      
-      //need correct projectile and plant location to sync the damage
-      println("proj: " + projectile);
-      println("projs: " + Projectiles.size());
-      println("zomb: " + Zombies.size());
-      if (Projectiles.size() > 0 && zomb.getX() - Projectiles.get(projectile).getX() < 10 && abs(zomb.getY() - Projectiles.get(projectile).getY()) < 30){
-        Projectiles.get(projectile).doDamage(zomb);
-        Projectiles.remove(projectile);
-        if (projectile > 0){
-          projectile--;
-        }
-      }
-      
-    }
-    if (Projectiles.size() >0 && Projectiles.get(projectile).getX() >= width-10){
-        Projectiles.remove(projectile);
-      }
-
-  }
   textSize(80);
   text(sunCounter, 30, 100);
   text("Index: " + SeedPacketSelected, 300, 100);
@@ -91,45 +91,79 @@ void draw(){
       if(PlantGrid[row][i] != null){
       //Plant plant = PlantGrid[row][i];
         PlantGrid[row][i].display();
+        int check = 0;
+        for (Zombie zomb : Zombies){
+          if (zomb.gridrow() == row){
+            check++;
+          }
+        }
+        if (check > 0){
         PlantGrid[row][i].attack();
+        }
+        if (PlantGrid[row][i].getHP() <= 0){
+         PlantGrid[row][i] = null;
       }
+      }
+      
+      
     }
   }
-  
-  for(int zomb = 0; zomb < Zombies.size(); zomb++){
-    Zombies.get(zomb).display();
-    //testing out zombie dying
-   println(Zombies.get(zomb).getHP());
-    Zombies.get(zomb).setHP(Zombies.get(zomb).getHP());
-    //if (Zombies.get(zomb).getHP() <= 0){
-      //testing out zombie dying
-    //if (Zombies.get(zomb).getX()-)
-      //when zombie is close to plant
-      
-      //using x until getplant location is done
-      
-      int xplant = 200;
-      int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
-      int gridrow = (Zombies.get(zomb).getY()-100)/80;
-      //making sure zombie is align with grid value
-      println("row: " + gridrow + " col: " +gridcol);
 
-      if (gridcol < 9 && Zombies.get(zomb).alive()){
-        if (PlantGrid[gridrow][gridcol] != null){
-          Plant victim = PlantGrid[gridrow][gridcol];
-          if (Zombies.get(zomb).getChange() != 1){
+  for(int zomb = 0; zomb < Zombies.size(); zomb++){
+    Zombies.get(zomb).setFrame(framer);
+    Zombies.get(zomb).display();
+//testing zombie'sho
+   println(Zombies.get(zomb).getHP());    
+   println("" + (Zombies.size() + Projectiles.size()));
+      //int xplant = 200;
+     // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
+     // int gridrow = (Zombies.get(zomb).getY()-100)/80;
+      //making sure zombie is align with grid value
+      println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
+      if(PlantGrid[0][0] != null){
+    println(true);
+  }else{
+    println(false);
+  }
+
+      if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
+        if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
+          Plant victim = PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()];
+          if (Zombies.get(zomb).getChange() == 0){
             Zombies.get(zomb).setChange(1);
           }
+          
           Zombies.get(zomb).doDamage(victim);
+          
+          
+          
         }
         else if ((Zombies.get(zomb).alive())){
           Zombies.get(zomb).setChange(0);
-        }
-        
+        } 
       }
       if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
-      
       Zombies.remove(zomb);
+    }
+  }
+  //projectiles
+     for (int projectile = 0; projectile < Projectiles.size(); projectile++){  
+    Projectiles.get(projectile).move();
+    Projectiles.get(projectile).display();
+    for (Zombie zomb : Zombies){
+      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-80 == 0){
+        Projectiles.get(projectile).doDamage(zomb);
+        Projectiles.remove(projectile);       
+        if (projectile > 0){
+          projectile--;
+        }        
+      }
+      else if (Projectiles.size() >0 && Projectiles.get(projectile).getX() >= width-10){
+        Projectiles.remove(projectile);
+        if (projectile > 0){
+          projectile--;
+        }
+      }
     }
   }
 }

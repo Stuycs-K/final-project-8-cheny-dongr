@@ -6,8 +6,9 @@ abstract class Plant{
   public abstract void takeDamage(int damage);
   public abstract void attack();
   public abstract void display();
-  
+  public abstract int getHP();
 }
+
 
 /*Plant grid location to pixel calculation:
     x = (column * 82) + 245
