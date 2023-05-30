@@ -20,6 +20,7 @@ void setup(){
   */
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("SUNFLOWER");
+  SeedPackets.add("POTATOMINE");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -144,7 +145,6 @@ void draw(){
     Suns.add(sun);
   }
   private void plant(String plant, int row, int col){
-    //PlantGrid[0][1] = new PeaShooter(245, 150);
     if(plant.equals("PEASHOOTER") && sunCounter >= PeaShooter.COST)
     {
       PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
@@ -153,6 +153,10 @@ void draw(){
     else if(plant.equals("SUNFLOWER") && sunCounter >= SunFlower.COST){
       PlantGrid[row][col] = new SunFlower((col * 82) + 245, (row * 80) + 160);
       sunCounter -= SunFlower.COST;
+    }
+    else if(plant.equals("POTATOMINE") && sunCounter >= PotatoMine.COST){
+      PlantGrid[row][col] = new PotatoMine((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= PotatoMine.COST;
     }
 
   }
