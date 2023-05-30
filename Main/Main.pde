@@ -7,8 +7,26 @@ ArrayList<String> SeedPackets = new ArrayList<String>();
 int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
+  private ArrayList<PImage> wframes = new ArrayList<PImage>();
+  private ArrayList<PImage> eframes = new ArrayList<PImage>();
+  private ArrayList<PImage> dframes = new ArrayList<PImage>();
+
 PImage background; 
 void setup(){
+  File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
+    for(int i = 0; i <= 45; i++){
+      wframes.add(loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+    }
+    
+    File eframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zeat"));
+    for(int i = 0; i <= 37; i++){
+      eframes.add(loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+    }
+    
+    File dframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zdie"));
+    for(int i = 0; i <= 38; i++){
+      dframes.add(loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+    }
   size(1100,600);
   PlantGrid = new Plant[5][9];
   //PLANT TESTING 
@@ -42,7 +60,7 @@ void mouseClicked(){
   //sun test
   spawnSun(new Sun(500, 400));
   
-  Zombies.add(new Zombie());
+  Zombies.add(new Zombie(wframes, eframes, dframes));
   selectSeedpacket();
   clickOnLawn();
 }

@@ -1,6 +1,7 @@
 import java.nio.file.Path;
 import java.nio.file.Paths;
 public class Zombie{
+  //USE resize TO LOAD IT ONCE IN SETUP
   private int hp;
   private int x,y;
   private int speed;
@@ -26,16 +27,18 @@ public class Zombie{
   public void setFrame(int a){
     FRAMERATE = a;
   }
-  public Zombie(){
+  public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes){
     this.x = width-100;
     this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
     this.speed = 1;
     this.hp = 100;
     this.damage = 1; 
     this.change = 0;
-
+    this.wframes = wframes;
+    this.eframes = eframes;
+    this.dframes = dframes;
     //will change to zombie image when found
-    
+    /*
     File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
     for(int i = 0; i <= 45; i++){
       wframes.add(loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
@@ -50,6 +53,7 @@ public class Zombie{
     for(int i = 0; i <= 38; i++){
       dframes.add(loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
     }
+    */
   }
   public boolean alive(){
     return alive;
