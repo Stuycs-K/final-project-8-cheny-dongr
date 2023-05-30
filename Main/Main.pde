@@ -3,11 +3,17 @@ static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 ArrayList<String> SeedPackets = new ArrayList<String>();
+boolean[][] explosion = new boolean[5][9];
+
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
 PImage background; 
+public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
+
 void setup(){
   size(1100,600);
   PlantGrid = new Plant[5][9];
@@ -20,19 +26,31 @@ void setup(){
   */
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("SUNFLOWER");
+  SeedPackets.add("POTATOMINE");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
   background = loadImage("garden.png");
-  //for testing
-  /*Plant grid location to pixel calculation:
-    x = (column * 82) + 245
-    y = (row * 80) + 160
-    */
-  PlantGrid[0][5] = new PeaShooter(655,160);
-  PlantGrid[1][0] = new PeaShooter(245,240);
+  
+  
+  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
+    for(int i = 1; i <= 24; i++){
+      println(framesFolder.getAbsolutePath());
+      PeashooterFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png"));
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
+    //CURRENTLY SKIPS EVERY OTHER FRAME
+    for(int i = 1; i <= 24; i+=2){
+      SunflowerFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png"));
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
+    
+    PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png"));
+    for(int i = 1; i <= 1; i++){
+      PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png"));
+    }
 }
 
 
@@ -178,7 +196,6 @@ void draw(){
     Suns.add(sun);
   }
   private void plant(String plant, int row, int col){
-    //PlantGrid[0][1] = new PeaShooter(245, 150);
     if(plant.equals("PEASHOOTER") && sunCounter >= PeaShooter.COST)
     {
       PlantGrid[row][col] = new PeaShooter((col * 82) + 245, (row * 80) + 160);
@@ -187,6 +204,10 @@ void draw(){
     else if(plant.equals("SUNFLOWER") && sunCounter >= SunFlower.COST){
       PlantGrid[row][col] = new SunFlower((col * 82) + 245, (row * 80) + 160);
       sunCounter -= SunFlower.COST;
+    }
+    else if(plant.equals("POTATOMINE") && sunCounter >= PotatoMine.COST){
+      PlantGrid[row][col] = new PotatoMine((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= PotatoMine.COST;
     }
 
   }
