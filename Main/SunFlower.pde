@@ -11,15 +11,11 @@ public class SunFlower extends Plant{
   public SunFlower(int x, int y){
     this.x = x;
     this.y = y;
-    /*
-    File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
-    //CURRENTLY SKIPS EVERY OTHER FRAME
-    for(int i = 1; i <= 24; i+=2){
-      frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png"));
-    } */
+    Health = 100;
   }
   
   public void takeDamage(int damage){
+    Health -= damage;
   }
   
   //ATTACK FOR SUNFLOWER JUST MEANS IT CREATE SUN
@@ -46,5 +42,9 @@ public class SunFlower extends Plant{
   }
   public int getY(){
     return y;
+  }
+  
+  public int getHP(){
+    return Health;
   }
 }

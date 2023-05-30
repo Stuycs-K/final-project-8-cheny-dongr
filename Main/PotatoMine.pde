@@ -10,6 +10,7 @@ public class PotatoMine extends Plant{
   public PotatoMine(int x, int y){
     this.x = x;
     this.y = y;
+    Health = 100;
     
     /*
     File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
@@ -39,6 +40,9 @@ public class PotatoMine extends Plant{
       currentFrame = 1;
     }
     image(Main.PotatomineFrames.get(currentFrame), x, y, 80, 80);
+  }
+  public int getHP(){
+    return Health;
   }
   public int getX(){
     return x;
