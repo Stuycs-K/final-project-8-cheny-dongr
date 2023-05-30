@@ -1,7 +1,7 @@
 import java.nio.file.Path;
 import java.nio.file.Paths;
 public class Zombie{
-  //USE resize TO LOAD IT ONCE IN SETUP
+
   private int hp;
   private int x,y;
   private int speed;
@@ -10,7 +10,7 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 4;
+  private int FRAMERATE = 2;
   private int change;
   boolean alive = true;
   boolean dying = false;
@@ -96,25 +96,25 @@ public class Zombie{
     if (change != 2){
     
     if (change == 0){
-      if(frameCount % FRAMERATE == 0){
+      if((frameCount*FRAMERATE) % (FRAMERATE*10) == 0){
       currentFrame++;
       this.setX(this.x-speed);
       if(currentFrame >= wframes.size()){
         currentFrame = 0;
       }
     }
-    image(wframes.get(currentFrame), x, y, 200, 150);
+    image(wframes.get(currentFrame), x, y);
     }
     
     else if (change == 1){
-      if(frameCount % FRAMERATE == 0){
+      if((frameCount*FRAMERATE) % (FRAMERATE*10) == 0){
       currentFrame++;
       }
       if(currentFrame >= eframes.size()){
         currentFrame = 0;
       }
     
-    image(eframes.get(currentFrame), x, y, 200, 150);
+    image(eframes.get(currentFrame), x, y);
     }
   }
     else{
@@ -125,7 +125,7 @@ public class Zombie{
         
       }
 
-      image(dframes.get(currentFrame), x, y, 200, 150);
+      image(dframes.get(currentFrame), x, y);
     
     
     }

@@ -15,17 +15,23 @@ PImage background;
 void setup(){
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
     for(int i = 0; i <= 45; i++){
-      wframes.add(loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+      PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      wframes.add(image);
     }
     
     File eframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zeat"));
     for(int i = 0; i <= 37; i++){
-      eframes.add(loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+      PImage image = loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      eframes.add(image);
     }
     
     File dframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zdie"));
     for(int i = 0; i <= 38; i++){
-      dframes.add(loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
+      PImage image = loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      dframes.add(image);     
     }
   size(1100,600);
   PlantGrid = new Plant[5][9];
@@ -67,17 +73,35 @@ void mouseClicked(){
 
 void draw(){
   
-  int framer = 4;
-  if (Zombies.size() + Projectiles.size() > 0){
-    framer = 4;
-  }
+  int framer = 11;
   if (Zombies.size() + Projectiles.size() > 15){
-    framer = 3;
+    framer = 10;
   }
   if (Zombies.size() + Projectiles.size() > 30){
-    framer = 2;
+    framer = 9;
   }
   if (Zombies.size() + Projectiles.size() > 45){
+    framer = 8;
+  }
+  if (Zombies.size() + Projectiles.size() > 60){
+    framer = 7;
+  }
+  if (Zombies.size() + Projectiles.size() > 75){
+    framer = 6;
+  }
+  if (Zombies.size() + Projectiles.size() > 90){
+    framer = 5;
+  }
+  if (Zombies.size() + Projectiles.size() > 105){
+    framer = 4;
+  }
+  if (Zombies.size() + Projectiles.size() > 120){
+    framer = 3;
+  }
+  if (Zombies.size() + Projectiles.size() > 135){
+    framer = 2;
+  }
+  if (Zombies.size() + Projectiles.size() > 150){
     framer = 1;
   }
 
