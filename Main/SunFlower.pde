@@ -11,13 +11,12 @@ public class SunFlower extends Plant{
   public SunFlower(int x, int y){
     this.x = x;
     this.y = y;
-    
+    /*
     File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
-    File[] images = framesFolder.listFiles();
     //CURRENTLY SKIPS EVERY OTHER FRAME
     for(int i = 1; i <= 24; i+=2){
       frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png"));
-    }
+    } */
   }
   
   public void takeDamage(int damage){
@@ -40,7 +39,7 @@ public class SunFlower extends Plant{
         currentFrame = 0;
       }
     }
-    image(frames.get(currentFrame), x, y, 80, 80);
+    image(Main.SunflowerFrames.get(currentFrame), x, y, 80, 80);
   }
   public int getX(){
     return x;

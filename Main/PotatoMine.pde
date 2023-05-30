@@ -11,14 +11,14 @@ public class PotatoMine extends Plant{
     this.x = x;
     this.y = y;
     
-    
+    /*
     File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
     
     frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png"));
     
     for(int i = 1; i <= 1; i++){
       frames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png"));
-    }
+    } */
   }
   
   public void takeDamage(int damage){
@@ -38,9 +38,7 @@ public class PotatoMine extends Plant{
     } else {
       currentFrame = 1;
     }
-    print(frames.size());
-    print(currentFrame);
-    image(frames.get(currentFrame), x, y, 80, 80);
+    image(Main.PotatomineFrames.get(currentFrame), x, y, 80, 80);
   }
   public int getX(){
     return x;

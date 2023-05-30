@@ -3,11 +3,17 @@ static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
 ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 ArrayList<String> SeedPackets = new ArrayList<String>();
+boolean[][] explosion = new boolean[5][9];
+
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
 PImage background; 
+public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
+
 void setup(){
   size(1100,600);
   PlantGrid = new Plant[5][9];
@@ -27,6 +33,24 @@ void setup(){
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
   background = loadImage("garden.png");
+  
+  
+  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
+    for(int i = 1; i <= 24; i++){
+      println(framesFolder.getAbsolutePath());
+      PeashooterFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png"));
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
+    //CURRENTLY SKIPS EVERY OTHER FRAME
+    for(int i = 1; i <= 24; i+=2){
+      SunflowerFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png"));
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
+    
+    PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png"));
+    for(int i = 1; i <= 1; i++){
+      PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png"));
+    }
 }
 
 void mouseClicked(){
