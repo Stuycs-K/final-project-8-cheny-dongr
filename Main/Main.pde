@@ -49,22 +49,20 @@ void mouseClicked(){
 
 void draw(){
   
-  int framer = 5;
+  int framer = 4;
   if (Zombies.size() + Projectiles.size() > 0){
-    framer = 5;
-  }
-  if (Zombies.size() + Projectiles.size() > 15){
     framer = 4;
   }
-  if (Zombies.size() + Projectiles.size() > 30){
+  if (Zombies.size() + Projectiles.size() > 15){
     framer = 3;
   }
-  if (Zombies.size() + Projectiles.size() > 45){
+  if (Zombies.size() + Projectiles.size() > 30){
     framer = 2;
   }
-  if (Zombies.size() + Projectiles.size() > 75){
+  if (Zombies.size() + Projectiles.size() > 45){
     framer = 1;
   }
+
 
   background(255);
   fill(0);
@@ -91,15 +89,8 @@ void draw(){
       if(PlantGrid[row][i] != null){
       //Plant plant = PlantGrid[row][i];
         PlantGrid[row][i].display();
-        int check = 0;
-        for (Zombie zomb : Zombies){
-          if (zomb.gridrow() == row){
-            check++;
-          }
-        }
-        if (check > 0){
         PlantGrid[row][i].attack();
-        }
+        
         if (PlantGrid[row][i].getHP() <= 0){
          PlantGrid[row][i] = null;
       }
@@ -166,6 +157,11 @@ void draw(){
       }
     }
   }
+  
+  
+   textSize(30);
+  text(frameRate, 30, 30);
+
 }
   /*
   PlantGrid[2][2].display();

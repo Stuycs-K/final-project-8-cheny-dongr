@@ -9,7 +9,7 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 5;
+  private int FRAMERATE = 4;
   private int change;
   boolean alive = true;
   boolean dying = false;
@@ -29,7 +29,7 @@ public class Zombie{
   public Zombie(){
     this.x = width-100;
     this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
-    this.speed = 2;
+    this.speed = 1;
     this.hp = 100;
     this.damage = 1; 
     this.change = 0;
