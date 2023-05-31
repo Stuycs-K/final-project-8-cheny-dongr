@@ -8,7 +8,7 @@ public class PeaShooter extends Plant{
   private int x,y;
   private int attackSpeed = 100;
   private int attackCounter = 0;
-  private ArrayList<PImage> frames = new ArrayList<PImage>();
+  //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
   private final int FRAMERATE = 3;
   
@@ -60,11 +60,11 @@ public class PeaShooter extends Plant{
   public void display(){
     if(frameCount % FRAMERATE == 0){
       currentFrame++;
-      if(currentFrame >= frames.size()){
+      if(currentFrame >= Main.PeashooterFrames.size()){
         currentFrame = 0;
       }
     }
-    image(Main.PeashooterFrames.get(currentFrame), x, y, 80, 80);
+    image(Main.PeashooterFrames.get(currentFrame), x, y);
   }
   public int getX(){
     return x;
