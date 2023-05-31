@@ -28,7 +28,7 @@ public class PotatoMine extends Plant{
   
   public void attack(){
     if(armingCounter <= 0){
-      
+      Main.explodeZombieOnTile((y-160) / 80, ((x-245) / 82)+1);
     } else {
       armingCounter--;
     }

@@ -297,7 +297,7 @@ void draw(){
 
 }
 
-    public static boolean explodeZombieOnTile(int row, int col){
+  public static boolean explodeZombieOnTile(int row, int col){
       for (Zombie zomb : Zombies){
         if (zomb.gridrow() == row && zomb.gridcol() == col){
           zomb.setExplode(true);
