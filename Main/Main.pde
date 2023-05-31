@@ -9,9 +9,9 @@ boolean[][] explosion = new boolean[5][9];
 int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
-  private ArrayList<PImage> wframes = new ArrayList<PImage>();
-  private ArrayList<PImage> eframes = new ArrayList<PImage>();
-  private ArrayList<PImage> dframes = new ArrayList<PImage>();
+public static ArrayList<PImage> wframes = new ArrayList<PImage>();
+public static ArrayList<PImage> eframes = new ArrayList<PImage>();
+public static ArrayList<PImage> dframes = new ArrayList<PImage>();
 
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
