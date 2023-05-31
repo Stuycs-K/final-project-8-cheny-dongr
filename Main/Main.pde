@@ -17,6 +17,7 @@ PImage background;
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
 
 void setup(){
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
@@ -82,6 +83,13 @@ void setup(){
       PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png");
       frame.resize(80,80);
       PotatomineFrames.add(frame);
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
+    for(int i = 0; i <= 2; i++){
+      println(framesFolder.getAbsolutePath());
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
+      frame.resize(80,80);
+      WallnutFrames.add(frame);
     }
 }
 
@@ -278,4 +286,4 @@ void draw(){
     if(frameCount % 100 == 0){
       spawnSun(new Sun(245+ (int)(Math.random()*600),160 + (int)(Math.random()*400)) );
     }
-  }
+}
