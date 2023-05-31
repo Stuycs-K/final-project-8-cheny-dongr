@@ -24,6 +24,8 @@ public class Zombie{
   public void setExplode(boolean a){
     explode = a;
   }
+  
+
   public int gridcol(){
     return (this.getX()-140)/83;
   }
