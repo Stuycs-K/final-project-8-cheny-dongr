@@ -14,9 +14,16 @@ public class Zombie{
   private int change;
   boolean alive = true;
   boolean dying = false;
+  boolean explode = false;
         //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
+  public boolean getExplode(){
+    return explode;
+  }
+  public void setExplode(boolean a){
+    explode = a;
+  }
   public int gridcol(){
     return (this.getX()-140)/83;
   }

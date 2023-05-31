@@ -134,6 +134,10 @@ void draw(){
   naturallySpawnSun();
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
+    if (sun.life() > 300){
+      Suns.remove(sun);
+    }
+    else{
     if(sun.isCollected()){
       Suns.remove(i);
       sunCounter += 25;
@@ -141,6 +145,7 @@ void draw(){
     } else {
       sun.display();
     }
+  }
   }
   //change to accomadate sunflower's attack, sunflower would never produce if there is no zombie, i need to fix
   for(int row = 0; row < PlantGrid.length; row++){
@@ -212,10 +217,11 @@ void draw(){
       }
     }
   }
-  
+
   
    textSize(30);
   text(frameRate, 30, 30);
+  text(frameCount, 1000, 30); 
 
 }
   /*
