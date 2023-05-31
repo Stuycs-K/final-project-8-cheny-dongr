@@ -23,6 +23,7 @@ public class PotatoMine extends Plant{
   }
   
   public void takeDamage(int damage){
+    Health -= damage;
   }
   
   public void attack(){
