@@ -10,7 +10,7 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 2;
+  private int FRAMERATE = 11;
   private int change;
   boolean alive = true;
   boolean dying = false;
@@ -96,7 +96,7 @@ public class Zombie{
     if (change != 2){
     
     if (change == 0){
-      if((frameCount*FRAMERATE) % (FRAMERATE*10) == 0){
+      if((frameCount) % (FRAMERATE) == 0){
       currentFrame++;
       this.setX(this.x-speed);
       if(currentFrame >= wframes.size()){
@@ -107,7 +107,7 @@ public class Zombie{
     }
     
     else if (change == 1){
-      if((frameCount*FRAMERATE) % (FRAMERATE*10) == 0){
+      if((frameCount) % (FRAMERATE) == 0){
       currentFrame++;
       }
       if(currentFrame >= eframes.size()){

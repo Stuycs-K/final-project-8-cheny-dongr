@@ -73,10 +73,8 @@ void mouseClicked(){
 
 void draw(){
   
-  int framer = 11;
-  if (Zombies.size() + Projectiles.size() > 15){
-    framer = 10;
-  }
+  int framer = 2;
+  /*
   if (Zombies.size() + Projectiles.size() > 30){
     framer = 9;
   }
@@ -101,6 +99,7 @@ void draw(){
   if (Zombies.size() + Projectiles.size() > 135){
     framer = 2;
   }
+  */
   if (Zombies.size() + Projectiles.size() > 150){
     framer = 1;
   }
@@ -153,11 +152,7 @@ void draw(){
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
       println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-      if(PlantGrid[0][0] != null){
-    println(true);
-  }else{
-    println(false);
-  }
+     println(""+framer);
 
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
