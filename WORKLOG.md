@@ -31,3 +31,12 @@ Created basic projectile class, starting implementing Plant class.
 ### May 25
 -Realigned Plants to the Grid based on pixel x and y locations. 
 -Started creating a seedpacket bar on top of the screen to select which plant to place down.
+### May 26
+-Created sunflower class that spawns a sun every some time.
+-added animation frames for sunflower
+### May 27
+-Created potatoe mine class
+-potato mine can be planted and becomes active after some time
+### May 28
+-Changed loading images for frames to only be in setup()
+-Used resize() once in setup() for images so game runs faster
