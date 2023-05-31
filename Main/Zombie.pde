@@ -29,7 +29,7 @@ public class Zombie{
   }
   public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes){
     this.x = width-100;
-    this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
+    this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 1;
     this.hp = 100;
     this.damage = 1; 
