@@ -1,9 +1,9 @@
 static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 0;
-ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
-ArrayList<String> SeedPackets = new ArrayList<String>();
-boolean[][] explosion = new boolean[5][9];
+static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
+static ArrayList<String> SeedPackets = new ArrayList<String>();
+
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 int SeedPacketSelected = -1;
@@ -57,7 +57,7 @@ void setup(){
   plant("PEASHOOTER", 3, 0);
   plant("PEASHOOTER", 4, 0);
   background = loadImage("garden.png");
-  
+  background.resize(1100, 500);
   
   File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
     for(int i = 1; i <= 24; i++){
@@ -100,10 +100,11 @@ void mouseClicked(){
 void draw(){
   
   int framer = 2;
-  /*
+  
   if (Zombies.size() + Projectiles.size() > 30){
-    framer = 9;
+    framer = 1;
   }
+  /*
   if (Zombies.size() + Projectiles.size() > 45){
     framer = 8;
   }
@@ -126,14 +127,12 @@ void draw(){
     framer = 2;
   }
   */
-  if (Zombies.size() + Projectiles.size() > 150){
-    framer = 1;
-  }
+
 
 
   background(255);
   fill(0);
-  image(background, 0, 100,1100,500);
+  image(background, 0, 100);
 
   textSize(80);
   text(sunCounter, 30, 100);
@@ -142,6 +141,10 @@ void draw(){
   naturallySpawnSun();
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
+    if (sun.life() > 300){
+      Suns.remove(sun);
+    }
+    else{
     if(sun.isCollected()){
       Suns.remove(i);
       sunCounter += 25;
@@ -149,6 +152,7 @@ void draw(){
     } else {
       sun.display();
     }
+  }
   }
   //change to accomadate sunflower's attack, sunflower would never produce if there is no zombie, i need to fix
   for(int row = 0; row < PlantGrid.length; row++){
@@ -220,11 +224,10 @@ void draw(){
       }
     }
   }
-  
-  
+  fill(0);
    textSize(30);
   text(frameRate, 30, 30);
-
+  text(frameCount, 1000, 30); 
 }
   /*
   PlantGrid[2][2].display();
@@ -278,4 +281,12 @@ void draw(){
     if(frameCount % 100 == 0){
       spawnSun(new Sun(245+ (int)(Math.random()*600),160 + (int)(Math.random()*400)) );
     }
+  }
+    public static boolean explodeZombieOnTile(int row, int col){
+      for (Zombie zomb : Zombies){
+        if (zomb.gridrow() == row && zomb.gridcol() == col){
+          zomb.setExplode(true);
+        }
+      }
+    return true;
   }
