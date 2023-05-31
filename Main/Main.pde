@@ -9,12 +9,36 @@ boolean[][] explosion = new boolean[5][9];
 int SeedPacketSelected = -1;
 Plant[][] PlantGrid;
 
+public static ArrayList<PImage> wframes = new ArrayList<PImage>();
+public static ArrayList<PImage> eframes = new ArrayList<PImage>();
+public static ArrayList<PImage> dframes = new ArrayList<PImage>();
+
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 
 void setup(){
+  File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
+    for(int i = 0; i <= 45; i++){
+      PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      wframes.add(image);
+    }
+    
+    File eframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zeat"));
+    for(int i = 0; i <= 37; i++){
+      PImage image = loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      eframes.add(image);
+    }
+    
+    File dframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zdie"));
+    for(int i = 0; i <= 38; i++){
+      PImage image = loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      dframes.add(image);     
+    }
   size(1100,600);
   PlantGrid = new Plant[5][9];
   //PLANT TESTING 
@@ -60,29 +84,44 @@ void mouseClicked(){
   //sun test
   spawnSun(new Sun(500, 400));
   
-  Zombies.add(new Zombie());
+  Zombies.add(new Zombie(wframes, eframes, dframes));
   selectSeedpacket();
   clickOnLawn();
 }
 
 void draw(){
   
-  int framer = 5;
-  if (Zombies.size() + Projectiles.size() > 0){
-    framer = 5;
-  }
-  if (Zombies.size() + Projectiles.size() > 15){
-    framer = 4;
-  }
+  int framer = 2;
+  /*
   if (Zombies.size() + Projectiles.size() > 30){
-    framer = 3;
+    framer = 9;
   }
   if (Zombies.size() + Projectiles.size() > 45){
-    framer = 2;
+    framer = 8;
+  }
+  if (Zombies.size() + Projectiles.size() > 60){
+    framer = 7;
   }
   if (Zombies.size() + Projectiles.size() > 75){
+    framer = 6;
+  }
+  if (Zombies.size() + Projectiles.size() > 90){
+    framer = 5;
+  }
+  if (Zombies.size() + Projectiles.size() > 105){
+    framer = 4;
+  }
+  if (Zombies.size() + Projectiles.size() > 120){
+    framer = 3;
+  }
+  if (Zombies.size() + Projectiles.size() > 135){
+    framer = 2;
+  }
+  */
+  if (Zombies.size() + Projectiles.size() > 150){
     framer = 1;
   }
+
 
   background(255);
   fill(0);
@@ -103,21 +142,14 @@ void draw(){
       sun.display();
     }
   }
-  
+  //change to accomadate sunflower's attack, sunflower would never produce if there is no zombie, i need to fix
   for(int row = 0; row < PlantGrid.length; row++){
     for(int i = 0; i < PlantGrid[row].length; i++){
       if(PlantGrid[row][i] != null){
       //Plant plant = PlantGrid[row][i];
         PlantGrid[row][i].display();
-        int check = 0;
-        for (Zombie zomb : Zombies){
-          if (zomb.gridrow() == row){
-            check++;
-          }
-        }
-        if (check > 0){
         PlantGrid[row][i].attack();
-        }
+        
         if (PlantGrid[row][i].getHP() <= 0){
          PlantGrid[row][i] = null;
       }
@@ -138,11 +170,7 @@ void draw(){
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
       println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-      if(PlantGrid[0][0] != null){
-    println(true);
-  }else{
-    println(false);
-  }
+     println(""+framer);
 
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
@@ -184,6 +212,11 @@ void draw(){
       }
     }
   }
+  
+  
+   textSize(30);
+  text(frameRate, 30, 30);
+
 }
   /*
   PlantGrid[2][2].display();

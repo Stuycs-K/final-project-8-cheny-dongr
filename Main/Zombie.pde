@@ -1,6 +1,7 @@
 import java.nio.file.Path;
 import java.nio.file.Paths;
 public class Zombie{
+
   private int hp;
   private int x,y;
   private int speed;
@@ -9,7 +10,7 @@ public class Zombie{
   private ArrayList<PImage> eframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 5;
+  private int FRAMERATE = 11;
   private int change;
   boolean alive = true;
   boolean dying = false;
@@ -26,16 +27,18 @@ public class Zombie{
   public void setFrame(int a){
     FRAMERATE = a;
   }
-  public Zombie(){
+  public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes){
     this.x = width-100;
     this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
-    this.speed = 2;
+    this.speed = 1;
     this.hp = 100;
     this.damage = 1; 
     this.change = 0;
-
+    this.wframes = wframes;
+    this.eframes = eframes;
+    this.dframes = dframes;
     //will change to zombie image when found
-    
+    /*
     File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
     for(int i = 0; i <= 45; i++){
       wframes.add(loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
@@ -50,6 +53,7 @@ public class Zombie{
     for(int i = 0; i <= 38; i++){
       dframes.add(loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png"));
     }
+    */
   }
   public boolean alive(){
     return alive;
@@ -92,25 +96,25 @@ public class Zombie{
     if (change != 2){
     
     if (change == 0){
-      if(frameCount % FRAMERATE == 0){
+      if((frameCount) % (FRAMERATE) == 0){
       currentFrame++;
       this.setX(this.x-speed);
       if(currentFrame >= wframes.size()){
         currentFrame = 0;
       }
     }
-    image(wframes.get(currentFrame), x, y, 200, 150);
+    image(wframes.get(currentFrame), x, y);
     }
     
     else if (change == 1){
-      if(frameCount % FRAMERATE == 0){
+      if((frameCount) % (FRAMERATE) == 0){
       currentFrame++;
       }
       if(currentFrame >= eframes.size()){
         currentFrame = 0;
       }
     
-    image(eframes.get(currentFrame), x, y, 200, 150);
+    image(eframes.get(currentFrame), x, y);
     }
   }
     else{
@@ -121,7 +125,7 @@ public class Zombie{
         
       }
 
-      image(dframes.get(currentFrame), x, y, 200, 150);
+      image(dframes.get(currentFrame), x, y);
     
     
     }
