@@ -62,18 +62,26 @@ void setup(){
   File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
     for(int i = 1; i <= 24; i++){
       println(framesFolder.getAbsolutePath());
-      PeashooterFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png"));
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png");
+      frame.resize(80,80);
+      PeashooterFrames.add(frame);
     }
   framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
     //CURRENTLY SKIPS EVERY OTHER FRAME
     for(int i = 1; i <= 24; i+=2){
-      SunflowerFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png"));
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png");
+      frame.resize(80,80);
+      SunflowerFrames.add(frame);
     }
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
     
-    PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png"));
+    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
+    PImage unarmedFrame = loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png");
+    unarmedFrame.resize(80,80);
+    PotatomineFrames.add(unarmedFrame);
     for(int i = 1; i <= 1; i++){
-      PotatomineFrames.add(loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png"));
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png");
+      frame.resize(80,80);
+      PotatomineFrames.add(frame);
     }
 }
 

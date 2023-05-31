@@ -13,7 +13,10 @@ projectile damaging zombie, projectile disappear after use, got conversion of zo
 projectile aligned with zombie, fixed zombie not dying error, zombie eating animation at the right grid
 ### May 27
 small details: plants only shoot when there is zombie, zombie killing plant, a little bit smoother frames when lots of zombie
-
+### May 28
+merging, and fixing small errors with plant and zombie interactions, found new zombie animations
+### May 30
+fixed most of the lagginess, converted new zombie animations to frames
 ## Rui Dong
 
 ### May22
