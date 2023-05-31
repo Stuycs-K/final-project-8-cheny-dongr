@@ -52,6 +52,7 @@ void setup(){
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("SUNFLOWER");
   SeedPackets.add("POTATOMINE");
+  SeedPackets.add("WALLNUT");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -257,6 +258,10 @@ void draw(){
     else if(plant.equals("POTATOMINE") && sunCounter >= PotatoMine.COST){
       PlantGrid[row][col] = new PotatoMine((col * 82) + 245, (row * 80) + 160);
       sunCounter -= PotatoMine.COST;
+    }
+    else if(plant.equals("WALLNUT") && sunCounter >= WallNut.COST){
+      PlantGrid[row][col] = new WallNut((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= WallNut.COST;
     }
 
   }

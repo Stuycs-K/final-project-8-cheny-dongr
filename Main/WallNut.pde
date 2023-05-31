@@ -1,6 +1,7 @@
 public class WallNut extends Plant{
   public final static int COST = 50;
-  private int Health;
+  private int Health = 3000;
+  private final int MaxHealth = 3000;
   private int x,y;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
@@ -9,7 +10,6 @@ public class WallNut extends Plant{
   public WallNut(int x, int y){
     this.x = x;
     this.y = y;
-    Health = 3000;
   }
   
   public void takeDamage(int damage){
@@ -21,12 +21,14 @@ public class WallNut extends Plant{
   }
   
   public void display(){
-    if(frameCount % FRAMERATE == 0){
-      currentFrame++;
-      if(currentFrame >= Main.WallnutFrames.size()){
-        currentFrame = 0;
-      }
+    if(Health < (MaxHealth/3))
+    {
+      currentFrame = 2;
     }
+    else if(Health < 2*(MaxHealth/3))
+    {
+      currentFrame = 1;
+    } //<>//
     image(Main.WallnutFrames.get(currentFrame), x, y);
   }
   public int getX(){
