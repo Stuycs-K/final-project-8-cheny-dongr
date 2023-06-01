@@ -24,6 +24,7 @@ public class Zombie {
   }
   public void setExplode() {
     explode = true;
+    currentFrame = 0;
     x += 30;
     hp = 1;
   }
