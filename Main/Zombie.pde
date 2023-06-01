@@ -41,7 +41,7 @@ public class Zombie {
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 1;
     this.hp = 100;
-    this.damage = 1;
+    this.damage = 5;
     this.change = 0;
     this.wframes = wframes;
     this.eframes = eframes;
