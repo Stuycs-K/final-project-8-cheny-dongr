@@ -283,8 +283,7 @@ void draw(){
   }
   public void clickOnLawn(){
     if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5 
-    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()
-    && PlantGrid[(mouseY-160) / 80][(mouseX-245) / 82] == null) {
+    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
@@ -307,4 +306,4 @@ void draw(){
         }
       }
     return exploded;
-  }
+  }k
