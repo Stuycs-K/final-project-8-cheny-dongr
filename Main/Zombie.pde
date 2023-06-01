@@ -14,9 +14,18 @@ public class Zombie{
   private int change;
   boolean alive = true;
   boolean dying = false;
+  boolean explode = false;
         //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
+  public boolean getExplode(){
+    return explode;
+  }
+  public void setExplode(boolean a){
+    explode = a;
+  }
+  
+
   public int gridcol(){
     return (this.getX()-140)/83;
   }
@@ -29,7 +38,7 @@ public class Zombie{
   }
   public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes){
     this.x = width-100;
-    this.y = (int)(random(2))*80 + 100; //add constant once figured out positions
+    this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 1;
     this.hp = 100;
     this.damage = 1; 

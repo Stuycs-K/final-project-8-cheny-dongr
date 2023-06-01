@@ -3,7 +3,7 @@ public class PotatoMine extends Plant{
   private int Health;
   private int x,y;
   private int armingCounter = 100;
-  private ArrayList<PImage> frames = new ArrayList<PImage>();
+  //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
   private final int FRAMERATE = 3;
   
@@ -23,6 +23,7 @@ public class PotatoMine extends Plant{
   }
   
   public void takeDamage(int damage){
+    Health -= damage;
   }
   
   public void attack(){
@@ -39,7 +40,7 @@ public class PotatoMine extends Plant{
     } else {
       currentFrame = 1;
     }
-    image(Main.PotatomineFrames.get(currentFrame), x, y, 80, 80);
+    image(Main.PotatomineFrames.get(currentFrame), x, y);
   }
   public int getHP(){
     return Health;
