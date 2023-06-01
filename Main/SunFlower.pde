@@ -2,11 +2,11 @@ public class SunFlower extends Plant{
   public final static int COST = 50;
   private int Health;
   private int x,y;
-  private int attackSpeed = 100;
+  private int attackSpeed = 600;
   private int attackCounter = 0;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 3;
+  //private final int FRAMERATE = 3;
   
   public SunFlower(int x, int y){
     this.x = x;
@@ -29,7 +29,7 @@ public class SunFlower extends Plant{
   }
   
   public void display(){
-    if(frameCount % FRAMERATE == 0){
+    if(frameCount % 6 == 0){
       currentFrame++;
       if(currentFrame >= Main.SunflowerFrames.size()){
         currentFrame = 0;

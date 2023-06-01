@@ -1,6 +1,6 @@
 static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
-int sunCounter = 0;
+int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 
@@ -98,44 +98,14 @@ void mouseClicked(){
   //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
-  
+  if (mouseX > 1000){
   Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
+  }
   selectSeedpacket();
   clickOnLawn();
 }
 
 void draw(){
-  
-  int framer = 2;
-  
-  if (Zombies.size() + Projectiles.size() > 30){
-    framer = 1;
-  }
-  /*
-  if (Zombies.size() + Projectiles.size() > 45){
-    framer = 8;
-  }
-  if (Zombies.size() + Projectiles.size() > 60){
-    framer = 7;
-  }
-  if (Zombies.size() + Projectiles.size() > 75){
-    framer = 6;
-  }
-  if (Zombies.size() + Projectiles.size() > 90){
-    framer = 5;
-  }
-  if (Zombies.size() + Projectiles.size() > 105){
-    framer = 4;
-  }
-  if (Zombies.size() + Projectiles.size() > 120){
-    framer = 3;
-  }
-  if (Zombies.size() + Projectiles.size() > 135){
-    framer = 2;
-  }
-  */
-
-
 
   background(255);
   fill(0);
@@ -179,17 +149,16 @@ void draw(){
   }
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
-    Zombies.get(zomb).setFrame(framer);
+
     Zombies.get(zomb).display();
 //testing zombie'sho
-   println(Zombies.get(zomb).getHP());    
+
    println("" + (Zombies.size() + Projectiles.size()));
       //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
-      println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-     println(""+framer);
+
 
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
@@ -285,7 +254,7 @@ void draw(){
   }
   
   public void naturallySpawnSun(){
-    if(frameCount % 100 == 0){
+    if(frameCount % 600 == 0){
       spawnSun(new Sun(245+ (int)(Math.random()*600),160 + (int)(Math.random()*400)) );
     }
   }

@@ -11,7 +11,7 @@ public class Zombie {
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 11;
+  private int FRAMERATE = 3;
   private int change;
   boolean alive = true;
   boolean dying = false;
@@ -35,9 +35,7 @@ public class Zombie {
     return (this.getY()-100)/80;
   }
 
-  public void setFrame(int a) {
-    FRAMERATE = a;
-  }
+
   public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
@@ -86,7 +84,7 @@ public class Zombie {
         alive = false;
       }
 
-      image(dframes.get(currentFrame), x, y);
+      image(explodeframes.get(currentFrame), x, y);
     }
     else{
     if (hp <= 0) {
@@ -101,16 +99,19 @@ public class Zombie {
     if (change != 2) {
 
       if (change == 0) {
-        if ((frameCount) % (FRAMERATE) == 0) {
-          currentFrame++;
+        if ((frameCount) % 3 == 0) {
           this.setX(this.x-speed);
+      }
+        if ((frameCount) % (3) == 0) {
+          currentFrame++;
+          //this.setX(this.x-speed);
           if (currentFrame >= wframes.size()) {
             currentFrame = 0;
           }
         }
         image(wframes.get(currentFrame), x, y);
       } else if (change == 1) {
-        if ((frameCount) % (FRAMERATE) == 0) {
+        if ((frameCount) % (2) == 0) {
           currentFrame++;
         }
         if (currentFrame >= eframes.size()) {
