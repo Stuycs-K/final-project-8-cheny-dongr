@@ -24,6 +24,8 @@ public class Zombie {
   }
   public void setExplode() {
     explode = true;
+    currentFrame = 0;
+    x += 30;
     hp = 1;
   }
 
@@ -79,7 +81,9 @@ public class Zombie {
 
   public void display() {
     if (explode){
-      currentFrame++;
+      if ((frameCount) % (7) == 0) {
+          currentFrame++;
+        }
       if (currentFrame >= explodeframes.size()-1) {
         alive = false;
       }
