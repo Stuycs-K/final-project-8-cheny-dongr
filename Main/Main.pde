@@ -25,7 +25,7 @@ void setup(){
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
     for(int i = 0; i <= 29; i++){
       PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
-      image.resize(200,150);
+      image.resize(80,120);
       explodeframes.add(image);
     }
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
@@ -123,6 +123,13 @@ void setup(){
       frame.resize(80,80);
       WallnutFrames.add(frame);
     }
+}
+void keyPressed(){
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 100));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 180));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 260));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 340));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 420));
 }
 
 

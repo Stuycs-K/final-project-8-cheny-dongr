@@ -24,6 +24,7 @@ public class Zombie {
   }
   public void setExplode() {
     explode = true;
+    x += 30;
     hp = 1;
   }
 
@@ -39,6 +40,18 @@ public class Zombie {
   public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
+    this.speed = 1;
+    this.hp = 100;
+    this.damage = 1;
+    this.change = 0;
+    this.wframes = wframes;
+    this.eframes = eframes;
+    this.dframes = dframes;
+    this.explodeframes = explodeframes;
+  }
+  public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes, int y) {
+    this.x = width-100;
+    this.y = y;
     this.speed = 1;
     this.hp = 100;
     this.damage = 1;
@@ -79,7 +92,9 @@ public class Zombie {
 
   public void display() {
     if (explode){
-      currentFrame++;
+      if ((frameCount) % (8) == 0) {
+          currentFrame++;
+        }
       if (currentFrame >= explodeframes.size()-1) {
         alive = false;
       }
