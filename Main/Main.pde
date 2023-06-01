@@ -282,7 +282,8 @@ void draw(){
     }
   }
   public void clickOnLawn(){
-    if (mouseX > 245 && mouseY > 160 && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
+    if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5 
+    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
