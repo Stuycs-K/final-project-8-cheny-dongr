@@ -37,9 +37,13 @@ Created basic projectile class, starting implementing Plant class.
 ### May 26
 -Created sunflower class that spawns a sun every some time.
 -added animation frames for sunflower
-### May 27
+### May 29
 -Created potatoe mine class
 -potato mine can be planted and becomes active after some time
-### May 28
+### May 30
 -Changed loading images for frames to only be in setup()
 -Used resize() once in setup() for images so game runs faster
+### May 31
+-added wallnut class
+-wallnuts can be placed and have damaged frames
+-progress on potatoe mine's explosion mechanic
