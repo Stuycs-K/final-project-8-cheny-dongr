@@ -25,7 +25,7 @@ void setup(){
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
     for(int i = 0; i <= 29; i++){
       PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
-      image.resize(200,150);
+      image.resize(80,120);
       explodeframes.add(image);
     }
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
@@ -282,7 +282,8 @@ void draw(){
     }
   }
   public void clickOnLawn(){
-    if (mouseX > 245 && mouseY > 160 && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
+    if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5 
+    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
