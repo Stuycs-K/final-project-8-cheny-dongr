@@ -12,6 +12,7 @@ Plant[][] PlantGrid;
 public static ArrayList<PImage> wframes = new ArrayList<PImage>();
 public static ArrayList<PImage> eframes = new ArrayList<PImage>();
 public static ArrayList<PImage> dframes = new ArrayList<PImage>();
+public static ArrayList<PImage> explodeframes = new ArrayList<PImage>();
 
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
@@ -19,6 +20,12 @@ public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 
 void setup(){
+  File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
+    for(int i = 0; i <= 29; i++){
+      PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
+      image.resize(200,150);
+      explodeframes.add(image);
+    }
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
     for(int i = 0; i <= 45; i++){
       PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
@@ -92,7 +99,7 @@ void mouseClicked(){
   //sun test
   spawnSun(new Sun(500, 400));
   
-  Zombies.add(new Zombie(wframes, eframes, dframes));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
   selectSeedpacket();
   clickOnLawn();
 }
@@ -285,7 +292,7 @@ void draw(){
     public static boolean explodeZombieOnTile(int row, int col){
       for (Zombie zomb : Zombies){
         if (zomb.gridrow() == row && zomb.gridcol() == col){
-          zomb.setExplode(true);
+          zomb.setExplode();
         }
       }
     return true;
