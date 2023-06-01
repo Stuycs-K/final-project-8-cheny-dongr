@@ -17,6 +17,10 @@ small details: plants only shoot when there is zombie, zombie killing plant, a l
 merging, and fixing small errors with plant and zombie interactions, found new zombie animations
 ### May 30
 fixed most of the lagginess, converted new zombie animations to frames
+### May 31
+set up code in preparation of the explosion effect from potato mine class, tinker with the frames and damage to match with the game
+### June 1
+demo branch
 ## Rui Dong
 
 ### May22
