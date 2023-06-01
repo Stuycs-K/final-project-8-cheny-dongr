@@ -132,11 +132,11 @@ void keyPressed(){
   Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 340));
   Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 420));
   }
-  if(key == 'p'){
+  if (key == 'p'){
     for(int row = 0; row < 5; row++){
-       for(int col = 0; col < 4; col++){
-         plant("PEASHOOTER", row, col);
-       }
+      for(int col = 0; col < 4; col++){
+        plant("PEASHOOTER", row, col);
+      }
     }
   }
 }
@@ -299,8 +299,7 @@ void draw(){
   }
   public void clickOnLawn(){
     if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5 
-    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()
-    && PlantGrid[(mouseY-160) / 80][(mouseX-245) / 82] == null) {
+    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
