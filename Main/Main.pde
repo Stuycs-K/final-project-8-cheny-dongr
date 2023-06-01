@@ -3,6 +3,7 @@ static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
+ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
@@ -56,8 +57,8 @@ void setup(){
   PlantGrid[3][1] = new PeaShooter(100, 300);
   PlantGrid[4][1] = new PeaShooter(100, 400);
   */
-  SeedPackets.add("PEASHOOTER");
   SeedPackets.add("SUNFLOWER");
+  SeedPackets.add("PEASHOOTER");
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
   plant("PEASHOOTER", 0, 0);
@@ -68,9 +69,32 @@ void setup(){
   background = loadImage("garden.png");
   background.resize(1100, 500);
   
-  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
+  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "SeedPackets"));
+  /*File[] packets = framesFolder.listFiles();
+    for(File packet : packets){
+      if(packet.getAbsolutePath().contains(".DS_Store")){
+        continue;
+      }
+      PImage frame = loadImage(packet.getAbsolutePath());
+      frame.resize(75,100);
+      SeedPacketsPNGs.add(frame);
+    }*/
+   PImage packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatoemine.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   
+  
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
     for(int i = 1; i <= 24; i++){
-      println(framesFolder.getAbsolutePath());
       PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png");
       frame.resize(80,80);
       PeashooterFrames.add(frame);
@@ -122,7 +146,7 @@ void draw(){
 
   textSize(80);
   text(sunCounter, 30, 100);
-  text("Index: " + SeedPacketSelected, 300, 100);
+  text("Index: " + SeedPacketSelected, 500, 100);
   drawSeedpacketBar();
   naturallySpawnSun();
   for(int i = 0; i < Suns.size(); i++){
@@ -245,17 +269,16 @@ void draw(){
 
   }
   private void drawSeedpacketBar(){
-    for(int i = 0; i < SeedPackets.size(); i++){
-      fill(0);
-      rect((i*100)+150, 0, 100, 100);
-      textSize(15);
-      fill(255);
-      text(SeedPackets.get(i),i*100+150, 100);
+    for(int i = 0; i < SeedPacketsPNGs.size(); i++){
+      //rect((i*100)+150, 0, 100, 100);
+      image(SeedPacketsPNGs.get(i),i*75+150, 0);
+      //text(SeedPackets.get(i),i*100+150, 100);
     }
   }
   private void selectSeedpacket(){
     if(mouseX > 150 && mouseY< 100){
-      SeedPacketSelected = (mouseX-150) / 100;
+      SeedPacketSelected = (mouseX-150) / 75;
+      //75 is width of packet
     }
   }
   public void clickOnLawn(){
