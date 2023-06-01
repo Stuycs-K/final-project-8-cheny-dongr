@@ -17,6 +17,10 @@ small details: plants only shoot when there is zombie, zombie killing plant, a l
 merging, and fixing small errors with plant and zombie interactions, found new zombie animations
 ### May 30
 fixed most of the lagginess, converted new zombie animations to frames
+### May 31
+set up code in preparation of the explosion effect from potato mine class, tinker with the frames and damage to match with the game
+### June 1
+demo branch
 ## Rui Dong
 
 ### May22
@@ -37,9 +41,13 @@ Created basic projectile class, starting implementing Plant class.
 ### May 26
 -Created sunflower class that spawns a sun every some time.
 -added animation frames for sunflower
-### May 27
+### May 29
 -Created potatoe mine class
 -potato mine can be planted and becomes active after some time
-### May 28
+### May 30
 -Changed loading images for frames to only be in setup()
 -Used resize() once in setup() for images so game runs faster
+### May 31
+-added wallnut class
+-wallnuts can be placed and have damaged frames
+-progress on potatoe mine's explosion mechanic

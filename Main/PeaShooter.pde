@@ -6,11 +6,11 @@ public class PeaShooter extends Plant{
   private int Health;
   private int attackDamage;
   private int x,y;
-  private int attackSpeed = 100;
+  private int attackSpeed = 90;
   private int attackCounter = 0;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 3;
+  //private final int FRAMERATE = 3;
   
   //for seedpacket use
   public PeaShooter(){
@@ -50,7 +50,7 @@ public class PeaShooter extends Plant{
   
   public void attack(){
     if(attackCounter <= 0){
-      Main.addProjectile(new Projectile(10, 10, x+20,y+20));
+      Main.addProjectile(new Projectile(20, 8, x+20,y+20));
       attackCounter = attackSpeed;
     } else {
       attackCounter--;
@@ -58,7 +58,7 @@ public class PeaShooter extends Plant{
   }
   
   public void display(){
-    if(frameCount % FRAMERATE == 0){
+    if(frameCount % 6 == 0){
       currentFrame++;
       if(currentFrame >= Main.PeashooterFrames.size()){
         currentFrame = 0;

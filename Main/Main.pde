@@ -1,6 +1,6 @@
 static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
-int sunCounter = 0;
+int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 
@@ -12,6 +12,7 @@ Plant[][] PlantGrid;
 public static ArrayList<PImage> wframes = new ArrayList<PImage>();
 public static ArrayList<PImage> eframes = new ArrayList<PImage>();
 public static ArrayList<PImage> dframes = new ArrayList<PImage>();
+public static ArrayList<PImage> explodeframes = new ArrayList<PImage>();
 
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
@@ -20,6 +21,12 @@ public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
 
 void setup(){
+  File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
+    for(int i = 0; i <= 29; i++){
+      PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
+      image.resize(200,150);
+      explodeframes.add(image);
+    }
   File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
     for(int i = 0; i <= 45; i++){
       PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
@@ -100,44 +107,14 @@ void mouseClicked(){
   //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
   spawnSun(new Sun(500, 400));
-  
-  Zombies.add(new Zombie(wframes, eframes, dframes));
+  if (mouseX > 1000){
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
+  }
   selectSeedpacket();
   clickOnLawn();
 }
 
 void draw(){
-  
-  int framer = 2;
-  
-  if (Zombies.size() + Projectiles.size() > 30){
-    framer = 1;
-  }
-  /*
-  if (Zombies.size() + Projectiles.size() > 45){
-    framer = 8;
-  }
-  if (Zombies.size() + Projectiles.size() > 60){
-    framer = 7;
-  }
-  if (Zombies.size() + Projectiles.size() > 75){
-    framer = 6;
-  }
-  if (Zombies.size() + Projectiles.size() > 90){
-    framer = 5;
-  }
-  if (Zombies.size() + Projectiles.size() > 105){
-    framer = 4;
-  }
-  if (Zombies.size() + Projectiles.size() > 120){
-    framer = 3;
-  }
-  if (Zombies.size() + Projectiles.size() > 135){
-    framer = 2;
-  }
-  */
-
-
 
   background(255);
   fill(0);
@@ -181,17 +158,16 @@ void draw(){
   }
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
-    Zombies.get(zomb).setFrame(framer);
+
     Zombies.get(zomb).display();
 //testing zombie'sho
-   println(Zombies.get(zomb).getHP());    
+
    println("" + (Zombies.size() + Projectiles.size()));
       //int xplant = 200;
      // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
      // int gridrow = (Zombies.get(zomb).getY()-100)/80;
       //making sure zombie is align with grid value
-      println("row: " + Zombies.get(zomb).gridrow() + " col: " +Zombies.get(zomb).gridcol());
-     println(""+framer);
+
 
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
@@ -291,7 +267,7 @@ void draw(){
   }
   
   public void naturallySpawnSun(){
-    if(frameCount % 100 == 0){
+    if(frameCount % 600 == 0){
       spawnSun(new Sun(245+ (int)(Math.random()*600),160 + (int)(Math.random()*400)) );
     }
 
@@ -300,7 +276,7 @@ void draw(){
   public static boolean explodeZombieOnTile(int row, int col){
       for (Zombie zomb : Zombies){
         if (zomb.gridrow() == row && zomb.gridcol() == col){
-          zomb.setExplode(true);
+          zomb.setExplode();
         }
       }
     return true;
