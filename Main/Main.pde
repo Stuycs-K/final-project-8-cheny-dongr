@@ -297,10 +297,12 @@ void draw(){
 }
 
   public static boolean explodeZombieOnTile(int row, int col){
+    boolean exploded = false;
       for (Zombie zomb : Zombies){
         if (zomb.gridrow() == row && zomb.gridcol() == col){
           zomb.setExplode();
+          exploded = true;
         }
       }
-    return true;
+    return exploded;
   }
