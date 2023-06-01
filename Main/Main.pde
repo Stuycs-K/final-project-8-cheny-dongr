@@ -124,6 +124,13 @@ void setup(){
       WallnutFrames.add(frame);
     }
 }
+void keyPressed(){
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 100));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 180));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 260));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 340));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 420));
+}
 
 
 void mouseClicked(){

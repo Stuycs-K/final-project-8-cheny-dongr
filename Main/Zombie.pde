@@ -50,6 +50,18 @@ public class Zombie {
     this.dframes = dframes;
     this.explodeframes = explodeframes;
   }
+  public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes, int y) {
+    this.x = width-100;
+    this.y = y;
+    this.speed = 1;
+    this.hp = 100;
+    this.damage = 1;
+    this.change = 0;
+    this.wframes = wframes;
+    this.eframes = eframes;
+    this.dframes = dframes;
+    this.explodeframes = explodeframes;
+  }
   public boolean alive() {
     return alive;
   }
