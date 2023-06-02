@@ -164,7 +164,6 @@ void mouseClicked(){
 
   //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
-  spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
   Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
   }
