@@ -125,39 +125,6 @@ void setup(){
       WallnutFrames.add(frame);
     }
 }
-void keyPressed(){
-  if (key == 's'){
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 100));
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 180));
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 260));
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 340));
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 420));
-  }
-  if(key == 'p'){
-    for(int row = 0; row < 5; row++){
-       for(int col = 0; col < 4; col++){
-         plant("PEASHOOTER", row, col);
-       }
-    }
-  }
-  if(key == 'q'){
-    sunCounter = 9000000;
-  }
-  if(key == 'm'){
-    for(int row = 0; row < 5; row++){
-       for(int col = 4; col < 9; col++){
-         plant("POTATOMINE", row, col);
-       }
-    }
-  }
-  if(key == 'c'){
-    for(int row = 0; row < 5; row++){
-       for(int col = 0; col < 9; col++){
-         PlantGrid[row][col] = null;
-       }
-    }
-  }
-}
 
 
 void mouseClicked(){
