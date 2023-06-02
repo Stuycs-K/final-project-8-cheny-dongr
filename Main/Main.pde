@@ -157,6 +157,12 @@ void keyPressed(){
        }
     }
   }
+  if(key == 'r'){
+    for (int x = Zombies.size()-1; x >= 0; x--){
+      Zombies.remove(x);
+    }
+    
+  }
 }
 
 
