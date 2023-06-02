@@ -20,7 +20,7 @@ fixed most of the lagginess, converted new zombie animations to frames
 ### May 31
 set up code in preparation of the explosion effect from potato mine class, tinker with the frames and damage to match with the game
 ### June 1
-demo branch
+demo branch, key for spawning zombie and removing all zombie, fixed exploding animation errors
 ## Rui Dong
 
 ### May22
