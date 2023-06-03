@@ -132,7 +132,7 @@ void mouseClicked(){
   //sun test
   spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
-  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   }
   selectSeedpacket();
   clickOnLawn();

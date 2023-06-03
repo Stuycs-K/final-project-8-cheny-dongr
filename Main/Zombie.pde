@@ -1,146 +1,30 @@
-import java.nio.file.Path;
-import java.nio.file.Paths;
-public class Zombie {
+abstract class Zombie {
 
   private int hp;
   private int x, y;
   private int speed;
   private int damage;
-  private ArrayList<PImage> wframes = new ArrayList<PImage>();
-  private ArrayList<PImage> eframes = new ArrayList<PImage>();
-  private ArrayList<PImage> dframes = new ArrayList<PImage>();
-  private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
+
   private int currentFrame = 0;
   private int FRAMERATE = 3;
   private int change;
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
-  //int xplant = 200;
-  // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
-  // int gridrow = (Zombies.get(zomb).getY()-100)/80;
-  public boolean getExplode() {
-    return explode;
-  }
-  public void setExplode() {
-    explode = true;
-    currentFrame = 0;
-    x += 30;
-    hp = 1;
-  }
-
-
-  public int gridcol() {
-    return (this.getX()-140)/83;
-  }
-  public int gridrow() {
-    return (this.getY()-100)/80;
-  }
-
-
-  public Zombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
-    this.x = width-100;
-    this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
-    this.speed = 1;
-    this.hp = 100;
-    this.damage = 1;
-    this.change = 0;
-    this.wframes = wframes;
-    this.eframes = eframes;
-    this.dframes = dframes;
-    this.explodeframes = explodeframes;
-  }
-  public boolean alive() {
-    return alive;
-  }
-  public int getX() {
-    return x;
-  }
-  public int getY() {
-    return y;
-  }
-  public void setX(int newposition) {
-    x = newposition;
-  }
-  //when eating plant, change = 1
-  //when walking, change = 0
-  public void setChange(int newchange) {
-    change = newchange;
-  }
-  public int getChange() {
-    return change;
-  }
-
-  public int getHP() {
-    return hp;
-  }
-  public void setHP(int newhp) {
-    hp = newhp;
-  }
-
-
-  public void display() {
-    if (explode){
-      if ((frameCount) % (7) == 0) {
-          currentFrame++;
-        }
-      if (currentFrame >= explodeframes.size()-1) {
-        alive = false;
-      }
-
-      image(explodeframes.get(currentFrame), x, y);
-    }
-    else{
-    if (hp <= 0) {
-      if (!(dying)) {
-        currentFrame = 0;
-        dying = true;
-      }
-      setChange(2);
-    }
-    
-    
-    if (change != 2) {
-
-      if (change == 0) {
-        if ((frameCount) % 3 == 0) {
-          this.setX(this.x-speed);
-      }
-        if ((frameCount) % (3) == 0) {
-          currentFrame++;
-          //this.setX(this.x-speed);
-          if (currentFrame >= wframes.size()) {
-            currentFrame = 0;
-          }
-        }
-        image(wframes.get(currentFrame), x, y);
-      } else if (change == 1) {
-        if ((frameCount) % (2) == 0) {
-          currentFrame++;
-        }
-        if (currentFrame >= eframes.size()) {
-          currentFrame = 0;
-        }
-
-        image(eframes.get(currentFrame), x, y);
-      }
-    } else {
-      currentFrame++;
-      if (currentFrame >= dframes.size()-1) {
-        alive = false;
-        //currentFrame = 0;
-      }
-
-      image(dframes.get(currentFrame), x, y);
-    }
-  }
-  }
-
-  public void doDamage(Plant a) {
-    if (frameCount % 5 == 0) {
-      a.takeDamage(damage);
-    }
-    //need same method for plants
-    //change image to show zombie eating
-  }
+  
+  public abstract void display();
+  
+  public abstract void doDamage(Plant a);
+  public abstract boolean getExplode();
+  public abstract void setExplode();
+  public abstract int gridcol();
+  public abstract int gridrow(); 
+  public abstract boolean alive(); 
+  public abstract int getX(); 
+  public abstract void setX(int newposition);  
+  public abstract int getY();
+  public abstract int getChange();  
+  public abstract void setChange(int newchange);  
+  public abstract int getHP();
+  public abstract void setHP(int newhp);
 }
