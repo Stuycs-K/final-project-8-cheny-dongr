@@ -15,6 +15,11 @@ public static ArrayList<PImage> eframes = new ArrayList<PImage>();
 public static ArrayList<PImage> dframes = new ArrayList<PImage>();
 public static ArrayList<PImage> explodeframes = new ArrayList<PImage>();
 
+public static ArrayList<PImage> helmetzeat = new ArrayList<PImage>();
+public static ArrayList<PImage> nohelmetzeat = new ArrayList<PImage>();
+public static ArrayList<PImage> helmetzwalk = new ArrayList<PImage>();
+public static ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
+
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
@@ -22,6 +27,33 @@ public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
 
 void setup(){
+  File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(helmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      helmetzwalk.add(image);
+    }
+    File nohelmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzwalk"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(nohelmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      nohelmetzwalk.add(image);
+    }
+    File helmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "helmetzeat"));
+    for(int i = 0; i <= 9; i++){
+      PImage image = loadImage(helmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      helmetzeat.add(image);
+    }
+    File nohelmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzeat"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(nohelmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      nohelmetzeat.add(image);
+    }
+  
+  
+  
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
     for(int i = 0; i <= 29; i++){
       PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
@@ -237,6 +269,7 @@ void draw(){
    textSize(30);
   text(frameRate, 30, 30);
   text(frameCount, 1000, 30); 
+
 }
   /*
   PlantGrid[2][2].display();
