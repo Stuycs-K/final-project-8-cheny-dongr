@@ -6,17 +6,18 @@ public class FootballZombie extends Zombie{
   private int x, y;
   private int speed;
   private int damage;
-  private ArrayList<PImage> wframes = new ArrayList<PImage>();
-  private ArrayList<PImage> eframes = new ArrayList<PImage>();
-  private ArrayList<PImage> dframes = new ArrayList<PImage>();
+  private ArrayList<PImage> helmetzeat = new ArrayList<PImage>();
+  private ArrayList<PImage> nohelmetzeat = new ArrayList<PImage>();
+  private ArrayList<PImage> helmetzwalk = new ArrayList<PImage>();
+  private ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
   private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
+  private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
   private int FRAMERATE = 3;
   private int change;
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
-  boolean helmet = true;
   
   public void doDamage(Plant a) {
     if (frameCount % 5 == 0) {
@@ -74,21 +75,85 @@ public class FootballZombie extends Zombie{
   }
 
 
-  public FootballZombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
+  public FootballZombie(ArrayList<PImage> helmetzeat, ArrayList<PImage> nohelmetzeat, ArrayList<PImage> helmetzwalk,ArrayList<PImage> nohelmetzwalk,ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
-    this.speed = 1;
-    this.hp = 100;
-    this.damage = 5;
+    this.speed = 2;
+    this.hp = 500;
+    this.damage = 7;
     this.change = 0;
-    this.wframes = wframes;
-    this.eframes = eframes;
-    this.dframes = dframes;
+    this.helmetzeat = helmetzeat;
+    this.nohelmetzeat = nohelmetzeat;
+    this.helmetzwalk = helmetzwalk;
+    this.nohelmetzwalk = nohelmetzwalk;
     this.explodeframes = explodeframes;
+    this.dframes = dframes;
   }
 
 
   public void display() {
+    if (getHP() > 100){
+      display(helmetzwalk, helmetzeat);
+    }
+    else{
+      display(nohelmetzwalk, nohelmetzeat);
+    }
+  }
+  
+  public void display(ArrayList<PImage> walk, ArrayList<PImage> eat){
+    if (explode){
+      if ((frameCount) % (3) == 0) {
+          currentFrame++;
+        }
+      if (currentFrame >= explodeframes.size()-1) {
+        alive = false;
+      }
 
+      image(explodeframes.get(currentFrame), x, y);
+    }
+    else{
+    if (hp <= 0) {
+      if (!(dying)) {
+        currentFrame = 0;
+        dying = true;
+      }
+      setChange(2);
+    }
+    
+    
+    if (change != 2) {
+
+      if (change == 0) {
+        if ((frameCount) % 3 == 0) {
+          this.setX(this.x-speed);
+      }
+        if ((frameCount) % (3) == 0) {
+          currentFrame++;
+          //this.setX(this.x-speed);
+          if (currentFrame >= walk.size()) {
+            currentFrame = 0;
+          }
+        }
+        image(walk.get(currentFrame), x, y);
+      } else if (change == 1) {
+        if ((frameCount) % (2) == 0) {
+          currentFrame++;
+        }
+        if (currentFrame >= eat.size()) {
+          currentFrame = 0;
+        }
+
+        image(eat.get(currentFrame), x, y);
+      }
+    } else {
+      currentFrame++;
+      if (currentFrame >= dframes.size()-1) {
+        alive = false;
+        //currentFrame = 0;
+      }
+
+      image(dframes.get(currentFrame), x, y);
+    }
+  }
   }
 }
