@@ -20,7 +20,9 @@ fixed most of the lagginess, converted new zombie animations to frames
 ### May 31
 set up code in preparation of the explosion effect from potato mine class, tinker with the frames and damage to match with the game
 ### June 1
-demo branch
+demo branch, key for spawning zombie and removing all zombie, fixed exploding animation errors
+### June 2
+Added the footballzombie along with the animations, and zombie and plant interactions worked
 ## Rui Dong
 
 ### May22
@@ -51,3 +53,6 @@ Created basic projectile class, starting implementing Plant class.
 -added wallnut class
 -wallnuts can be placed and have damaged frames
 -progress on potatoe mine's explosion mechanic
+### June 1
+-added shovel to remove plants during gameplay
+-added buttons on demo branch to help demo the game

@@ -4,7 +4,6 @@ int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
-boolean usingShovel = false;
 
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
@@ -16,65 +15,13 @@ public static ArrayList<PImage> eframes = new ArrayList<PImage>();
 public static ArrayList<PImage> dframes = new ArrayList<PImage>();
 public static ArrayList<PImage> explodeframes = new ArrayList<PImage>();
 
-public static ArrayList<PImage> helmetzeat = new ArrayList<PImage>();
-public static ArrayList<PImage> nohelmetzeat = new ArrayList<PImage>();
-public static ArrayList<PImage> helmetzwalk = new ArrayList<PImage>();
-public static ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
-
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
-public static ArrayList<PImage> CherrybombFrames = new ArrayList<PImage>();
-
-void keyPressed(){
-  if (key == 's'){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  }
-  if (key == 'c'){
-    sunCounter = 9000;
-  }
-  
-}
 
 void setup(){
-  File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(helmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      helmetzwalk.add(image);
-    }
-    File nohelmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzwalk"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(nohelmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      nohelmetzwalk.add(image);
-    }
-    File helmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "helmetzeat"));
-    for(int i = 0; i <= 9; i++){
-      PImage image = loadImage(helmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      helmetzeat.add(image);
-    }
-    File nohelmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzeat"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(nohelmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      nohelmetzeat.add(image);
-    }
-  
-  
-  
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
     for(int i = 0; i <= 29; i++){
       PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
@@ -114,7 +61,6 @@ void setup(){
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
-  SeedPackets.add("CHERRYBOMB");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -143,9 +89,6 @@ void setup(){
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    
@@ -180,15 +123,6 @@ void setup(){
       frame.resize(80,80);
       WallnutFrames.add(frame);
     }
-    
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
-  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-  //DIFFERENT SIZE CHERRYBOMB
-  frameCherry.resize(100,80);
-  CherrybombFrames.add(frameCherry);
-  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
-  frameExplosion.resize(240,240);
-  CherrybombFrames.add(frameExplosion);
 }
 
 
@@ -196,20 +130,12 @@ void mouseClicked(){
 
   //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
-  //spawnSun(new Sun(500, 400));
+  spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  
-  Zombies.add(new FootballZombie(helmetzeat, nohelmetzeat,helmetzwalk, nohelmetzwalk,dframes, explodeframes));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
   }
   selectSeedpacket();
-  isShovelPressed();
-  if(usingShovel){
-    useShovel();
-  }
-  else {
-    clickOnLawn();
-  }
+  clickOnLawn();
 }
 
 void draw(){
@@ -311,7 +237,6 @@ void draw(){
    textSize(30);
   text(frameRate, 30, 30);
   text(frameCount, 1000, 30); 
-
 }
   /*
   PlantGrid[2][2].display();
@@ -341,10 +266,6 @@ void draw(){
       PlantGrid[row][col] = new WallNut((col * 82) + 245, (row * 80) + 160);
       sunCounter -= WallNut.COST;
     }
-    else if(plant.equals("CHERRYBOMB") && sunCounter >= CherryBomb.COST){
-      PlantGrid[row][col] = new CherryBomb((col * 82) + 245, (row * 80) + 160);
-      sunCounter -= CherryBomb.COST;
-    }
 
   }
   private void drawSeedpacketBar(){
@@ -353,9 +274,6 @@ void draw(){
       image(SeedPacketsPNGs.get(i),i*75+150, 0);
       //text(SeedPackets.get(i),i*100+150, 100);
     }
-    //ALSO DRAWS THE SHOVEL
-    fill(0);
-    square(1000, 0,100);
   }
   private void selectSeedpacket(){
     if(mouseX > 150 && mouseY< 100){
@@ -365,8 +283,7 @@ void draw(){
   }
   public void clickOnLawn(){
     if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5 
-    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()
-    && PlantGrid[(mouseY-160) / 80][(mouseX-245) / 82] == null) {
+    && SeedPacketSelected > -1 && SeedPacketSelected < SeedPackets.size()) {
       //plant the selected
       plant(SeedPackets.get(SeedPacketSelected), (mouseY-160) / 80,(mouseX-245) / 82);
       SeedPacketSelected = -1;
@@ -389,19 +306,4 @@ void draw(){
         }
       }
     return exploded;
-  }
-  
-  private void isShovelPressed(){
-    if(mouseX > 1000 && mouseY< 100){
-      usingShovel = true;
-      SeedPacketSelected = -10;
-      //75 is width of packet
-    }
-  }
-  private void useShovel(){
-    if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5){
-      PlantGrid[(mouseY-160) / 80][(mouseX-245) / 82] = null;
-      SeedPacketSelected = -1;
-      usingShovel = false;
-    }
-  }
+  }k

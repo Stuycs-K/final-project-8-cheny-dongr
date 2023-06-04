@@ -11,6 +11,7 @@ abstract class Zombie {
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
+
   
   public abstract void display();
   
