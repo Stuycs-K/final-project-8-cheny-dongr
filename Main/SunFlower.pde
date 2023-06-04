@@ -2,7 +2,7 @@ public class SunFlower extends Plant{
   public final static int COST = 50;
   private int Health;
   private int x,y;
-  private int attackSpeed = 600;
+  private int attackSpeed = 1440;
   private int attackCounter = 0;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
@@ -11,7 +11,7 @@ public class SunFlower extends Plant{
   public SunFlower(int x, int y){
     this.x = x;
     this.y = y;
-    Health = 100;
+    Health = 300;
   }
   
   public void takeDamage(int damage){
