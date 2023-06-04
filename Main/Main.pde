@@ -21,6 +21,7 @@ public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> CherrybombFrames = new ArrayList<PImage>();
 
 void setup(){
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
@@ -62,6 +63,7 @@ void setup(){
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
+  SeedPackets.add("CHERRYBOMB");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -90,6 +92,9 @@ void setup(){
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    
@@ -124,6 +129,15 @@ void setup(){
       frame.resize(80,80);
       WallnutFrames.add(frame);
     }
+    
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
+  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
+  //DIFFERENT SIZE CHERRYBOMB
+  frameCherry.resize(100,80);
+  CherrybombFrames.add(frameCherry);
+  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
+  frameExplosion.resize(240,240);
+  CherrybombFrames.add(frameExplosion);
 }
 
 
@@ -272,6 +286,10 @@ void draw(){
     else if(plant.equals("WALLNUT") && sunCounter >= WallNut.COST){
       PlantGrid[row][col] = new WallNut((col * 82) + 245, (row * 80) + 160);
       sunCounter -= WallNut.COST;
+    }
+    else if(plant.equals("CHERRYBOMB") && sunCounter >= CherryBomb.COST){
+      PlantGrid[row][col] = new CherryBomb((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= CherryBomb.COST;
     }
 
   }
