@@ -26,6 +26,21 @@ public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
 
+void keyPressed(){
+  if (key == 's'){
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  }
+}
+
 void setup(){
   File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
     for(int i = 0; i <= 10; i++){
@@ -162,7 +177,7 @@ void mouseClicked(){
 
   //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
   //sun test
-  spawnSun(new Sun(500, 400));
+  //spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   

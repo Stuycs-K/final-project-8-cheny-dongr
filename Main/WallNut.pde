@@ -1,7 +1,7 @@
 public class WallNut extends Plant{
   public final static int COST = 50;
-  private int Health = 3000;
-  private final int MaxHealth = 3000;
+  private int Health = 4000;
+  private final int MaxHealth = 4000;
   private int x,y;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;

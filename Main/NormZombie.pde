@@ -18,7 +18,7 @@ public class NormZombie extends Zombie{
   boolean explode = false;
   
   public void doDamage(Plant a) {
-    if (frameCount % 5 == 0) {
+    if (frameCount % 6 == 0) {
       a.takeDamage(damage);
     }
   }
@@ -27,10 +27,13 @@ public class NormZombie extends Zombie{
     return explode;
   }
   public void setExplode() {
+    hp -= 1800;
+    if (hp <= 0){
     explode = true;
     currentFrame = 0;
     x += 30;
-    hp = 1;
+    }
+
   }
   
   public int gridcol() {
@@ -77,8 +80,8 @@ public class NormZombie extends Zombie{
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 1;
-    this.hp = 100;
-    this.damage = 5;
+    this.hp = 200;
+    this.damage = 10;
     this.change = 0;
     this.wframes = wframes;
     this.eframes = eframes;
