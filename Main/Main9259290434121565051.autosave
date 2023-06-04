@@ -4,7 +4,6 @@ int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
-boolean usingShovel = false;
 
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
@@ -21,7 +20,6 @@ public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
-public static ArrayList<PImage> CherrybombFrames = new ArrayList<PImage>();
 
 void setup(){
   File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
@@ -63,7 +61,6 @@ void setup(){
   SeedPackets.add("PEASHOOTER");
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
-  SeedPackets.add("CHERRYBOMB");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -92,9 +89,6 @@ void setup(){
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
    
@@ -129,15 +123,25 @@ void setup(){
       frame.resize(80,80);
       WallnutFrames.add(frame);
     }
-    
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
-  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-  //DIFFERENT SIZE CHERRYBOMB
-  frameCherry.resize(100,80);
-  CherrybombFrames.add(frameCherry);
-  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
-  frameExplosion.resize(240,240);
-  CherrybombFrames.add(frameExplosion);
+}
+void keyPressed(){
+  if (key == 's'){
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 100));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 180));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 260));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 340));
+  Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes, 420));
+  }
+  if(key == 'p'){
+    for(int row = 0; row < 5; row++){
+       for(int col = 0; col < 4; col++){
+         plant("PEASHOOTER", row, col);
+       }
+    }
+  }
+  if(key == 'q'){
+    sunCounter = 900000;
+  }
 }
 
 
@@ -150,13 +154,7 @@ void mouseClicked(){
   Zombies.add(new Zombie(wframes, eframes, dframes, explodeframes));
   }
   selectSeedpacket();
-  isShovelPressed();
-  if(usingShovel){
-    useShovel();
-  }
-  else {
-    clickOnLawn();
-  }
+  clickOnLawn();
 }
 
 void draw(){
@@ -287,10 +285,6 @@ void draw(){
       PlantGrid[row][col] = new WallNut((col * 82) + 245, (row * 80) + 160);
       sunCounter -= WallNut.COST;
     }
-    else if(plant.equals("CHERRYBOMB") && sunCounter >= CherryBomb.COST){
-      PlantGrid[row][col] = new CherryBomb((col * 82) + 245, (row * 80) + 160);
-      sunCounter -= CherryBomb.COST;
-    }
 
   }
   private void drawSeedpacketBar(){
@@ -299,9 +293,6 @@ void draw(){
       image(SeedPacketsPNGs.get(i),i*75+150, 0);
       //text(SeedPackets.get(i),i*100+150, 100);
     }
-    //ALSO DRAWS THE SHOVEL
-    fill(0);
-    square(1000, 0,100);
   }
   private void selectSeedpacket(){
     if(mouseX > 150 && mouseY< 100){
@@ -335,19 +326,4 @@ void draw(){
         }
       }
     return exploded;
-  }
-  
-  private void isShovelPressed(){
-    if(mouseX > 1000 && mouseY< 100){
-      usingShovel = true;
-      SeedPacketSelected = -10;
-      //75 is width of packet
-    }
-  }
-  private void useShovel(){
-    if (mouseX > 245 && mouseX < 245 + 82*9 && mouseY > 160 && mouseY < 160 + 80*5){
-      PlantGrid[(mouseY-160) / 80][(mouseX-245) / 82] = null;
-      SeedPacketSelected = -1;
-      usingShovel = false;
-    }
   }
