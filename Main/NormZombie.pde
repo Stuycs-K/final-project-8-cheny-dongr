@@ -88,11 +88,24 @@ public class NormZombie extends Zombie{
     this.dframes = dframes;
     this.explodeframes = explodeframes;
   }
+  
+    public NormZombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes, int row, int col) {
+    this.x = col * 83 + 140;
+    this.y = row * 80 + 100;
+    this.speed = 1;
+    this.hp = 200;
+    this.damage = 10;
+    this.change = 0;
+    this.wframes = wframes;
+    this.eframes = eframes;
+    this.dframes = dframes;
+    this.explodeframes = explodeframes;
+  }
 
 
   public void display() {
     if (explode){
-      if ((frameCount) % (3) == 0) {
+      if ((frameCount) % (2) == 0) {
           currentFrame++;
         }
       if (currentFrame >= explodeframes.size()-1) {

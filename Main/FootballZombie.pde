@@ -50,7 +50,7 @@ public class FootballZombie extends Zombie{
   }
   
   public int getX(){
-    return x;
+    return x-20;
   }
   
   public void setX(int newposition) {
@@ -78,7 +78,7 @@ public class FootballZombie extends Zombie{
   }
 
 
-  public FootballZombie(ArrayList<PImage> helmetzeat, ArrayList<PImage> nohelmetzeat, ArrayList<PImage> helmetzwalk,ArrayList<PImage> nohelmetzwalk,ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
+  public FootballZombie(ArrayList<PImage> helmetzwalk,ArrayList<PImage> nohelmetzwalk, ArrayList<PImage> helmetzeat, ArrayList<PImage> nohelmetzeat, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 2;
@@ -95,7 +95,7 @@ public class FootballZombie extends Zombie{
 
 
   public void display() {
-    if (getHP() > 100){
+    if (getHP() > 300){
       display(helmetzwalk, helmetzeat);
     }
     else{
@@ -105,7 +105,7 @@ public class FootballZombie extends Zombie{
   
   public void display(ArrayList<PImage> walk, ArrayList<PImage> eat){
     if (explode){
-      if ((frameCount) % (3) == 0) {
+      if ((frameCount) % (2) == 0) {
           currentFrame++;
         }
       if (currentFrame >= explodeframes.size()-1) {
@@ -130,7 +130,7 @@ public class FootballZombie extends Zombie{
         if ((frameCount) % 3 == 0) {
           this.setX(this.x-speed);
       }
-        if ((frameCount) % (3) == 0) {
+        if ((frameCount) % (4) == 0) {
           currentFrame++;
           //this.setX(this.x-speed);
           if (currentFrame >= walk.size()) {
@@ -139,7 +139,7 @@ public class FootballZombie extends Zombie{
         }
         image(walk.get(currentFrame), x, y);
       } else if (change == 1) {
-        if ((frameCount) % (2) == 0) {
+        if ((frameCount) % (3) == 0) {
           currentFrame++;
         }
         if (currentFrame >= eat.size()) {
