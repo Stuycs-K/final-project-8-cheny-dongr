@@ -53,3 +53,6 @@ Created basic projectile class, starting implementing Plant class.
 -added wallnut class
 -wallnuts can be placed and have damaged frames
 -progress on potatoe mine's explosion mechanic
+### June 1
+-added shovel to remove plants during gameplay
+-added buttons on demo branch to help demo the game
