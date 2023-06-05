@@ -1,15 +1,17 @@
 import java.nio.file.Path;
 import java.nio.file.Paths;
-public class NormZombie extends Zombie{
+public class FootballZombie extends Zombie{
 
   private int hp;
   private int x, y;
   private int speed;
   private int damage;
-  private ArrayList<PImage> wframes = new ArrayList<PImage>();
-  private ArrayList<PImage> eframes = new ArrayList<PImage>();
-  private ArrayList<PImage> dframes = new ArrayList<PImage>();
+  private ArrayList<PImage> helmetzeat = new ArrayList<PImage>();
+  private ArrayList<PImage> nohelmetzeat = new ArrayList<PImage>();
+  private ArrayList<PImage> helmetzwalk = new ArrayList<PImage>();
+  private ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
   private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
+  private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
   private int FRAMERATE = 3;
   private int change;
@@ -48,7 +50,7 @@ public class NormZombie extends Zombie{
   }
   
   public int getX(){
-    return x;
+    return x-20;
   }
   
   public void setX(int newposition) {
@@ -76,34 +78,32 @@ public class NormZombie extends Zombie{
   }
 
 
-  public NormZombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
+  public FootballZombie(ArrayList<PImage> helmetzwalk,ArrayList<PImage> nohelmetzwalk, ArrayList<PImage> helmetzeat, ArrayList<PImage> nohelmetzeat, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes) {
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
-    this.speed = 1;
-    this.hp = 200;
+    this.speed = 2;
+    this.hp = 1600;
     this.damage = 10;
     this.change = 0;
-    this.wframes = wframes;
-    this.eframes = eframes;
-    this.dframes = dframes;
+    this.helmetzeat = helmetzeat;
+    this.nohelmetzeat = nohelmetzeat;
+    this.helmetzwalk = helmetzwalk;
+    this.nohelmetzwalk = nohelmetzwalk;
     this.explodeframes = explodeframes;
-  }
-  
-    public NormZombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes, int row, int col) {
-    this.x = col * 83 + 140;
-    this.y = row * 80 + 100;
-    this.speed = 1;
-    this.hp = 200;
-    this.damage = 10;
-    this.change = 0;
-    this.wframes = wframes;
-    this.eframes = eframes;
     this.dframes = dframes;
-    this.explodeframes = explodeframes;
   }
 
 
   public void display() {
+    if (getHP() > 300){
+      display(helmetzwalk, helmetzeat);
+    }
+    else{
+      display(nohelmetzwalk, nohelmetzeat);
+    }
+  }
+  
+  public void display(ArrayList<PImage> walk, ArrayList<PImage> eat){
     if (explode){
       if ((frameCount) % (2) == 0) {
           currentFrame++;
@@ -130,23 +130,23 @@ public class NormZombie extends Zombie{
         if ((frameCount) % 3 == 0) {
           this.setX(this.x-speed);
       }
-        if ((frameCount) % (3) == 0) {
+        if ((frameCount) % (4) == 0) {
           currentFrame++;
           //this.setX(this.x-speed);
-          if (currentFrame >= wframes.size()) {
+          if (currentFrame >= walk.size()) {
             currentFrame = 0;
           }
         }
-        image(wframes.get(currentFrame), x, y);
+        image(walk.get(currentFrame), x, y);
       } else if (change == 1) {
-        if ((frameCount) % (2) == 0) {
+        if ((frameCount) % (3) == 0) {
           currentFrame++;
         }
-        if (currentFrame >= eframes.size()) {
+        if (currentFrame >= eat.size()) {
           currentFrame = 0;
         }
 
-        image(eframes.get(currentFrame), x, y);
+        image(eat.get(currentFrame), x, y);
       }
     } else {
       currentFrame++;

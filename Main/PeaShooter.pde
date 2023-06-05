@@ -19,7 +19,7 @@ public class PeaShooter extends Plant{
   public PeaShooter(int x, int y){
     this.x = x;
     this.y = y;
-    Health = 100;
+    Health = 300;
     //LOADING THE FRAMES
     /*File directory = new File("PlantFrames" + File.separator + "Peashooter");
     File cur = new File(System.getProperty("user.dir"));

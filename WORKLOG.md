@@ -23,6 +23,8 @@ set up code in preparation of the explosion effect from potato mine class, tinke
 demo branch, key for spawning zombie and removing all zombie, fixed exploding animation errors
 ### June 2
 Added the footballzombie along with the animations, and zombie and plant interactions worked
+### June 4
+Added the dance zombie(no animations yet), set all plants and zombie's stats to match with the actual game
 ## Rui Dong
 
 ### May22
@@ -56,3 +58,5 @@ Created basic projectile class, starting implementing Plant class.
 ### June 1
 -added shovel to remove plants during gameplay
 -added buttons on demo branch to help demo the game
+### June 4
+-added working Cherrybomb plant
