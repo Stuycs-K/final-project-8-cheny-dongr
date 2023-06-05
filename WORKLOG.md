@@ -58,3 +58,5 @@ Created basic projectile class, starting implementing Plant class.
 ### June 1
 -added shovel to remove plants during gameplay
 -added buttons on demo branch to help demo the game
+### June 4
+-added working Cherrybomb plant
