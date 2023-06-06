@@ -126,7 +126,7 @@ public class DanceZombie extends Zombie{
       image(explodeframes.get(currentFrame), x, y);
     }
     else{
-      if ((frameCount - spawn) % 300 == 0){
+      if ((frameCount - spawn) % 1800 == 0 || frameCount - spawn == 300){
        setChange(4);
        currentFrame = 0;
        dance = true;
