@@ -15,10 +15,29 @@ public class DanceZombie extends Zombie{
   private int FRAMERATE = 3;
   private int change;
   private int spawn;
+  boolean dancespawn = false;
   boolean dance = false;
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
+  
+  public void setCurrent(){
+    currentFrame = 0;
+  }
+  
+  public void setDance(){
+    dance = false;
+  }
+  public void setDancespawn(){
+    dancespawn = false;
+  }
+  public boolean dancespawn(){
+    return dancespawn;
+  }
+  public boolean getDance(){
+    return dance;
+  }
+  
   
   public void doDamage(Plant a) {
     if (frameCount % 6 == 0) {
@@ -51,7 +70,7 @@ public class DanceZombie extends Zombie{
   }
   
   public int getX(){
-    return x;
+    return x-30;
   }
   
   public void setX(int newposition) {
@@ -96,8 +115,76 @@ public class DanceZombie extends Zombie{
 
 
   public void display() {
-    if ((frameCount - spawn) % 600 == 0){
-      Main.spawnNorm(1,2);
+    if (explode){
+      if ((frameCount) % (2) == 0) {
+          currentFrame++;
+        }
+      if (currentFrame >= explodeframes.size()-1) {
+        alive = false;
+      }
+
+      image(explodeframes.get(currentFrame), x, y);
     }
+    else{
+      if ((frameCount - spawn) % 1800 == 0 || frameCount - spawn == 300){
+       setChange(4);
+       currentFrame = 0;
+       dance = true;
+    }
+    if (hp <= 0) {
+      if (!(dying)) {
+        currentFrame = 0;
+        dying = true;
+      }
+      setChange(2);
+    }
+    
+    
+    if (change != 2) {
+
+      if (change == 0) {
+        if ((frameCount) % 3 == 0) {
+          this.setX(this.x-speed);
+      }
+        if ((frameCount) % (3) == 0) {
+          currentFrame++;
+          //this.setX(this.x-speed);
+          if (currentFrame >= dancezwalk.size()) {
+            currentFrame = 0;
+          }
+        }
+        image(dancezwalk.get(currentFrame), x, y);
+      } else if (change == 1) {
+        if ((frameCount) % (2) == 0) {
+          currentFrame++;
+        }
+        if (currentFrame >= dancezeat.size()) {
+          currentFrame = 0;
+        }
+
+        image(dancezeat.get(currentFrame), x, y);
+      }
+      else if (change == 4){
+        if ((frameCount) % (4) == 0) {
+          currentFrame++;
+        }
+        if (currentFrame == dancezdance.size()-1) {
+          currentFrame = 0;
+          setChange(0);
+          dancespawn = true;
+        }
+
+        image(dancezdance.get(currentFrame), x, y);
+      }
+    } else {
+      currentFrame++;
+      if (currentFrame >= dframes.size()-1) {
+        alive = false;
+        //currentFrame = 0;
+      }
+
+      image(dframes.get(currentFrame), x, y);
+    }
+  }
   }
 }
