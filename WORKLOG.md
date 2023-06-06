@@ -25,6 +25,8 @@ demo branch, key for spawning zombie and removing all zombie, fixed exploding an
 Added the footballzombie along with the animations, and zombie and plant interactions worked
 ### June 4
 Added the dance zombie(no animations yet), set all plants and zombie's stats to match with the actual game
+### June 5
+Completed dance zombie animation, dance zombie spawning zombies
 ## Rui Dong
 
 ### May22
