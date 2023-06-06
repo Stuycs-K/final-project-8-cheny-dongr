@@ -1,4 +1,4 @@
-static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+  static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
@@ -32,6 +32,7 @@ public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> WallnutFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> CherrybombFrames = new ArrayList<PImage>();
+public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
   if (key == 's'){
@@ -138,6 +139,7 @@ void setup(){
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
   SeedPackets.add("CHERRYBOMB");
+  SeedPackets.add("REPEATER");
   plant("PEASHOOTER", 0, 0);
   plant("PEASHOOTER", 1, 0);
   plant("PEASHOOTER", 2, 0);
@@ -171,6 +173,9 @@ void setup(){
    packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "repeater.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
    
   
   framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
@@ -196,7 +201,7 @@ void setup(){
       frame.resize(80,80);
       PotatomineFrames.add(frame);
     }
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
+    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
     for(int i = 0; i <= 2; i++){
       println(framesFolder.getAbsolutePath());
       PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
@@ -212,6 +217,14 @@ void setup(){
   PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
   frameExplosion.resize(240,240);
   CherrybombFrames.add(frameExplosion);
+  
+    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Repeater"));
+    for(int i = 2; i <= 50; i++){
+      println(framesFolder.getAbsolutePath());
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "frame_" + i + ".png");
+      frame.resize(80,80);
+      RepeaterFrames.add(frame);
+    }
 }
 
 void mouseClicked(){
@@ -378,6 +391,10 @@ void draw(){
     else if(plant.equals("CHERRYBOMB") && sunCounter >= CherryBomb.COST){
       PlantGrid[row][col] = new CherryBomb((col * 82) + 245, (row * 80) + 160);
       sunCounter -= CherryBomb.COST;
+    }
+    else if(plant.equals("REPEATER") && sunCounter >= Repeater.COST){
+      PlantGrid[row][col] = new Repeater((col * 82) + 245, (row * 80) + 160);
+      sunCounter -= Repeater.COST;
     }
 
   }
