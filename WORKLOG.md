@@ -62,3 +62,5 @@ Created basic projectile class, starting implementing Plant class.
 -added buttons on demo branch to help demo the game
 ### June 4
 -added working Cherrybomb plant
+### June 6
+-added repeater plant, frames size still need to be adjusted
