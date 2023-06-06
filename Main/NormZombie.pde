@@ -17,6 +17,12 @@ public class NormZombie extends Zombie{
   boolean dying = false;
   boolean explode = false;
   
+  public void setCurrent(){
+    currentFrame = 0;
+  }
+  public boolean getDance(){
+    return dance;
+  }
   public void doDamage(Plant a) {
     if (frameCount % 6 == 0) {
       a.takeDamage(damage);
@@ -90,7 +96,7 @@ public class NormZombie extends Zombie{
   }
   
     public NormZombie(ArrayList<PImage> wframes, ArrayList<PImage> eframes, ArrayList<PImage> dframes, ArrayList<PImage> explodeframes, int row, int col) {
-    this.x = col * 83 + 140;
+    this.x = col * 83 + 140+50;
     this.y = row * 80 + 100;
     this.speed = 1;
     this.hp = 200;

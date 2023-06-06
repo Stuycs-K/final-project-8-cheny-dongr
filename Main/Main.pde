@@ -2,6 +2,7 @@ static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
+static ArrayList<DanceZombie> Dance = new ArrayList<DanceZombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
@@ -55,19 +56,19 @@ void setup(){
   File dancedanceF = new File(sketchPath("ZombieFrames" + File.separator + "dancezdance"));
     for(int i = 0; i <= 7; i++){
       PImage image = loadImage(dancedanceF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.08s.png");
-      image.resize(160,140);
+      image.resize(100,140);
       dancezdance.add(image);
     }
     File danceeatF = new File(sketchPath("ZombieFrames" + File.separator + "dancezeat"));
     for(int i = 0; i <= 32; i++){
       PImage image = loadImage(danceeatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.04s.png");
-      image.resize(160,140);
+      image.resize(100,140);
       dancezeat.add(image);
     }
     File dancewalkF = new File(sketchPath("ZombieFrames" + File.separator + "dancezwalk"));
     for(int i = 0; i <= 19; i++){
       PImage image = loadImage(dancewalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
-      image.resize(160,140);
+      image.resize(100,140);
       dancezwalk.add(image);
     }
   File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
@@ -221,8 +222,11 @@ void mouseClicked(){
   //spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes, 0, 1));
-  
-  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
+  DanceZombie x = new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes);
+  Zombies.add(x);
+  Dance.add(x);
+
+  //Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
   selectSeedpacket();
   isShovelPressed();
@@ -276,6 +280,14 @@ void draw(){
       
     }
   }
+  
+  for (int zomb = 0; zomb < Dance.size(); zomb++){
+    if (Dance.get(zomb).dancespawn()){
+      spawnNorm(Dance.get(zomb).gridrow(),Dance.get(zomb).gridcol());
+      Dance.get(zomb).setDance();
+      Dance.get(zomb).setDancespawn();
+    }
+  }
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
@@ -293,6 +305,7 @@ void draw(){
           Plant victim = PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()];
           if (Zombies.get(zomb).getChange() == 0){
             Zombies.get(zomb).setChange(1);
+            Zombies.get(zomb).setCurrent();
           }
           
           Zombies.get(zomb).doDamage(victim);
@@ -300,8 +313,9 @@ void draw(){
           
           
         }
-        else if ((Zombies.get(zomb).alive())){
+        else if ((Zombies.get(zomb).alive()) && (Zombies.get(zomb).getDance() == false)){
           Zombies.get(zomb).setChange(0);
+
         } 
       }
       if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
@@ -412,9 +426,20 @@ void draw(){
     return exploded;
   }
   
-  public static void spawnNorm(int row, int col){
-    //Zombie zomb = new NormZombie(wframes, eframes, dframes, explodeframes, row, col);
-    //Zombies.add(zomb);
+  public void spawnNorm(int row, int col){
+    if (row-1 >= 0 ){
+      Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,row-1,col));
+    }
+    if (col-1 >= 0 ){
+      Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,row,col-1));
+    }
+    if (row +1 <= 4){
+      Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,row+1,col));
+    }
+    if (col+1 <= 9){
+      Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,row,col+1));
+    }
+    
   }
   
   private void isShovelPressed(){
