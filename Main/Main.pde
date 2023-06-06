@@ -6,11 +6,12 @@ static ArrayList<DanceZombie> Dance = new ArrayList<DanceZombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
-
+public int mode = 1;
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 int SeedPacketSelected = -1;
-Plant[][] PlantGrid;
+Plant[][] PlantGrid = new Plant[5][9];
+
 
 public static ArrayList<PImage> wframes = new ArrayList<PImage>();
 public static ArrayList<PImage> eframes = new ArrayList<PImage>();
@@ -53,165 +54,13 @@ void keyPressed(){
 }
 
 void setup(){
-  File dancedanceF = new File(sketchPath("ZombieFrames" + File.separator + "dancezdance"));
-    for(int i = 0; i <= 7; i++){
-      PImage image = loadImage(dancedanceF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.08s.png");
-      image.resize(100,140);
-      dancezdance.add(image);
-    }
-    File danceeatF = new File(sketchPath("ZombieFrames" + File.separator + "dancezeat"));
-    for(int i = 0; i <= 32; i++){
-      PImage image = loadImage(danceeatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.04s.png");
-      image.resize(100,140);
-      dancezeat.add(image);
-    }
-    File dancewalkF = new File(sketchPath("ZombieFrames" + File.separator + "dancezwalk"));
-    for(int i = 0; i <= 19; i++){
-      PImage image = loadImage(dancewalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
-      image.resize(100,140);
-      dancezwalk.add(image);
-    }
-  File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(helmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      helmetzwalk.add(image);
-    }
-    File nohelmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzwalk"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(nohelmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      nohelmetzwalk.add(image);
-    }
-    File helmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "helmetzeat"));
-    for(int i = 0; i <= 9; i++){
-      PImage image = loadImage(helmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      helmetzeat.add(image);
-    }
-    File nohelmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzeat"));
-    for(int i = 0; i <= 10; i++){
-      PImage image = loadImage(nohelmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
-      image.resize(160,140);
-      nohelmetzeat.add(image);
-    }
   
-  
-  
-  File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
-    for(int i = 0; i <= 29; i++){
-      PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
-      image.resize(80,120);
-      explodeframes.add(image);
-    }
-  File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
-    for(int i = 0; i <= 45; i++){
-      PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
-      image.resize(200,150);
-      wframes.add(image);
-    }
-    
-    File eframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zeat"));
-    for(int i = 0; i <= 37; i++){
-      PImage image = loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
-      image.resize(200,150);
-      eframes.add(image);
-    }
-    
-    File dframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zdie"));
-    for(int i = 0; i <= 38; i++){
-      PImage image = loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
-      image.resize(200,150);
-      dframes.add(image);     
-    }
   size(1100,600);
-  PlantGrid = new Plant[5][9];
-  //PLANT TESTING 
-  /*PlantGrid[0][1] = new PeaShooter(100, 0);
-  PlantGrid[1][1] = new PeaShooter(100, 100);
-  PlantGrid[2][1] = new PeaShooter(100, 200);
-  PlantGrid[3][1] = new PeaShooter(100, 300);
-  PlantGrid[4][1] = new PeaShooter(100, 400);
-  */
-  SeedPackets.add("SUNFLOWER");
-  SeedPackets.add("PEASHOOTER");
-  SeedPackets.add("POTATOMINE");
-  SeedPackets.add("WALLNUT");
-  SeedPackets.add("CHERRYBOMB");
-  plant("PEASHOOTER", 0, 0);
-  plant("PEASHOOTER", 1, 0);
-  plant("PEASHOOTER", 2, 0);
-  plant("PEASHOOTER", 3, 0);
-  plant("PEASHOOTER", 4, 0);
-  background = loadImage("garden.png");
-  background.resize(1100, 500);
   
-  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "SeedPackets"));
-  /*File[] packets = framesFolder.listFiles();
-    for(File packet : packets){
-      if(packet.getAbsolutePath().contains(".DS_Store")){
-        continue;
-      }
-      PImage frame = loadImage(packet.getAbsolutePath());
-      frame.resize(75,100);
-      SeedPacketsPNGs.add(frame);
-    }*/
-   PImage packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatoemine.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   
+  setUpFrames();
+  mode1();
+
   
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
-    for(int i = 1; i <= 24; i++){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png");
-      frame.resize(80,80);
-      PeashooterFrames.add(frame);
-    }
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
-    //CURRENTLY SKIPS EVERY OTHER FRAME
-    for(int i = 1; i <= 24; i+=2){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png");
-      frame.resize(80,80);
-      SunflowerFrames.add(frame);
-    }
-    
-    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
-    PImage unarmedFrame = loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png");
-    unarmedFrame.resize(80,80);
-    PotatomineFrames.add(unarmedFrame);
-    for(int i = 1; i <= 1; i++){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png");
-      frame.resize(80,80);
-      PotatomineFrames.add(frame);
-    }
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
-    for(int i = 0; i <= 2; i++){
-      println(framesFolder.getAbsolutePath());
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
-      frame.resize(80,80);
-      WallnutFrames.add(frame);
-    }
-    
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
-  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-  //DIFFERENT SIZE CHERRYBOMB
-  frameCherry.resize(100,80);
-  CherrybombFrames.add(frameCherry);
-  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
-  frameExplosion.resize(240,240);
-  CherrybombFrames.add(frameExplosion);
 }
 
 
@@ -221,12 +70,12 @@ void mouseClicked(){
   //sun test
   //spawnSun(new Sun(500, 400));
   if (mouseX > 1000){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes, 0, 1));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   DanceZombie x = new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes);
   Zombies.add(x);
   Dance.add(x);
 
-  //Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
+  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
   selectSeedpacket();
   isShovelPressed();
@@ -315,7 +164,7 @@ void draw(){
         }
         else if ((Zombies.get(zomb).alive()) && (Zombies.get(zomb).getDance() == false)){
           Zombies.get(zomb).setChange(0);
-
+          //Zombies.get(zomb).setCurrent();
         } 
       }
       if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
@@ -456,3 +305,151 @@ void draw(){
       usingShovel = false;
     }
   }
+  
+  public void mode1(){
+  SeedPackets.add("SUNFLOWER");
+  SeedPackets.add("PEASHOOTER");
+  SeedPackets.add("POTATOMINE");
+  SeedPackets.add("WALLNUT");
+  SeedPackets.add("CHERRYBOMB");
+
+  }
+  public void setUpFrames(){
+    File dancedanceF = new File(sketchPath("ZombieFrames" + File.separator + "dancezdance"));
+    for(int i = 0; i <= 7; i++){
+      PImage image = loadImage(dancedanceF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.08s.png");
+      image.resize(100,140);
+      dancezdance.add(image);
+    }
+    File danceeatF = new File(sketchPath("ZombieFrames" + File.separator + "dancezeat"));
+    for(int i = 0; i <= 32; i++){
+      PImage image = loadImage(danceeatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.04s.png");
+      image.resize(100,140);
+      dancezeat.add(image);
+    }
+    File dancewalkF = new File(sketchPath("ZombieFrames" + File.separator + "dancezwalk"));
+    for(int i = 0; i <= 19; i++){
+      PImage image = loadImage(dancewalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
+      image.resize(100,140);
+      dancezwalk.add(image);
+    }
+  File helmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "heltmetzwalk"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(helmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      helmetzwalk.add(image);
+    }
+    File nohelmetwalkF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzwalk"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(nohelmetwalkF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      nohelmetzwalk.add(image);
+    }
+    File helmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "helmetzeat"));
+    for(int i = 0; i <= 9; i++){
+      PImage image = loadImage(helmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      helmetzeat.add(image);
+    }
+    File nohelmeteatF = new File(sketchPath("ZombieFrames" + File.separator + "nohelmetzeat"));
+    for(int i = 0; i <= 10; i++){
+      PImage image = loadImage(nohelmeteatF.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.09s.png");
+      image.resize(160,140);
+      nohelmetzeat.add(image);
+    }
+  File explodeframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zexplode"));
+    for(int i = 0; i <= 29; i++){
+      PImage image = loadImage(explodeframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.06s.png");
+      image.resize(80,120);
+      explodeframes.add(image);
+    }
+  File wframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zwalk"));
+    for(int i = 0; i <= 45; i++){
+      PImage image = loadImage(wframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      wframes.add(image);
+    }
+    
+    File eframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zeat"));
+    for(int i = 0; i <= 37; i++){
+      PImage image = loadImage(eframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      eframes.add(image);
+    }
+    
+    File dframesFolder = new File(sketchPath("ZombieFrames" + File.separator + "zdie"));
+    for(int i = 0; i <= 38; i++){
+      PImage image = loadImage(dframesFolder.getAbsolutePath() + File.separator + "frame_" + i + "_delay-0.07s.png");
+      image.resize(200,150);
+      dframes.add(image);     
+    }
+    File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "SeedPackets"));
+  /*File[] packets = framesFolder.listFiles();
+    for(File packet : packets){
+      if(packet.getAbsolutePath().contains(".DS_Store")){
+        continue;
+      }
+      PImage frame = loadImage(packet.getAbsolutePath());
+      frame.resize(75,100);
+      SeedPacketsPNGs.add(frame);
+    }*/
+   PImage packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatoemine.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
+   
+  
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
+    for(int i = 1; i <= 24; i++){
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png");
+      frame.resize(80,80);
+      PeashooterFrames.add(frame);
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
+    //CURRENTLY SKIPS EVERY OTHER FRAME
+    for(int i = 1; i <= 24; i+=2){
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png");
+      frame.resize(80,80);
+      SunflowerFrames.add(frame);
+    }
+    
+    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
+    PImage unarmedFrame = loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png");
+    unarmedFrame.resize(80,80);
+    PotatomineFrames.add(unarmedFrame);
+    for(int i = 1; i <= 1; i++){
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png");
+      frame.resize(80,80);
+      PotatomineFrames.add(frame);
+    }
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
+    for(int i = 0; i <= 2; i++){
+      println(framesFolder.getAbsolutePath());
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
+      frame.resize(80,80);
+      WallnutFrames.add(frame);
+    }
+    
+  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
+  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
+  //DIFFERENT SIZE CHERRYBOMB
+  frameCherry.resize(100,80);
+  CherrybombFrames.add(frameCherry);
+  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
+  frameExplosion.resize(240,240);
+  CherrybombFrames.add(frameExplosion);
+  background = loadImage("garden.png");
+  background.resize(1100, 500);
+  }
+  
