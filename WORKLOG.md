@@ -25,6 +25,8 @@ demo branch, key for spawning zombie and removing all zombie, fixed exploding an
 Added the footballzombie along with the animations, and zombie and plant interactions worked
 ### June 4
 Added the dance zombie(no animations yet), set all plants and zombie's stats to match with the actual game
+### June 5
+Completed dance zombie animation, dance zombie spawning zombies
 ## Rui Dong
 
 ### May22
@@ -60,3 +62,5 @@ Created basic projectile class, starting implementing Plant class.
 -added buttons on demo branch to help demo the game
 ### June 4
 -added working Cherrybomb plant
+### June 6
+-added repeater plant, frames size still need to be adjusted
