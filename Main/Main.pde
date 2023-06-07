@@ -56,121 +56,24 @@ void keyPressed(){
 
 void setup(){
   
-  size(1100,600);
-<<<<<<< HEAD
-  
+  size(1100,600); 
   setUpFrames();
   mode1();
 
   
-=======
-  PlantGrid = new Plant[5][9];
-  //PLANT TESTING 
-  /*PlantGrid[0][1] = new PeaShooter(100, 0);
-  PlantGrid[1][1] = new PeaShooter(100, 100);
-  PlantGrid[2][1] = new PeaShooter(100, 200);
-  PlantGrid[3][1] = new PeaShooter(100, 300);
-  PlantGrid[4][1] = new PeaShooter(100, 400);
-  */
-  SeedPackets.add("SUNFLOWER");
-  SeedPackets.add("PEASHOOTER");
-  SeedPackets.add("POTATOMINE");
-  SeedPackets.add("WALLNUT");
-  SeedPackets.add("CHERRYBOMB");
-  SeedPackets.add("REPEATER");
-  plant("PEASHOOTER", 0, 0);
-  plant("PEASHOOTER", 1, 0);
-  plant("PEASHOOTER", 2, 0);
-  plant("PEASHOOTER", 3, 0);
-  plant("PEASHOOTER", 4, 0);
-  background = loadImage("garden.png");
-  background.resize(1100, 500);
-  
-  File framesFolder = new File(sketchPath("PlantFrames" + File.separator + "SeedPackets"));
-  /*File[] packets = framesFolder.listFiles();
-    for(File packet : packets){
-      if(packet.getAbsolutePath().contains(".DS_Store")){
-        continue;
-      }
-      PImage frame = loadImage(packet.getAbsolutePath());
-      frame.resize(75,100);
-      SeedPacketsPNGs.add(frame);
-    }*/
-   PImage packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatoemine.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnut.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "repeater.png");
-   packet.resize(75,100);
-   SeedPacketsPNGs.add(packet);
-   
-  
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
-    for(int i = 1; i <= 24; i++){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "peashooter" + i + ".png");
-      frame.resize(80,80);
-      PeashooterFrames.add(frame);
-    }
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Sunflower"));
-    //CURRENTLY SKIPS EVERY OTHER FRAME
-    for(int i = 1; i <= 24; i+=2){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "sunflower" + i + ".png");
-      frame.resize(80,80);
-      SunflowerFrames.add(frame);
-    }
-    
-    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Potatomine"));
-    PImage unarmedFrame = loadImage(framesFolder.getAbsolutePath() + File.separator + "unarmedPotato" + ".png");
-    unarmedFrame.resize(80,80);
-    PotatomineFrames.add(unarmedFrame);
-    for(int i = 1; i <= 1; i++){
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "potatomine" + i + ".png");
-      frame.resize(80,80);
-      PotatomineFrames.add(frame);
-    }
-    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Wallnut"));
-    for(int i = 0; i <= 2; i++){
-      println(framesFolder.getAbsolutePath());
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
-      frame.resize(80,80);
-      WallnutFrames.add(frame);
-    }
-    
-  framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
-  PImage frameCherry = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
-  //DIFFERENT SIZE CHERRYBOMB
-  frameCherry.resize(100,80);
-  CherrybombFrames.add(frameCherry);
-  PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
-  frameExplosion.resize(240,240);
-  CherrybombFrames.add(frameExplosion);
-  
-    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Repeater"));
-    for(int i = 2; i <= 50; i++){
-      println(framesFolder.getAbsolutePath());
-      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "frame_" + i + ".png");
-      frame.resize(80,80);
-      RepeaterFrames.add(frame);
-    }
->>>>>>> 93218756290a66d901ff92dbc8426635c89610e9
+
 }
-
+/*
+public static void addZombie(){
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+}
+*/
+/*
 void mouseClicked(){
-
-  //Projectiles.add(new Projectile(10, 10, mouseX, mouseY));
-  //sun test
-  //spawnSun(new Sun(500, 400));
+}
+*/
+void mouseClicked(){
+/* testing uses
   if (mouseX > 1000){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   DanceZombie x = new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes);
@@ -179,6 +82,8 @@ void mouseClicked(){
 
   Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
+  */
+  //need 
   selectSeedpacket();
   isShovelPressed();
   if(usingShovel){
@@ -242,15 +147,14 @@ void draw(){
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
-//testing zombie'sho
+
+
+
 
    println("" + (Zombies.size() + Projectiles.size()));
-      //int xplant = 200;
-     // int gridcol = (Zombies.get(zomb).getX()-xplant+60)/83;
-     // int gridrow = (Zombies.get(zomb).getY()-100)/80;
-      //making sure zombie is align with grid value
-
-
+   
+   
+   
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
           Plant victim = PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()];
@@ -294,14 +198,12 @@ void draw(){
     }
   }
   fill(0);
-   textSize(30);
+  textSize(30);
   text(frameRate, 30, 30);
   text(frameCount, 1000, 30); 
 
 }
-  /*
-  PlantGrid[2][2].display();
-  Projectiles.add(PlantGrid[2][2].attack());*/
+
   
   public static void addProjectile(Projectile projectile){
     Projectiles.add(projectile);
@@ -418,7 +320,7 @@ void draw(){
   SeedPackets.add("POTATOMINE");
   SeedPackets.add("WALLNUT");
   SeedPackets.add("CHERRYBOMB");
-
+  SeedPackets.add("REPEATER");
   }
   public void setUpFrames(){
     File dancedanceF = new File(sketchPath("ZombieFrames" + File.separator + "dancezdance"));
@@ -545,6 +447,13 @@ void draw(){
       PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "wallnutdamaged" + i + ".png");
       frame.resize(80,80);
       WallnutFrames.add(frame);
+    }
+    framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Repeater"));
+    for(int i = 2; i <= 50; i++){
+      println(framesFolder.getAbsolutePath());
+      PImage frame = loadImage(framesFolder.getAbsolutePath() + File.separator + "frame_" + i + ".png");
+      frame.resize(80,80);
+      RepeaterFrames.add(frame);
     }
     
   framesFolder = new File(sketchPath("PlantFrames" + File.separator + "Cherrybomb"));
