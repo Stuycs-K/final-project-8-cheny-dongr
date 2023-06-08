@@ -453,6 +453,9 @@ void draw(){
    packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherrybomb.png");
    packet.resize(75,100);
    SeedPacketsPNGs.add(packet);
+   packet = loadImage(framesFolder.getAbsolutePath() + File.separator + "repeater.png");
+   packet.resize(75,100);
+   SeedPacketsPNGs.add(packet);
    
   
   framesFolder = new File(sketchPath("PlantFrames" + File.separator + "PeaShooter"));
