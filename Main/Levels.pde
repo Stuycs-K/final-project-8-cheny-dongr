@@ -4,6 +4,8 @@ public class Levels{
   
   public Levels(){
   }
+
+  
   
   //RETURNS TRUE WHEN A LEVEL IS COMPLETED
   public boolean playCurrentLevel(){
@@ -61,9 +63,41 @@ public class Levels{
     timer = 0;
   }
   
+  public void spawnNorm(){
+    Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+  }
+  
+  public void spawnFoot(){
+    Main.addZombie(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
+  }
+  
+  public void spawnDance(){
+    
+  }
+  public void waves(int amount){
+  }
+  
   //playLevel# RETURNS TRUE WHEN LEVEL IS COMPLETE
   public boolean playLevel1(){
     //to compile
+      if (timer == 1600){
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+      }
+      if (timer == 3000){
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+      }
+      if (timer == 4000){
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+      }
+      if (timer == 5000){
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+      }
+      if (timer == 6000){
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+          Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes));
+      }
+      
     return false;
   }
   public boolean playLevel2(){

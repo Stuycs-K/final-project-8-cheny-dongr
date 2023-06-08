@@ -11,9 +11,9 @@ abstract class Zombie {
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
-  boolean dance = false;
 
-  public abstract boolean getDance();
+
+
   public abstract void display();
   public abstract void setCurrent();
   public abstract void doDamage(Plant a);

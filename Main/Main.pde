@@ -47,16 +47,14 @@ void keyPressed(){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes));
+
+  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
   if (key == 'c'){
     sunCounter = 9000;
   }
-  
+
 }
 
 void setup(){
@@ -71,11 +69,11 @@ void setup(){
   
 
 }
-/*
-public static void addZombie(){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+
+public static void addZombie(Zombie zomb){
+  Zombies.add(zomb);
 }
-*/
+
 /*
 void mouseClicked(){
 
@@ -173,13 +171,6 @@ void draw(){
   
   
   
-  for (int zomb = 0; zomb < Dance.size(); zomb++){
-    if (Dance.get(zomb).dancespawn()){
-      spawnNorm(Dance.get(zomb).gridrow(),Dance.get(zomb).gridcol());
-      Dance.get(zomb).setDance();
-      Dance.get(zomb).setDancespawn();
-    }
-  }
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
@@ -187,7 +178,7 @@ void draw(){
 
 
 
-   println("" + (Zombies.size() + Projectiles.size()));
+   //println("" + (Zombies.size() + Projectiles.size()));
    
    
    
@@ -204,7 +195,7 @@ void draw(){
           
           
         }
-        else if ((Zombies.get(zomb).alive()) && (Zombies.get(zomb).getDance() == false)){
+        else if ((Zombies.get(zomb).alive())){
           Zombies.get(zomb).setChange(0);
           //Zombies.get(zomb).setCurrent();
         } 
@@ -334,6 +325,8 @@ void draw(){
     }
     
   }
+  
+
   
   private void isShovelPressed(){
     if(mouseX > 1000 && mouseY< 100){

@@ -20,9 +20,7 @@ public class NormZombie extends Zombie{
   public void setCurrent(){
     currentFrame = 0;
   }
-  public boolean getDance(){
-    return dance;
-  }
+
   public void doDamage(Plant a) {
     if (frameCount % 6 == 0) {
       a.takeDamage(damage);

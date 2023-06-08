@@ -15,8 +15,7 @@ public class DanceZombie extends Zombie{
   private int FRAMERATE = 3;
   private int change;
   private int spawn;
-  boolean dancespawn = false;
-  boolean dance = false;
+  private boolean dance;
   boolean alive = true;
   boolean dying = false;
   boolean explode = false;
@@ -25,19 +24,7 @@ public class DanceZombie extends Zombie{
     currentFrame = 0;
   }
   
-  public void setDance(){
-    dance = false;
-  }
-  public void setDancespawn(){
-    dancespawn = false;
-  }
-  public boolean dancespawn(){
-    return dancespawn;
-  }
-  public boolean getDance(){
-    return dance;
-  }
-  
+
   
   public void doDamage(Plant a) {
     if (frameCount % 6 == 0) {
@@ -111,6 +98,7 @@ public class DanceZombie extends Zombie{
     this.dancezdance = dancezdance;
     this.explodeframes = explodeframes;
     this.dframes = dframes;
+    this.dance = false;
   }
 
 
@@ -127,9 +115,10 @@ public class DanceZombie extends Zombie{
     }
     else{
       if ((frameCount - spawn) % 1800 == 0 || frameCount - spawn == 300){
+        dance = true;
        setChange(4);
        currentFrame = 0;
-       dance = true;
+     
     }
     if (hp <= 0) {
       if (!(dying)) {
@@ -138,8 +127,9 @@ public class DanceZombie extends Zombie{
       }
       setChange(2);
     }
-    
-    
+    if (dance){
+      setChange(4);
+    }
     if (change != 2) {
 
       if (change == 0) {
@@ -169,9 +159,12 @@ public class DanceZombie extends Zombie{
           currentFrame++;
         }
         if (currentFrame == dancezdance.size()-1) {
+          spawnNorm(gridrow(),gridcol());
           currentFrame = 0;
+          dance =false;
           setChange(0);
-          dancespawn = true;
+          
+          
         }
 
         image(dancezdance.get(currentFrame), x, y);
@@ -186,5 +179,21 @@ public class DanceZombie extends Zombie{
       image(dframes.get(currentFrame), x, y);
     }
   }
+  }
+  
+  public void spawnNorm(int row, int col){
+    if (row-1 >= 0 ){
+      Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes,row-1,col));
+    }
+    if (col-1 >= 0 ){
+      Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes,row,col-1));
+    }
+    if (row +1 <= 4){
+      Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes,row+1,col));
+    }
+    if (col+1 <= 9){
+      Main.addZombie(new NormZombie(wframes, eframes, dframes, explodeframes,row,col+1));
+    }
+    
   }
 }
