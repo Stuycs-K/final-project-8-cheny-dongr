@@ -1,4 +1,4 @@
-  static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
@@ -6,7 +6,12 @@ static ArrayList<DanceZombie> Dance = new ArrayList<DanceZombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
+
 public int mode = 1;
+
+static Levels LEVELS;
+boolean openMenu= true;
+
 
 //ArrayList<Boolean> SeedPacketsSelected = new ArrayList<Boolean>();
 int SeedPacketSelected = -1;
@@ -55,6 +60,9 @@ void keyPressed(){
 }
 
 void setup(){
+
+  LEVELS = new Levels();
+ 
   
   size(1100,600); 
   setUpFrames();
@@ -70,10 +78,15 @@ public static void addZombie(){
 */
 /*
 void mouseClicked(){
+
 }
 */
 void mouseClicked(){
 /* testing uses
+=======
+
+  
+>>>>>>> 3fa4df9733387dfc8e76a002c4765f0a9c237f5f
   if (mouseX > 1000){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   DanceZombie x = new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes);
@@ -84,6 +97,7 @@ void mouseClicked(){
   }
   */
   //need 
+  checkIfStartGame();
   selectSeedpacket();
   isShovelPressed();
   if(usingShovel){
@@ -95,7 +109,21 @@ void mouseClicked(){
 }
 
 void draw(){
-
+  
+  if (openMenu){
+    
+    fill(0);
+    rect(500, 200, 100, 100);
+    fill(255);
+    textSize(30);
+    text("START",500,300);
+  }
+  else{
+    
+    if(LEVELS.playCurrentLevel() == true){
+      openMenu = true;
+    }
+    
   background(255);
   fill(0);
   image(background, 0, 100);
@@ -105,6 +133,9 @@ void draw(){
   text("Index: " + SeedPacketSelected, 500, 100);
   drawSeedpacketBar();
   naturallySpawnSun();
+  
+  
+  
   for(int i = 0; i < Suns.size(); i++){
     Sun sun = Suns.get(i);
     if (sun.life() > 300){
@@ -136,6 +167,11 @@ void draw(){
       
     }
   }
+  
+  
+  
+  
+  
   
   for (int zomb = 0; zomb < Dance.size(); zomb++){
     if (Dance.get(zomb).dancespawn()){
@@ -201,7 +237,7 @@ void draw(){
   textSize(30);
   text(frameRate, 30, 30);
   text(frameCount, 1000, 30); 
-
+  }
 }
 
   
@@ -314,6 +350,7 @@ void draw(){
     }
   }
   
+
   public void mode1(){
   SeedPackets.add("SUNFLOWER");
   SeedPackets.add("PEASHOOTER");
@@ -468,3 +505,9 @@ void draw(){
   background.resize(1100, 500);
   }
   
+
+  private void checkIfStartGame(){
+    if(mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300){
+      openMenu = false;
+    }
+  }
