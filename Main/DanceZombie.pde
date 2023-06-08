@@ -149,10 +149,10 @@ public class DanceZombie extends Zombie{
         if ((frameCount) % (3) == 0) {
           currentFrame++;
           //this.setX(this.x-speed);
-          if (currentFrame >= dancezwalk.size()) {
+        }
+        if (currentFrame >= dancezwalk.size()) {
             currentFrame = 0;
           }
-        }
         image(dancezwalk.get(currentFrame), x, y);
       } else if (change == 1) {
         if ((frameCount) % (2) == 0) {
