@@ -5,7 +5,7 @@ static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
-int lost = 0;
+public static int lost = 0;
   
 public int mode = 1;
 
@@ -75,8 +75,10 @@ public static void addZombie(Zombie zomb){
 }
 
 void mouseClicked(){
-
+  if (openMenu){
   checkIfStartGame();
+  }
+  else{
   selectSeedpacket();
   isShovelPressed();
   if(usingShovel){
@@ -85,10 +87,35 @@ void mouseClicked(){
   else {
     clickOnLawn();
   }
+  }
+}
+
+public static void setLost(int a){
+  lost = a;
+}
+
+public void clearAll(){
+  
+    for (int x = Zombies.size()-1; x >= 0; x--){
+      Zombies.remove(x);
+    }
+    for (int x = Projectiles.size()-1; x >= 0; x--){
+      Projectiles.remove(x);
+    }
+    for (int x = SeedPackets.size()-1; x >= 0; x--){
+      SeedPackets.remove(x);
+    }
+    for (int x = 0; x < 5; x++){
+      for (int y = 0; y < 9; y++){
+        PlantGrid[x][y] = null;
+      }
+    }
+    sunCounter = 50;
 }
 
 void draw(){
-  
+  println(lost);
+  println(openMenu);
   if (openMenu){
     lost = 0;
     fill(255);
@@ -130,13 +157,18 @@ void draw(){
       gamestatus();
     }
     else if (lost == -1){
+      clearAll();
       background(255);
       textSize(30);
       text("YOU LOST",500,100);
       openMenu = true;
     }
     else if (lost == 1){
-      
+      clearAll();
+      background(255);
+      textSize(30);
+      text("YOU WON",500,100);
+      openMenu = true;
     }
   }
 }
@@ -235,11 +267,7 @@ void draw(){
       }
     }
   }
-  if (lost == -1){
-    for (int x = Zombies.size()-1; x >= 0; x--){
-      Zombies.remove(x);
-    }
-  }
+  
   fill(0);
   textSize(30);
   text(frameRate, 30, 30);
