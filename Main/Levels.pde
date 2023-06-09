@@ -1,11 +1,10 @@
 public class Levels{
   private int currentLevel = 3;
   private int timer = 0;
-  
+
   public Levels(){
   }
 
-  
   
   //RETURNS TRUE WHEN A LEVEL IS COMPLETED
   public boolean playCurrentLevel(){
@@ -206,6 +205,7 @@ public class Levels{
     return false;
   }
   public boolean playLevel4(){
+    
     return false;
   }
   public boolean playLevel5(){
