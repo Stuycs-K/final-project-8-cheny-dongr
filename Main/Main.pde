@@ -5,7 +5,8 @@ static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
-
+public static int lost = 0;
+  
 public int mode = 1;
 
 static Levels LEVELS;
@@ -41,7 +42,7 @@ public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
   if (key == 's'){
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,0,1));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
@@ -74,22 +75,10 @@ public static void addZombie(Zombie zomb){
 }
 
 void mouseClicked(){
-/* testing uses
-=======
-
-  
->>>>>>> 3fa4df9733387dfc8e76a002c4765f0a9c237f5f
-  if (mouseX > 1000){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  DanceZombie x = new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes);
-  Zombies.add(x);
-  Dance.add(x);
-
-  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
-  }
-  */
-  //need 
+  if (openMenu){
   checkIfStartGame();
+  }
+  else{
   selectSeedpacket();
   isShovelPressed();
   if(usingShovel){
@@ -98,11 +87,37 @@ void mouseClicked(){
   else {
     clickOnLawn();
   }
+  }
+}
+
+public static void setLost(int a){
+  lost = a;
+}
+
+public void clearAll(){
+  
+    for (int x = Zombies.size()-1; x >= 0; x--){
+      Zombies.remove(x);
+    }
+    for (int x = Projectiles.size()-1; x >= 0; x--){
+      Projectiles.remove(x);
+    }
+    for (int x = SeedPackets.size()-1; x >= 0; x--){
+      SeedPackets.remove(x);
+    }
+    for (int x = 0; x < 5; x++){
+      for (int y = 0; y < 9; y++){
+        PlantGrid[x][y] = null;
+      }
+    }
+    sunCounter = 50;
 }
 
 void draw(){
-  
+  println(lost);
+  println(openMenu);
   if (openMenu){
+    lost = 0;
     fill(255);
     rect(500, 200, 100, 100);
     fill(0);
@@ -138,8 +153,28 @@ void draw(){
     if(LEVELS.playCurrentLevel() == true){
       openMenu = true;
     }
-    
-  background(255);
+    if (lost == 0){
+      gamestatus();
+    }
+    else if (lost == -1){
+      clearAll();
+      background(255);
+      textSize(30);
+      text("YOU LOST",500,100);
+      openMenu = true;
+    }
+    else if (lost == 1){
+      clearAll();
+      background(255);
+      textSize(30);
+      text("YOU WON",500,100);
+      openMenu = true;
+    }
+  }
+}
+
+  public void gamestatus(){
+   background(255);
   fill(0);
   image(background, 0, 100);
 
@@ -167,7 +202,6 @@ void draw(){
     }
   }
   }
-  //change to accomadate sunflower's attack, sunflower would never produce if there is no zombie, i need to fix
   for(int row = 0; row < PlantGrid.length; row++){
     for(int i = 0; i < PlantGrid[row].length; i++){
       if(PlantGrid[row][i] != null){
@@ -183,23 +217,9 @@ void draw(){
       
     }
   }
-  
-  
-  
-  
-  
-  
 
   for(int zomb = 0; zomb < Zombies.size(); zomb++){
     Zombies.get(zomb).display();
-
-
-
-
-   //println("" + (Zombies.size() + Projectiles.size()));
-   
-   
-   
       if (Zombies.get(zomb).gridcol() < 9 && Zombies.get(zomb).alive()){
         if (PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()] != null){
           Plant victim = PlantGrid[Zombies.get(zomb).gridrow()][Zombies.get(zomb).gridcol()];
@@ -218,9 +238,14 @@ void draw(){
           //Zombies.get(zomb).setCurrent();
         } 
       }
-      if (Zombies.get(zomb).getX()<100 || !(Zombies.get(zomb).alive())){
+      if (Zombies.get(zomb).getX()<100){
+      lost = -1;
+    }
+      if (!(Zombies.get(zomb).alive())){
       Zombies.remove(zomb);
     }
+    
+      
   }
   //projectiles
      for (int projectile = 0; projectile < Projectiles.size(); projectile++){  
@@ -242,14 +267,12 @@ void draw(){
       }
     }
   }
+  
   fill(0);
   textSize(30);
   text(frameRate, 30, 30);
-  text(frameCount, 1000, 30); 
+  text(LEVELS.getTimer(), 800, 30);
   }
-}
-
-  
   public static void addProjectile(Projectile projectile){
     Projectiles.add(projectile);
   }
