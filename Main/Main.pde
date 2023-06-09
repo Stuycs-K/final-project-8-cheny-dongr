@@ -6,8 +6,6 @@ static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
 public static int lost = 0;
-  
-public int mode = 1;
 
 static Levels LEVELS;
 boolean openMenu= true;
@@ -31,7 +29,7 @@ public static ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezdance = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezeat = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezwalk = new ArrayList<PImage>();
-
+PImage losescreen;
 PImage background; 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
@@ -64,7 +62,7 @@ void setup(){
   
   size(1100,600); 
   setUpFrames();
-  mode1();
+
 
   
 
@@ -75,7 +73,10 @@ public static void addZombie(Zombie zomb){
 }
 
 void mouseClicked(){
-  if (openMenu){
+  if (lost == -1 || lost == 1){
+    losing();
+  }
+  if (openMenu && lost == 0){
   checkIfStartGame();
   }
   else{
@@ -114,8 +115,9 @@ public void clearAll(){
 }
 
 void draw(){
-  println(lost);
-  println(openMenu);
+  println("zombie: " + Zombies.size());
+  println("menu: " + openMenu);
+  println("lost: " + lost);
   if (openMenu){
     lost = 0;
     fill(255);
@@ -159,16 +161,31 @@ void draw(){
     else if (lost == -1){
       clearAll();
       background(255);
-      textSize(30);
-      text("YOU LOST",500,100);
-      openMenu = true;
+      image(losescreen, 0, 0);
+      fill(255);
+    rect(100, 400, 200, 100);
+    rect(850, 400, 200, 100);
+    
+    fill(0);
+    textSize(30);
+    text("RETRY?",200,500);
+    text("HOME",950,500);
     }
     else if (lost == 1){
       clearAll();
       background(255);
       textSize(30);
-      text("YOU WON",500,100);
-      openMenu = true;
+      image(losescreen, 0, 0);
+      fill(255);
+    rect(100, 400, 200, 100);
+    rect(850, 400, 200, 100);
+    fill(255,0,0);
+    textSize(100);
+    text("DID NOT",10,200);
+    fill(0);
+    textSize(30);
+    text("RETRY?",200,500);
+    text("HOME",950,500);
     }
   }
 }
@@ -177,12 +194,11 @@ void draw(){
    background(255);
   fill(0);
   image(background, 0, 100);
-
   textSize(80);
   text(sunCounter, 30, 100);
   text("Index: " + SeedPacketSelected, 400, 100);
   text("Level: " + LEVELS.getCurrentLevel(), 700, 100);
-  drawSeedpacketBar();
+  difpacket();
   naturallySpawnSun();
   
   
@@ -307,8 +323,8 @@ void draw(){
     }
 
   }
-  private void drawSeedpacketBar(){
-    for(int i = 0; i < SeedPacketsPNGs.size(); i++){
+  private void drawSeedpacketBar(int x){
+    for(int i = 0; i < x; i++){
       //rect((i*100)+150, 0, 100, 100);
       image(SeedPacketsPNGs.get(i),i*75+150, 0);
       //text(SeedPackets.get(i),i*100+150, 100);
@@ -385,14 +401,7 @@ void draw(){
   }
   
 
-  public void mode1(){
-  SeedPackets.add("SUNFLOWER");
-  SeedPackets.add("PEASHOOTER");
-  SeedPackets.add("POTATOMINE");
-  SeedPackets.add("WALLNUT");
-  SeedPackets.add("CHERRYBOMB");
-  SeedPackets.add("REPEATER");
-  }
+
   public void setUpFrames(){
     File dancedanceF = new File(sketchPath("ZombieFrames" + File.separator + "dancezdance"));
     for(int i = 0; i <= 7; i++){
@@ -538,29 +547,100 @@ void draw(){
   PImage frameExplosion = loadImage(framesFolder.getAbsolutePath() + File.separator + "cherryexplosion.png");
   frameExplosion.resize(240,240);
   CherrybombFrames.add(frameExplosion);
+  losescreen = loadImage("lose.png");
   background = loadImage("garden.png");
   background.resize(1100, 500);
+  losescreen.resize(1100, 600);
   }
-  
+  private void difpacket(){
+    if (LEVELS.getCurrentLevel() == 1){
+      drawSeedpacketBar(2);
+    }
+    if (LEVELS.getCurrentLevel() == 2){
+      drawSeedpacketBar(4);
+    }
+    if (LEVELS.getCurrentLevel() == 3){
+      drawSeedpacketBar(6);
+    }
+    if (LEVELS.getCurrentLevel() == 4){
+      drawSeedpacketBar(6);
+    }
+  }
 
   private void checkIfStartGame(){
     if(mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300){
       openMenu = false;
     }
     if(mouseX > 100 && mouseX < 300 && mouseY > 400 && mouseY < 500){
-      openMenu = false;
-      LEVELS.setCurrentLevel(1);
+      lvl(1);
     }
     if(mouseX > 350 && mouseX < 550 && mouseY > 400 && mouseY < 500){
-      openMenu = false;
-      LEVELS.setCurrentLevel(2);
+      lvl(2);
     }
     if(mouseX > 600 && mouseX < 800 && mouseY > 400 && mouseY < 500){
-      openMenu = false;
-      LEVELS.setCurrentLevel(3);
+      lvl(3);
     }
     if(mouseX > 850 && mouseX < 1050 && mouseY > 400 && mouseY < 500){
+      lvl(4);
+    }
+    
+  }
+  
+  private void lvl(int a){
+  if(a == 1){
       openMenu = false;
+      SeedPackets.add("SUNFLOWER");
+      SeedPackets.add("PEASHOOTER");
+      //drawSeedpacketBar(2);
+      LEVELS.setCurrentLevel(1);
+    }
+    if(a == 2){
+      openMenu = false;
+      SeedPackets.add("SUNFLOWER");
+      SeedPackets.add("PEASHOOTER");
+      SeedPackets.add("POTATOMINE");
+      SeedPackets.add("WALLNUT");
+      //drawSeedpacketBar(4);
+      LEVELS.setCurrentLevel(2);
+    }
+    if(a == 3){
+      openMenu = false;
+      SeedPackets.add("SUNFLOWER");
+      SeedPackets.add("PEASHOOTER");
+      SeedPackets.add("POTATOMINE");
+      SeedPackets.add("WALLNUT");
+      SeedPackets.add("CHERRYBOMB");
+      SeedPackets.add("REPEATER");
+      //drawSeedpacketBar(6);
+      LEVELS.setCurrentLevel(3);
+    }
+    if(a == 4){
+      openMenu = false;
+      SeedPackets.add("SUNFLOWER");
+      SeedPackets.add("PEASHOOTER");
+      SeedPackets.add("POTATOMINE");
+      SeedPackets.add("WALLNUT");
+      SeedPackets.add("CHERRYBOMB");
+      SeedPackets.add("REPEATER");
+      //drawSeedpacketBar(6);
       LEVELS.setCurrentLevel(4);
     }
   }
+  private void losing(){
+    if(mouseX > 100 && mouseX < 300 && mouseY > 400 && mouseY < 500){
+      background(255);
+      if (lost == -1 || lost == 1){
+      lost = 0;
+      lvl(LEVELS.getCurrentLevel());
+      }
+    }
+    if(mouseX > 850 && mouseX < 1050 && mouseY > 400 && mouseY < 500){
+      background(255);
+      if (lost == -1 || lost == 1){
+      openMenu = true;
+      }
+    }
+    
+    
+  }
+  
