@@ -42,7 +42,7 @@ public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
   if (key == 's'){
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,0,1));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
  // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
@@ -90,6 +90,7 @@ void mouseClicked(){
 void draw(){
   
   if (openMenu){
+    lost = 0;
     fill(255);
     rect(500, 200, 100, 100);
     fill(0);
@@ -129,9 +130,13 @@ void draw(){
       gamestatus();
     }
     else if (lost == -1){
-      
+      background(255);
+      textSize(30);
+      text("YOU LOST",500,100);
+      openMenu = true;
     }
     else if (lost == 1){
+      
     }
   }
 }
@@ -238,7 +243,7 @@ void draw(){
   fill(0);
   textSize(30);
   text(frameRate, 30, 30);
-  text(frameCount, 800, 30);
+  text(LEVELS.getTimer(), 800, 30);
   }
   public static void addProjectile(Projectile projectile){
     Projectiles.add(projectile);
