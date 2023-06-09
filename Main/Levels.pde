@@ -208,7 +208,9 @@ public class Levels{
     return false;
   }
   public boolean playLevel4(){
-    
+      if (timer > 1000 && Main.Zombies.size() == 0){
+        Main.setLost(1);
+      }
     return false;
   }
   public boolean playLevel5(){
