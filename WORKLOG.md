@@ -64,3 +64,8 @@ Created basic projectile class, starting implementing Plant class.
 -added working Cherrybomb plant
 ### June 6
 -added repeater plant, frames size still need to be adjusted
+### June 7
+-worked on implementing a Levels system for the player to progress through
+### June 9
+-finished menu screen and level logic
+-changed shovel icon and added a menu button to go back to level selection
