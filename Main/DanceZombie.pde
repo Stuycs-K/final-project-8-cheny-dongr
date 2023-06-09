@@ -90,7 +90,7 @@ public class DanceZombie extends Zombie{
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.spawn = frameCount;
     this.speed = 1;
-    this.hp = 500;
+    this.hp = 400;
     this.damage = 10;
     this.change = 0;
     this.dancezeat = dancezeat;
