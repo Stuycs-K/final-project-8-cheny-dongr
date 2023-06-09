@@ -2,7 +2,6 @@ static ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 static ArrayList<Sun> Suns = new ArrayList<Sun>();
 int sunCounter = 50;
 static ArrayList<Zombie> Zombies = new ArrayList<Zombie>();
-static ArrayList<DanceZombie> Dance = new ArrayList<DanceZombie>();
 static ArrayList<String> SeedPackets = new ArrayList<String>();
 ArrayList<PImage> SeedPacketsPNGs = new ArrayList<PImage>();
 boolean usingShovel = false;
@@ -42,14 +41,14 @@ public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
   if (key == 's'){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+ // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+ // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+ // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+ // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+ // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   Zombies.add(new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes));
 
-  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
+  //Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
   if (key == 'c'){
     sunCounter = 9000;
@@ -74,11 +73,6 @@ public static void addZombie(Zombie zomb){
   Zombies.add(zomb);
 }
 
-/*
-void mouseClicked(){
-
-}
-*/
 void mouseClicked(){
 /* testing uses
 =======

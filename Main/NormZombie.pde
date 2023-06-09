@@ -131,7 +131,7 @@ public class NormZombie extends Zombie{
     if (change != 2) {
 
       if (change == 0) {
-        if ((frameCount) % 3 == 0) {
+        if ((frameCount) % 4 == 0) {
           this.setX(this.x-speed);
       }
         if ((frameCount) % (3) == 0) {

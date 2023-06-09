@@ -86,7 +86,7 @@ public class FootballZombie extends Zombie{
     this.x = width-100;
     this.y = (int)(random(5))*80 + 100; //add constant once figured out positions
     this.speed = 2;
-    this.hp = 1600;
+    this.hp = 1400;
     this.damage = 10;
     this.change = 0;
     this.helmetzeat = helmetzeat;
@@ -131,10 +131,10 @@ public class FootballZombie extends Zombie{
     if (change != 2) {
 
       if (change == 0) {
-        if ((frameCount) % 3 == 0) {
+        if ((frameCount) % 4 == 0) {
           this.setX(this.x-speed);
       }
-        if ((frameCount) % (4) == 0) {
+        if ((frameCount) % (5) == 0) {
           currentFrame++;
           //this.setX(this.x-speed);
           if (currentFrame >= walk.size()) {
