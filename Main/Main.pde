@@ -32,7 +32,9 @@ public static ArrayList<PImage> dancezdance = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezeat = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezwalk = new ArrayList<PImage>();
 
-PImage background; 
+PImage background;
+PImage shovel;
+PImage menu;
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
@@ -79,14 +81,15 @@ void mouseClicked(){
   checkIfStartGame();
   }
   else{
-  selectSeedpacket();
-  isShovelPressed();
-  if(usingShovel){
-    useShovel();
-  }
-  else {
-    clickOnLawn();
-  }
+    selectSeedpacket();
+    pressShovel();
+    pressMenu();
+    if(usingShovel){
+      useShovel();
+    }
+    else {
+      clickOnLawn();
+    }
   }
 }
 
@@ -114,6 +117,7 @@ public void clearAll(){
 }
 
 void draw(){
+  background(255);
   println(lost);
   println(openMenu);
   if (openMenu){
@@ -180,8 +184,8 @@ void draw(){
 
   textSize(80);
   text(sunCounter, 30, 100);
-  text("Index: " + SeedPacketSelected, 400, 100);
-  text("Level: " + LEVELS.getCurrentLevel(), 700, 100);
+  //text("Index: " + SeedPacketSelected, 400, 100);
+  text("Level: " + LEVELS.getCurrentLevel(), 600, 100);
   drawSeedpacketBar();
   naturallySpawnSun();
   
@@ -270,7 +274,7 @@ void draw(){
   
   fill(0);
   textSize(30);
-  text(frameRate, 30, 30);
+  text(frameRate, 700, 30);
   text(LEVELS.getTimer(), 800, 30);
   }
   public static void addProjectile(Projectile projectile){
@@ -314,8 +318,9 @@ void draw(){
       //text(SeedPackets.get(i),i*100+150, 100);
     }
     //ALSO DRAWS THE SHOVEL
-    fill(0);
-    square(1000, 0,100);
+    image(shovel, 900, 0);
+    //DRAWS THE MENU ICON
+    image(menu, 1000, 0);
   }
   private void selectSeedpacket(){
     if(mouseX > 150 && mouseY< 100){
@@ -369,8 +374,8 @@ void draw(){
   
 
   
-  private void isShovelPressed(){
-    if(mouseX > 1000 && mouseY< 100){
+  private void pressShovel(){
+    if(mouseX > 900 && mouseX < 1000 && mouseY < 100){
       usingShovel = true;
       SeedPacketSelected = -10;
       //75 is width of packet
@@ -383,7 +388,17 @@ void draw(){
       usingShovel = false;
     }
   }
-  
+  private void pressMenu(){
+    if(mouseX > 1000 && mouseY < 100){
+      openMenu = true;
+    }
+  }
+  private void pressMenuOnEndScreen(){
+    //CHANGE THIS CHECK
+    if(mouseX > 1000 && mouseY < 100){
+      openMenu = true;
+    }
+  }
 
   public void mode1(){
   SeedPackets.add("SUNFLOWER");
@@ -540,6 +555,10 @@ void draw(){
   CherrybombFrames.add(frameExplosion);
   background = loadImage("garden.png");
   background.resize(1100, 500);
+  shovel = loadImage("PlantFrames" + File.separator + "shovel.png");
+  shovel.resize(100, 100);
+  menu = loadImage("PlantFrames" + File.separator + "menu.png");
+  menu.resize(100, 100);
   }
   
 
