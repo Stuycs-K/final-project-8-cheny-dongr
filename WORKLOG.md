@@ -27,6 +27,14 @@ Added the footballzombie along with the animations, and zombie and plant interac
 Added the dance zombie(no animations yet), set all plants and zombie's stats to match with the actual game
 ### June 5
 Completed dance zombie animation, dance zombie spawning zombies
+### June 6
+Organizing code in setup and draw
+### June 8
+Reworked dance zombie to make it easier to call on in levels, made level 1 with only normal zombies, level 2 with football, level 3 with dance zombie
+### June 9
+set up ongoing, lost, win with game interaction. Fixed errors within going to different stages. Amount of plants unlock is different for each level
+
+
 ## Rui Dong
 
 ### May22
