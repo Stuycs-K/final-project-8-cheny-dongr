@@ -212,4 +212,10 @@ public class Levels{
     return false;
   }
   
+  public void setCurrentLevel(int level){
+    currentLevel = level;
+  }
+  public int getCurrentLevel(){
+    return currentLevel;
+  }
 }
