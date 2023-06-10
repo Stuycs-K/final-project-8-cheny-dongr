@@ -32,7 +32,7 @@ Organizing code in setup and draw
 ### June 8
 Reworked dance zombie to make it easier to call on in levels, made level 1 with only normal zombies, level 2 with football, level 3 with dance zombie
 ### June 9
-set up ongoing, lost, win with game interaction. Fixed errors within going to different stages. Amount of plants unlock is different for each level
+set up ongoing, lost, win with game interaction. Fixed errors within going to different stages. Amount of plants unlock is different for each level, set up win and lost page where player and retry level or go back to menu
 
 
 ## Rui Dong
