@@ -117,6 +117,9 @@ public class Levels{
       if (timer == 6900){
         waves(5,0,0);
       }
+      if (timer > 6910 && Main.Zombies.size() == 0){
+        Main.setLost(1);
+      }
     return false;
   }
   public boolean playLevel2(){
@@ -156,6 +159,9 @@ public class Levels{
       }
       if (timer == 12700){
         waves(8,2,0);
+      }
+      if (timer > 12710 && Main.Zombies.size() == 0){
+        Main.setLost(1);
       }
     return false;
   }
@@ -202,6 +208,9 @@ public class Levels{
       }
       if (timer == 13000){
           waves(5,0,2);
+      }
+      if (timer > 13010 && Main.Zombies.size() == 0){
+        Main.setLost(1);
       }
     
     

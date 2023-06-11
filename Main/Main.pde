@@ -34,6 +34,12 @@ PImage background;
 PImage shovel;
 PImage menu;
 PImage losescreen;
+PImage homescreen;
+PImage lvl1;
+PImage lvl2;
+PImage lvl3;
+PImage testlvl;
+PImage start;
 
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
@@ -133,36 +139,18 @@ void draw(){
   println("menu: " + openMenu);
   println("lost: " + lost);
   if (openMenu){
+    image(homescreen,0,0);
     lost = 0;
-    fill(255);
-    rect(500, 200, 100, 100);
-    fill(0);
-    textSize(30);
-    text("START",500,300);
+
+    image(start,465,200);
     
-    fill(255);
-    rect(100, 400, 200, 100);
-    fill(0);
-    textSize(30);
-    text("Level 1",200,500);
+    image(lvl1,100,400);
     
-    fill(255);
-    rect(350, 400, 200, 100);
-    fill(0);
-    textSize(30);
-    text("Level 2",450,500);
+    image(lvl2,350,400);
     
-    fill(255);
-    rect(600, 400, 200, 100);
-    fill(0);
-    textSize(30);
-    text("Level 3",700,500);
+    image(lvl3,600,400);
     
-    fill(255);
-    rect(850, 400, 200, 100);
-    fill(0);
-    textSize(30);
-    text("Level 4",950,500);
+    image(testlvl,850,400);
   }
   else{
     
@@ -176,30 +164,17 @@ void draw(){
       clearAll();
       background(255);
       image(losescreen, 0, 0);
-      fill(255);
-    rect(100, 400, 200, 100);
-    rect(850, 400, 200, 100);
-    
-    fill(0);
-    textSize(30);
-    text("RETRY?",200,500);
-    text("HOME",950,500);
+
     }
     else if (lost == 1){
       clearAll();
       background(255);
       textSize(30);
       image(losescreen, 0, 0);
-      fill(255);
-    rect(100, 400, 200, 100);
-    rect(850, 400, 200, 100);
     fill(255,0,0);
     textSize(100);
     text("DID NOT",10,200);
-    fill(0);
-    textSize(30);
-    text("RETRY?",200,500);
-    text("HOME",950,500);
+
     }
   }
 }
@@ -210,7 +185,8 @@ void draw(){
   image(background, 0, 100);
   textSize(80);
   text(sunCounter, 30, 100);
-  text("Index: " + SeedPacketSelected, 400, 100);
+  textSize(40);
+  text("Index: " + SeedPacketSelected, 700, 62);
   text("Level: " + LEVELS.getCurrentLevel(), 700, 100);
   difpacket();
   naturallySpawnSun();
@@ -282,7 +258,7 @@ void draw(){
     Projectiles.get(projectile).move();
     Projectiles.get(projectile).display();
     for (Zombie zomb : Zombies){
-      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-80 == 0){
+      if (Projectiles.size() > 0 && ((zomb.getX() - Projectiles.get(projectile).getX()) < -60) && Projectiles.get(projectile).getY()- zomb.getY()-80 == 0 && Projectiles.get(projectile).getX()<width-10){
         Projectiles.get(projectile).doDamage(zomb);
         Projectiles.remove(projectile);       
         if (projectile > 0){
@@ -581,6 +557,18 @@ void draw(){
   menu = loadImage("PlantFrames" + File.separator + "menu.png");
   menu.resize(100, 100);
   losescreen.resize(1100, 600);
+  homescreen = loadImage("homescreen.png");
+  homescreen.resize(1100,600);
+  lvl1 = loadImage("lvl1.png");
+  lvl2 = loadImage("lvl2.png");
+  lvl3 = loadImage("lvl3.png");
+  testlvl = loadImage("testlvl.png");
+  start = loadImage("start.png");
+  lvl1.resize(150,60);
+  lvl2.resize(150,60);
+  lvl3.resize(150,60);
+  testlvl.resize(150,60);
+  start.resize(150,60);
   }
   private void difpacket(){
     if (LEVELS.getCurrentLevel() == 1){
@@ -598,19 +586,19 @@ void draw(){
   }
 
   private void checkIfStartGame(){
-    if(mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300){
+    if(mouseX > 465 && mouseX < 615 && mouseY > 200 && mouseY < 260){
       openMenu = false;
     }
-    if(mouseX > 100 && mouseX < 300 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 100 && mouseX < 250 && mouseY > 400 && mouseY < 460){
       lvl(1);
     }
-    if(mouseX > 350 && mouseX < 550 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 350 && mouseX < 500 && mouseY > 400 && mouseY < 460){
       lvl(2);
     }
-    if(mouseX > 600 && mouseX < 800 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 600 && mouseX < 750 && mouseY > 400 && mouseY < 460){
       lvl(3);
     }
-    if(mouseX > 850 && mouseX < 1050 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 850 && mouseX < 100 && mouseY > 400 && mouseY < 460){
       lvl(4);
     }
     
@@ -656,15 +644,19 @@ void draw(){
       LEVELS.setCurrentLevel(4);
     }
   }
+  //homepage
+  //rect(390, 515, 150, 50);
+  //retry
+   // rect(580, 515, 130, 50);
   private void losing(){
-    if(mouseX > 100 && mouseX < 300 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 580 && mouseX < 710 && mouseY > 515 && mouseY < 565){
       background(255);
       if (lost == -1 || lost == 1){
       lost = 0;
       lvl(LEVELS.getCurrentLevel());
       }
     }
-    if(mouseX > 850 && mouseX < 1050 && mouseY > 400 && mouseY < 500){
+    if(mouseX > 390 && mouseX < 540 && mouseY > 515 && mouseY < 565){
       background(255);
       if (lost == -1 || lost == 1){
       openMenu = true;
