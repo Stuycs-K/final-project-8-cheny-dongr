@@ -12,7 +12,6 @@ public class DanceZombie extends Zombie{
   private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 3;
   private int change;
   private int spawn;
   private boolean dance;

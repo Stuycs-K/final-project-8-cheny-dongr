@@ -40,19 +40,27 @@ public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
   if (key == 's'){
-  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes,0,1));
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
- // Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
+  Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   Zombies.add(new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes));
-
-  //Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
+  Zombies.add(new FootballZombie(helmetzwalk, nohelmetzwalk,helmetzeat, nohelmetzeat,dframes, explodeframes));
   }
   if (key == 'c'){
     sunCounter = 9000;
   }
-
+  if (key == 'r'){
+    lost = -1;
+    clearAll();
+      background(255);
+      image(losescreen, 0, 0);
+      fill(255);
+    rect(100, 400, 200, 100);
+    rect(850, 400, 200, 100);
+    
+    fill(0);
+    textSize(30);
+    text("RETRY?",200,500);
+    text("HOME",950,500);
+  }
 }
 
 void setup(){

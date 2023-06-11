@@ -4,7 +4,6 @@ import java.nio.file.Paths;
 public class Repeater extends Plant{
   public final static int COST = 200;
   private int Health = 300;
-  private int attackDamage;
   private int x,y;
   private int attackSpeed = 90;
   private int attackCounter = 0;

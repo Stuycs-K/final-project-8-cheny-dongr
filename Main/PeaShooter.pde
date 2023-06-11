@@ -4,7 +4,6 @@ import java.nio.file.Paths;
 public class PeaShooter extends Plant{
   public final static int COST = 100;
   private int Health;
-  private int attackDamage;
   private int x,y;
   private int attackSpeed = 90;
   private int attackCounter = 0;

@@ -6,7 +6,6 @@ abstract class Zombie {
   private int damage;
 
   private int currentFrame = 0;
-  private int FRAMERATE = 3;
   private int change;
   boolean alive = true;
   boolean dying = false;
