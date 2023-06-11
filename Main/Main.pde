@@ -29,15 +29,12 @@ public static ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezdance = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezeat = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezwalk = new ArrayList<PImage>();
-<<<<<<< HEAD
 
 PImage background;
 PImage shovel;
 PImage menu;
-=======
 PImage losescreen;
-PImage background; 
->>>>>>> 8b2c92356d25fd73f73817b9efb5f688c9d5e2a6
+
 public static ArrayList<PImage> PeashooterFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> SunflowerFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> PotatomineFrames = new ArrayList<PImage>();
@@ -123,15 +120,10 @@ public void clearAll(){
 }
 
 void draw(){
-<<<<<<< HEAD
   background(255);
-  println(lost);
-  println(openMenu);
-=======
   println("zombie: " + Zombies.size());
   println("menu: " + openMenu);
   println("lost: " + lost);
->>>>>>> 8b2c92356d25fd73f73817b9efb5f688c9d5e2a6
   if (openMenu){
     lost = 0;
     fill(255);
@@ -210,15 +202,9 @@ void draw(){
   image(background, 0, 100);
   textSize(80);
   text(sunCounter, 30, 100);
-<<<<<<< HEAD
-  //text("Index: " + SeedPacketSelected, 400, 100);
-  text("Level: " + LEVELS.getCurrentLevel(), 600, 100);
-  drawSeedpacketBar();
-=======
   text("Index: " + SeedPacketSelected, 400, 100);
   text("Level: " + LEVELS.getCurrentLevel(), 700, 100);
   difpacket();
->>>>>>> 8b2c92356d25fd73f73817b9efb5f688c9d5e2a6
   naturallySpawnSun();
   
   
@@ -423,6 +409,7 @@ void draw(){
   private void pressMenu(){
     if(mouseX > 1000 && mouseY < 100){
       openMenu = true;
+      clearAll();
     }
   }
   private void pressMenuOnEndScreen(){
@@ -581,12 +568,10 @@ void draw(){
   losescreen = loadImage("lose.png");
   background = loadImage("garden.png");
   background.resize(1100, 500);
-<<<<<<< HEAD
   shovel = loadImage("PlantFrames" + File.separator + "shovel.png");
   shovel.resize(100, 100);
   menu = loadImage("PlantFrames" + File.separator + "menu.png");
   menu.resize(100, 100);
-=======
   losescreen.resize(1100, 600);
   }
   private void difpacket(){
@@ -602,7 +587,6 @@ void draw(){
     if (LEVELS.getCurrentLevel() == 4){
       drawSeedpacketBar(6);
     }
->>>>>>> 8b2c92356d25fd73f73817b9efb5f688c9d5e2a6
   }
 
   private void checkIfStartGame(){
