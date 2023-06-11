@@ -29,7 +29,6 @@ public static ArrayList<PImage> nohelmetzwalk = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezdance = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezeat = new ArrayList<PImage>();
 public static ArrayList<PImage> dancezwalk = new ArrayList<PImage>();
-
 PImage background;
 PImage shovel;
 PImage menu;
