@@ -49,6 +49,7 @@ public static ArrayList<PImage> CherrybombFrames = new ArrayList<PImage>();
 public static ArrayList<PImage> RepeaterFrames = new ArrayList<PImage>();
 
 void keyPressed(){
+  if (LEVELS.getCurrentLevel() == 4){
   if (key == 's'){
   Zombies.add(new NormZombie(wframes, eframes, dframes, explodeframes));
   Zombies.add(new DanceZombie(dancezwalk, dancezeat, dancezdance, dframes, explodeframes));
@@ -57,6 +58,8 @@ void keyPressed(){
   if (key == 'c'){
     sunCounter = 9000;
   }
+  }
+  
   if (key == 'r'){
     lost = -1;
     clearAll();
