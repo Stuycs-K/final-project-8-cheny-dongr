@@ -63,13 +63,7 @@ void keyPressed(){
       background(255);
       image(losescreen, 0, 0);
       fill(255);
-    rect(100, 400, 200, 100);
-    rect(850, 400, 200, 100);
-    
-    fill(0);
-    textSize(30);
-    text("RETRY?",200,500);
-    text("HOME",950,500);
+
   }
 }
 
@@ -598,7 +592,7 @@ void draw(){
     if(mouseX > 600 && mouseX < 750 && mouseY > 400 && mouseY < 460){
       lvl(3);
     }
-    if(mouseX > 850 && mouseX < 100 && mouseY > 400 && mouseY < 460){
+    if(mouseX > 850 && mouseX < 1000 && mouseY > 400 && mouseY < 460){
       lvl(4);
     }
     
