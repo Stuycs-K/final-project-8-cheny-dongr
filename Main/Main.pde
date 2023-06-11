@@ -177,8 +177,8 @@ void draw(){
    background(255);
   fill(0);
   image(background, 0, 100);
-  textSize(80);
-  text(sunCounter, 30, 100);
+  textSize(75);
+  text(sunCounter, 10, 100);
   textSize(40);
   text("Index: " + SeedPacketSelected, 700, 62);
   text("Level: " + LEVELS.getCurrentLevel(), 700, 100);
