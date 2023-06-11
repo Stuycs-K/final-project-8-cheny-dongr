@@ -11,7 +11,6 @@ public class NormZombie extends Zombie{
   private ArrayList<PImage> dframes = new ArrayList<PImage>();
   private ArrayList<PImage> explodeframes = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private int FRAMERATE = 3;
   private int change;
   boolean alive = true;
   boolean dying = false;

@@ -1,6 +1,5 @@
 abstract class Plant{
   private int Health;
-  private int attackDamage;
   private int x,y;
   
   public abstract void takeDamage(int damage);

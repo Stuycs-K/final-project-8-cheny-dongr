@@ -7,7 +7,6 @@ public class WallNut extends Plant{
   private int x,y;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 3;
   
   public WallNut(int x, int y){
     this.x = x;

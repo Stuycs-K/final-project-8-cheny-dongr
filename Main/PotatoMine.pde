@@ -2,11 +2,11 @@ public class PotatoMine extends Plant{
   public final static int COST = 25;
   private int Health;
   private int x,y;
-  private int attackDamage = 1800;
+
   private int armingCounter = 840;
   //private ArrayList<PImage> frames = new ArrayList<PImage>();
   private int currentFrame = 0;
-  private final int FRAMERATE = 3;
+
   
   public PotatoMine(int x, int y){
     this.x = x;
