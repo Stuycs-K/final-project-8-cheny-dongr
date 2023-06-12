@@ -78,3 +78,5 @@ Created basic projectile class, starting implementing Plant class.
 ### June 9
 -finished menu screen and level logic
 -changed shovel icon and added a menu button to go back to level selection
+### June 10
+-finished level system that player can select and play. More game testing.
