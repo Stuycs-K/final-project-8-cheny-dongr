@@ -33,7 +33,8 @@ Organizing code in setup and draw
 Reworked dance zombie to make it easier to call on in levels, made level 1 with only normal zombies, level 2 with football, level 3 with dance zombie
 ### June 9
 set up ongoing, lost, win with game interaction. Fixed errors within going to different stages. Amount of plants unlock is different for each level, set up win and lost page where player and retry level or go back to menu
-
+### June 11
+made everything look nicer with a better picture and icons in the menu, finishing up README and prototype
 
 ## Rui Dong
 
@@ -77,3 +78,5 @@ Created basic projectile class, starting implementing Plant class.
 ### June 9
 -finished menu screen and level logic
 -changed shovel icon and added a menu button to go back to level selection
+### June 10
+-finished level system that player can select and play. More game testing.
