@@ -22,4 +22,8 @@ General gameplay overview: the game opens to the menu where there are four butto
 The user have to hover on the "suns" to get the currency. Once the user saved enough suns (shown on the top left), the user can click on seed packets (on the top) and click somewhere on the lawn to place the plant. If the user does not like the location of the plant, they can click on the shovel (top right corner) and click on a plant on the lawn to remove it. Beware, the user does not get the sun back. The user can click on the gear (also top right corner) to go back to menu. All commands are by using the mouse to click with the exception of 'r' to reset and go to the losing screen <br>
 As for cheat commands (feel free to test in testinglvl): <br>
 's' to spawn a normal zombie, football zombie, and dance zombie <br>
-'c' to instantly gain 9000 sun
+'c' to instantly gain 9000 sun<br>
+
+<br>
+### Gameplay
+https://drive.google.com/file/d/1XWtY0veFjzgBxh4GD7yrOVcn7H3b_epg/view?usp=sharing
