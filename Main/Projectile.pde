@@ -14,7 +14,7 @@ public class Projectile{
     x += speed;
   }
   public void display(){
-    fill(0);
+    fill(50,240,50);
     circle(x,y,20);
   }
   public int getX(){
