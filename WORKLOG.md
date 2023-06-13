@@ -1,6 +1,6 @@
 # Work Log
 # Dev Log
-Working Features: <br>
+## Working Features: 
 -Zombies spawn randomly on one of the five lanes <br>
 -Placeable plants by clicking on the seedpacket and place on the lawn<br>
 -All plant and zombies' stats (hp, rate, damage, etc) all matches with the real game <br>
@@ -23,14 +23,14 @@ Working Features: <br>
 -A start button (in menu) that allows the player to play most recent level (default to 1)<br>
 -testing level where player have access to 9000 sun ('c') or spawn each of the three zombies at the same time ('s') so the player can simulate their own level.
 <br>
-Broken Features/Bugs:<br>
+## Broken Features/Bugs:
 -We were not able to implement plants only attacking when they see a zombie (due to time and confusion with separating the sunflower)<br>
 -We were not able to set up a cooldown system so player does abuse a plant (due to time) <br>
 -We don't have any major bugs as we make sure everything works before moving on (which led to less time)<br>
 -We did not add sound nor lawnmover (that was an overlook)<br>
 -Only 6 plants and 3 zombies (there weren't enough animation for zombies and we focused on setting up the menus and levels instead of more plants to make it more like a game)
 <br>
-Resources: <br>
+## Resources:
 -All code are from prior knowledge learned from this class. Only resources used were Processing documentation and PVZ wiki.<br>
 ## Yao 
 ### May22
